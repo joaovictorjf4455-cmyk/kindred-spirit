@@ -31,7 +31,7 @@ const categories = [
 ];
 
 const products = [
-  { name: "PRATA - P9 - Fone De Ouvido Bluetooth Air - S/ Fio Wireless Headphone | AJ-D24", category: "Áudio", price: "Confira no checkout", oldPrice: "", discount: "OFERTA", rating: "4.8", reviews: "Produto em destaque", image: "https://images.unsplash.com/photo-1546435770-a3e426bf472b?auto=format&fit=crop&w=900&q=85", checkout: "https://pay.kaiross.com.br/Pnt8zHTsmLmH" },
+  { name: "PRATA - P9 - Fone De Ouvido Bluetooth Air - S/ Fio Wireless Headphone | AJ-D24", category: "Áudio", price: "R$ 99,90", oldPrice: "R$ 149,90", discount: "33% OFF", rating: "4.8", reviews: "Produto em destaque", image: "https://images.unsplash.com/photo-1546435770-a3e426bf472b?auto=format&fit=crop&w=900&q=85", checkout: "https://pay.kaiross.com.br/Pnt8zHTsmLmH" },
   { name: "MacBook Air M3", category: "Notebooks", price: "R$ 8.799", oldPrice: "R$ 9.599", discount: "8% OFF", rating: "4.8", reviews: "214", image: "https://images.unsplash.com/photo-1517336714739-489689fd1ca8?auto=format&fit=crop&w=900&q=85" },
   { name: "Sony WH-1000XM5", category: "Áudio", price: "R$ 2.199", oldPrice: "R$ 2.699", discount: "18% OFF", rating: "4.9", reviews: "506", image: "https://images.unsplash.com/photo-1546435770-a3e426bf472b?auto=format&fit=crop&w=900&q=85" },
   { name: "Apple Watch Series 10", category: "Wearables", price: "R$ 3.299", oldPrice: "R$ 3.699", discount: "11% OFF", rating: "4.8", reviews: "187", image: "https://images.unsplash.com/photo-1544117519-31a4b719223d?auto=format&fit=crop&w=900&q=85" },
@@ -163,7 +163,7 @@ function Index() {
                 <p className="text-xs font-semibold text-slate-400">{product.category}</p>
                 <h3 className="mt-1 font-bold">{product.name}</h3>
                 <div className="mt-2 flex items-center gap-1 text-xs"><Star className="size-3.5 fill-amber-400 text-amber-400" /><b>{product.rating}</b><span className="text-slate-400">({product.reviews})</span></div>
-                <div className="mt-4 flex items-end gap-2"><span className="text-xl font-black">{product.price}</span><del className="text-xs text-slate-400">{product.oldPrice}</del></div>
+                <div className="mt-4 flex items-end gap-2"><span className="text-xl font-black text-blue-600">{product.price}</span><del className="text-xs text-slate-400">{product.oldPrice}</del></div>
                 {"checkout" in product ? <a href={product.checkout} target="_blank" rel="noreferrer" className="mt-4 flex h-10 w-full items-center justify-center gap-2 rounded-xl bg-blue-600 text-sm font-bold text-white transition hover:bg-blue-500"><ShoppingBag className="size-4" /> Comprar agora</a> : <button onClick={addToCart} className="mt-4 flex h-10 w-full items-center justify-center gap-2 rounded-xl bg-[#101828] text-sm font-bold text-white transition hover:bg-blue-600"><ShoppingBag className="size-4" /> Adicionar ao carrinho</button>}
               </div>
             </article>
