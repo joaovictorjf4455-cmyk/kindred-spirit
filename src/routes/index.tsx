@@ -20,7 +20,7 @@ const categories = [
 const products = [
   { name: "PRATA - P9 - Fone De Ouvido Bluetooth Air - S/ Fio Wireless Headphone | AJ-D24", category: "Áudio", price: "R$ 99,90", oldPrice: "R$ 149,90", discount: "33% OFF", rating: "4.8", reviews: "Produto em destaque", image: "https://images.unsplash.com/photo-1546435770-a3e426bf472b?auto=format&fit=crop&w=900&q=85", checkout: "https://pay.kaiross.com.br/Pnt8zHTsmLmH" },
   { name: "MacBook Air M3", category: "Notebooks", price: "R$ 8.799", oldPrice: "R$ 9.599", discount: "8% OFF", rating: "4.8", reviews: "214", image: "https://images.unsplash.com/photo-1517336714739-489689fd1ca8?auto=format&fit=crop&w=900&q=85" },
-  { name: "CARREGADOR PORTÁTIL DOBRÁVEL Magsafe 3 em 1 - Branco", category: "Acessórios", price: "R$ 99,90", oldPrice: "R$ 189,90", discount: "47% OFF", rating: "4.8", reviews: "Oferta especial", image: "https://www.casaiq.com.br/wp-content/uploads/2025/09/CARREGADOR-PORTATIL-DOBRAVEL-Magsafe-3-em-1-Branco-200x200.png", checkout: "https://pay.kaiross.com.br/crT4puVOrlIX" },
+  { name: "CARREGADOR PORTÁTIL DOBRÁVEL Magsafe 3 em 1 - Branco", category: "Acessórios", price: "R$ 99,90", oldPrice: "R$ 189,90", discount: "47% OFF", rating: "4.8", reviews: "Oferta especial", image: "https://www.casaiq.com.br/wp-content/uploads/2025/09/CARREGADOR-PORTATIL-DOBRAVEL-Magsafe-3-em-1-Branco-200x200.png?v=20261007", checkout: "https://pay.kaiross.com.br/crT4puVOrlIX" },
   { name: "Sony WH-1000XM5", category: "Áudio", price: "R$ 2.199", oldPrice: "R$ 2.699", discount: "18% OFF", rating: "4.9", reviews: "506", image: "https://images.unsplash.com/photo-1546435770-a3e426bf472b?auto=format&fit=crop&w=900&q=85" },
   { name: "Apple Watch Series 10", category: "Wearables", price: "R$ 3.299", oldPrice: "R$ 3.699", discount: "11% OFF", rating: "4.8", reviews: "187", image: "https://images.unsplash.com/photo-1544117519-31a4b719223d?auto=format&fit=crop&w=900&q=85" },
 ];
@@ -145,7 +145,7 @@ function Index() {
           {filteredProducts.map((product) => (
             <article key={product.name} className="group overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-slate-200/70">
               <div className="relative bg-slate-100">
-                <img src={product.image} alt={product.name} className="h-56 w-full object-cover transition duration-500 group-hover:scale-105" />
+                <img src={product.image} alt={product.name} className={`h-56 w-full transition duration-500 group-hover:scale-105 ${product.category === "Acessórios" ? "bg-white object-contain p-3" : "object-cover"}`} />
                 <span className="absolute left-3 top-3 rounded-lg bg-blue-600 px-2.5 py-1 text-[11px] font-black text-white">{product.discount}</span>
                 <button className="absolute right-3 top-3 grid size-9 place-items-center rounded-full bg-white/90 text-slate-500 shadow-sm hover:text-red-500" aria-label="Favoritar"><Heart className="size-4" /></button>
               </div>
