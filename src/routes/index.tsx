@@ -32,7 +32,7 @@ const categories = [
 
 const products = [
   { name: "PRATA - P9 - Fone De Ouvido Bluetooth Air - S/ Fio Wireless Headphone | AJ-D24", category: "Áudio", price: "R$ 99,90", oldPrice: "R$ 149,90", discount: "33% OFF", rating: "4.8", reviews: "Produto em destaque", image: "https://images.unsplash.com/photo-1546435770-a3e426bf472b?auto=format&fit=crop&w=900&q=85", checkout: "https://pay.kaiross.com.br/Pnt8zHTsmLmH" },
-  { name: "MacBook Air M3", category: "Notebooks", price: "R$ 8.799", oldPrice: "R$ 9.599", discount: "8% OFF", rating: "4.8", reviews: "214", image: "https://images.unsplash.com/photo-1517336714739-489689fd1ca8?auto=format&fit=crop&w=900&q=85" },
+  { name: "MacBook Air M3", category: "Notebooks", price: "R$ 8.799", oldPrice: "R$ 9.599", discount: "8% OFF", rating: "4.8", reviews: "214", image: "https://images.unsplash.com/photo-1517336714739-489689fd1ca8?auto=format&fit=crop&w=900&q=85" },\n  { name: "CARREGADOR PORTÁTIL DOBRÁVEL Magsafe 3 em 1 - Branco", category: "Acessórios", price: "R$ 129,90", oldPrice: "R$ 189,90", discount: "32% OFF", rating: "4.8", reviews: "Oferta especial", image: "https://images.unsplash.com/photo-1609592424980-5d3f2d9a9f08?auto=format&fit=crop&w=900&q=85", checkout: "https://pay.kaiross.com.br/crT4puVOrlIX" },
   { name: "Sony WH-1000XM5", category: "Áudio", price: "R$ 2.199", oldPrice: "R$ 2.699", discount: "18% OFF", rating: "4.9", reviews: "506", image: "https://images.unsplash.com/photo-1546435770-a3e426bf472b?auto=format&fit=crop&w=900&q=85" },
   { name: "Apple Watch Series 10", category: "Wearables", price: "R$ 3.299", oldPrice: "R$ 3.699", discount: "11% OFF", rating: "4.8", reviews: "187", image: "https://images.unsplash.com/photo-1544117519-31a4b719223d?auto=format&fit=crop&w=900&q=85" },
 ];
