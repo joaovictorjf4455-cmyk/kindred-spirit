@@ -1,23 +1,9 @@
 import { useMemo, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import {
-  ArrowRight,
-  ChevronRight,
-  Headphones,
-  Heart,
-  Laptop,
-  Menu,
-  Monitor,
-  Search,
-  ShieldCheck,
-  ShoppingBag,
-  Smartphone,
-  Sparkles,
-  Star,
-  Truck,
-  Watch,
-  X,
-  Zap,
+  ArrowRight, ChevronRight, Headphones, Heart, Laptop, Menu, Monitor,
+  Search, ShieldCheck, ShoppingBag, Smartphone, Sparkles, Star, Truck,
+  Watch, X, Zap,
 } from "lucide-react";
 
 export const Route = createFileRoute("/")({ component: Index });
@@ -28,11 +14,13 @@ const categories = [
   { name: "Áudio", icon: Headphones },
   { name: "Monitores", icon: Monitor },
   { name: "Wearables", icon: Watch },
+  { name: "Acessórios", icon: ShoppingBag },
 ];
 
 const products = [
   { name: "PRATA - P9 - Fone De Ouvido Bluetooth Air - S/ Fio Wireless Headphone | AJ-D24", category: "Áudio", price: "R$ 99,90", oldPrice: "R$ 149,90", discount: "33% OFF", rating: "4.8", reviews: "Produto em destaque", image: "https://images.unsplash.com/photo-1546435770-a3e426bf472b?auto=format&fit=crop&w=900&q=85", checkout: "https://pay.kaiross.com.br/Pnt8zHTsmLmH" },
-  { name: "MacBook Air M3", category: "Notebooks", price: "R$ 8.799", oldPrice: "R$ 9.599", discount: "8% OFF", rating: "4.8", reviews: "214", image: "https://images.unsplash.com/photo-1517336714739-489689fd1ca8?auto=format&fit=crop&w=900&q=85" },\n  { name: "CARREGADOR PORTÁTIL DOBRÁVEL Magsafe 3 em 1 - Branco", category: "Acessórios", price: "R$ 99,90", oldPrice: "R$ 189,90", discount: "47% OFF", rating: "4.8", reviews: "Oferta especial", image: "https://images.unsplash.com/photo-1609592424980-5d3f2d9a9f08?auto=format&fit=crop&w=900&q=85", checkout: "https://pay.kaiross.com.br/crT4puVOrlIX" },
+  { name: "MacBook Air M3", category: "Notebooks", price: "R$ 8.799", oldPrice: "R$ 9.599", discount: "8% OFF", rating: "4.8", reviews: "214", image: "https://images.unsplash.com/photo-1517336714739-489689fd1ca8?auto=format&fit=crop&w=900&q=85" },
+  { name: "CARREGADOR PORTÁTIL DOBRÁVEL Magsafe 3 em 1 - Branco", category: "Acessórios", price: "R$ 99,90", oldPrice: "R$ 189,90", discount: "47% OFF", rating: "4.8", reviews: "Oferta especial", image: "https://images.unsplash.com/photo-1609592424980-5d3f2d9a9f08?auto=format&fit=crop&w=900&q=85", checkout: "https://pay.kaiross.com.br/crT4puVOrlIX" },
   { name: "Sony WH-1000XM5", category: "Áudio", price: "R$ 2.199", oldPrice: "R$ 2.699", discount: "18% OFF", rating: "4.9", reviews: "506", image: "https://images.unsplash.com/photo-1546435770-a3e426bf472b?auto=format&fit=crop&w=900&q=85" },
   { name: "Apple Watch Series 10", category: "Wearables", price: "R$ 3.299", oldPrice: "R$ 3.699", discount: "11% OFF", rating: "4.8", reviews: "187", image: "https://images.unsplash.com/photo-1544117519-31a4b719223d?auto=format&fit=crop&w=900&q=85" },
 ];
@@ -47,7 +35,9 @@ function Index() {
     () =>
       products.filter((p) => {
         const categoryMatch = activeCategory === "Todos" || p.category === activeCategory;
-        const searchMatch = p.name.toLowerCase().includes(search.toLowerCase()) || p.category.toLowerCase().includes(search.toLowerCase());
+        const searchMatch =
+          p.name.toLowerCase().includes(search.toLowerCase()) ||
+          p.category.toLowerCase().includes(search.toLowerCase());
         return categoryMatch && searchMatch;
       }),
     [activeCategory, search],
@@ -87,7 +77,7 @@ function Index() {
             <input value={search} onChange={(e) => setSearch(e.target.value)} placeholder="Busque por produto ou categoria..." className="h-11 w-full bg-transparent px-3 text-sm outline-none placeholder:text-slate-400" />
           </div>
 
-          <button onClick={() => setCart((value) => value)} className="relative rounded-xl p-2.5 hover:bg-slate-100" aria-label="Carrinho">
+          <button className="relative rounded-xl p-2.5 hover:bg-slate-100" aria-label="Carrinho">
             <ShoppingBag className="size-5" />
             {cart > 0 && <span className="absolute -right-1 -top-1 grid size-5 place-items-center rounded-full bg-blue-600 text-[10px] font-bold text-white">{cart}</span>}
           </button>
@@ -151,7 +141,7 @@ function Index() {
           <div><p className="text-sm font-bold uppercase tracking-widest text-blue-600">Só por tempo limitado</p><h2 className="mt-1 text-3xl font-black tracking-tight">Ofertas que valem o clique</h2></div>
           <a href="#produtos" className="hidden items-center gap-1 text-sm font-bold text-blue-600 sm:flex">Ver tudo <ChevronRight className="size-4" /></a>
         </div>
-        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        <div id="produtos" className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {filteredProducts.map((product) => (
             <article key={product.name} className="group overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-slate-200/70">
               <div className="relative bg-slate-100">
@@ -164,7 +154,15 @@ function Index() {
                 <h3 className="mt-1 font-bold">{product.name}</h3>
                 <div className="mt-2 flex items-center gap-1 text-xs"><Star className="size-3.5 fill-amber-400 text-amber-400" /><b>{product.rating}</b><span className="text-slate-400">({product.reviews})</span></div>
                 <div className="mt-4 flex items-end gap-2"><span className="text-xl font-black text-blue-600">{product.price}</span><del className="text-xs text-slate-400">{product.oldPrice}</del></div>
-                {"checkout" in product ? <a href={product.checkout} target="_blank" rel="noreferrer" className="mt-4 flex h-10 w-full items-center justify-center gap-2 rounded-xl bg-blue-600 text-sm font-bold text-white transition hover:bg-blue-500"><ShoppingBag className="size-4" /> Comprar agora</a> : <button onClick={addToCart} className="mt-4 flex h-10 w-full items-center justify-center gap-2 rounded-xl bg-[#101828] text-sm font-bold text-white transition hover:bg-blue-600"><ShoppingBag className="size-4" /> Adicionar ao carrinho</button>}
+                {"checkout" in product ? (
+                  <a href={product.checkout} target="_blank" rel="noreferrer" className="mt-4 flex h-10 w-full items-center justify-center gap-2 rounded-xl bg-blue-600 text-sm font-bold text-white transition hover:bg-blue-500">
+                    <ShoppingBag className="size-4" /> Comprar agora
+                  </a>
+                ) : (
+                  <button onClick={addToCart} className="mt-4 flex h-10 w-full items-center justify-center gap-2 rounded-xl bg-[#101828] text-sm font-bold text-white transition hover:bg-blue-600">
+                    <ShoppingBag className="size-4" /> Adicionar ao carrinho
+                  </button>
+                )}
               </div>
             </article>
           ))}
