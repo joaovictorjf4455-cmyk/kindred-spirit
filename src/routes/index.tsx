@@ -10,6 +10,7 @@ export const Route = createFileRoute("/")({ component: Index });
 
 const categories = [
   { name: "Áudio", icon: Headphones },
+  { name: "Boombox", icon: ShoppingBag },
   { name: "Relógios", icon: Watch },
   { name: "Acessórios", icon: ShoppingBag },
 ];
