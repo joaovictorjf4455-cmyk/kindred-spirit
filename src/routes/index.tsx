@@ -1,19 +1,17 @@
 import { useMemo, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import {
-  ArrowRight, ChevronRight, Headphones, Heart, Laptop, Menu, Monitor,
-  Search, ShieldCheck, ShoppingBag, Smartphone, Sparkles, Star, Truck,
+  ArrowRight, ChevronRight, Headphones, Heart, Menu, Monitor,
+  Search, ShieldCheck, ShoppingBag, Sparkles, Star, Truck,
   Watch, X, Zap,
 } from "lucide-react";
 
 export const Route = createFileRoute("/")({ component: Index });
 
 const categories = [
-  { name: "Smartphones", icon: Smartphone },
-  { name: "Notebooks", icon: Laptop },
   { name: "Áudio", icon: Headphones },
   { name: "Monitores", icon: Monitor },
-  { name: "Wearables", icon: Watch },
+  { name: "Relógios", icon: Watch },
   { name: "Acessórios", icon: ShoppingBag },
 ];
 
