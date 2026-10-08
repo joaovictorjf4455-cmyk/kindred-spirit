@@ -1,7 +1,7 @@
 import { useMemo, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import {
-  ArrowRight, ChevronRight, Headphones, Heart, Menu, Monitor,
+  ArrowRight, ChevronRight, Headphones, Heart, Menu,
   Search, ShieldCheck, ShoppingBag, Sparkles, Star, Truck,
   Watch, X, Zap,
 } from "lucide-react";
@@ -10,7 +10,6 @@ export const Route = createFileRoute("/")({ component: Index });
 
 const categories = [
   { name: "Áudio", icon: Headphones },
-  { name: "Monitores", icon: Monitor },
   { name: "Relógios", icon: Watch },
   { name: "Acessórios", icon: ShoppingBag },
 ];
