@@ -24,7 +24,7 @@ const products = [
   { name: "CARREGADOR PORTÁTIL DOBRÁVEL Magsafe 3 em 1 - Branco", category: "Acessórios", price: "R$ 99,90", oldPrice: "R$ 189,90", discount: "47% OFF", rating: "4.8", reviews: "Oferta especial", image: "/magsafe.jpg", checkout: "https://pay.kaiross.com.br/crT4puVOrlIX" },
   { name: "Bateria Powerbank MagSafe Apple — encaixe magnético", category: "Acessórios", price: "R$ 99,90", oldPrice: "R$ 149,90", discount: "33% OFF", rating: "5.0", reviews: "Novo", image: "https://m.magazineluiza.com.br/a-static/420x420/bateria-magsafe-apple-para-iphones-12-12-pro-12-max-e-12-mini-branco-mjwy3be-a/kabum/462812/2caaad4cb668bbc0e571a3aeedc5cc9c.jpeg", checkout: "https://pay.kaiross.com.br/LTrcwjrKwkEv" },
   { name: "BRANCO - Conjunto de Teclado + Mouse Sem Fio Bluetooth Para Notebook e Tablet", category: "Acessórios", price: "R$ 99,90", oldPrice: "", discount: "", rating: "4.8", reviews: "Oferta especial", image: "/tecladomouse.jpg", checkout: "https://pay.kaiross.com.br/SdGy86ZVqs1x" },
-  { name: "BRANCO - Conjunto de Teclado + Mouse Sem Fio Bluetooth Para Notebook e Tablet", category: "Acessórios", price: "R$ 99,90", oldPrice: "", discount: "", rating: "4.8", reviews: "Oferta especial", image: "/tecladomouse-preto.jpg", checkout: "https://pay.kaiross.com.br/FAcrHlBuEbH9" },
+  { name: "BRANCO - Conjunto de Teclado + Mouse Sem Fio Bluetooth Para Notebook e Tablet", category: "Acessórios", price: "R$ 99,90", oldPrice: "", discount: "", rating: "4.8", reviews: "Oferta especial", image: "/tecladomouse-preto.jpg?v=2", checkout: "https://pay.kaiross.com.br/FAcrHlBuEbH9" },
 ];
 
 function Index() {
