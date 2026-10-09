@@ -21,7 +21,7 @@ const products = [
   { name: "PRETO - FONE HEADSET GAMER RGB Rainbow", category: "Áudio", price: "R$ 99,90", oldPrice: "", discount: "", rating: "4.8", reviews: "Oferta especial", image: "/gamer.jpg", checkout: "https://pay.kaiross.com.br/1tl7a6atNmMU" },
   { name: "PRETO - D20 - Relógio Inteligente", category: "Relógios", price: "R$ 99,90", oldPrice: "", discount: "", rating: "4.8", reviews: "Oferta especial", image: "https://app.seuarmazemdrop.com.br/uploads/1756474573-3.png", checkout: "https://pay.kaiross.com.br/8UiczJZxaWGb" },
   { name: "Smartwatch C20Pro com chamada Bluetooth e modo esportivo outdoor", category: "Relógios", price: "R$ 500,00", oldPrice: "R$ 1.000,00", discount: "50% OFF", rating: "4.8", reviews: "Oferta especial", image: "https://i5.walmartimages.com/seo/C20-PRO-Military-Smart-Watches-Men-IP68-Waterproof-Rugged-Bluetooth-Call-Answer-Dial-Calls-1-83-Tactical-Fitness-Watch-Tracker-Android-iOS-Outdoor-Sp_a9806e58-368a-4f70-b9a7-b77fc1d86769.9c217738ee84b32b67a7223eef00e453.jpeg?odnBg=FFFFFF&odnHeight=1200&odnWidth=1200", checkout: "https://pay.kaiross.com.br/yGf0c73o8S1l" },
-  { name: "PRETO - Caixa De Som Boombox Bluetooth Bivolt", category: "Boombox", price: "R$ 500,00", oldPrice: "R$ 1.000,00", discount: "50% OFF", rating: "4.8", reviews: "Oferta especial", image: "https://app.seuarmazemdrop.com.br/uploads/1752234501-4.png", checkout: "https://pay.kaiross.com.br/iUtzjjIQUYbv" },
+  { name: "PRETO - Caixa De Som Boombox Bluetooth Bivolt", category: "Boombox", price: "R$ 500,00", oldPrice: "R$ 1.000,00", discount: "50% OFF", rating: "4.8", reviews: "Oferta em destaque", image: "https://app.seuarmazemdrop.com.br/uploads/1752234501-4.png", checkout: "https://pay.kaiross.com.br/iUtzjjIQUYbv" },
   { name: "CARREGADOR PORTÁTIL DOBRÁVEL Magsafe 3 em 1 - Branco", category: "Acessórios", price: "R$ 99,90", oldPrice: "R$ 189,90", discount: "47% OFF", rating: "4.8", reviews: "Oferta especial", image: "/magsafe.jpg", checkout: "https://pay.kaiross.com.br/crT4puVOrlIX" },
   { name: "Bateria Powerbank MagSafe Apple — encaixe magnético", category: "Acessórios", price: "R$ 99,90", oldPrice: "R$ 149,90", discount: "33% OFF", rating: "5.0", reviews: "Novo", image: "https://m.magazineluiza.com.br/a-static/420x420/bateria-magsafe-apple-para-iphones-12-12-pro-12-max-e-12-mini-branco-mjwy3be-a/kabum/462812/2caaad4cb668bbc0e571a3aeedc5cc9c.jpeg", checkout: "https://pay.kaiross.com.br/LTrcwjrKwkEv" },
   { name: "BRANCO - Conjunto de Teclado + Mouse Sem Fio Bluetooth Para Notebook e Tablet", category: "Teclado", price: "R$ 99,90", oldPrice: "", discount: "", rating: "4.8", reviews: "Oferta especial", image: "/tecladomouse.jpg", checkout: "https://pay.kaiross.com.br/SdGy86ZVqs1x" },
@@ -116,11 +116,11 @@ function Index() {
           <div className="relative">
             <div className="absolute -inset-10 rounded-full bg-blue-600/20 blur-3xl" />
             <div className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-gradient-to-br from-white/10 to-white/[0.02] p-3 shadow-2xl">
-              <img src="https://images.unsplash.com/photo-1600086827875-a63b01f1335c?auto=format&fit=crop&w=1200&q=85" alt="Setup moderno com eletrônicos" className="h-[390px] w-full rounded-[1.5rem] object-cover" />
+              <img src="https://app.seuarmazemdrop.com.br/uploads/1752234501-4.png" alt="Caixa de som Boombox Bluetooth em oferta" className="h-[390px] w-full rounded-[1.5rem] object-cover" />
               <div className="absolute bottom-7 left-7 right-7 rounded-2xl border border-white/10 bg-[#0b1220]/85 p-4 backdrop-blur">
                 <div className="flex items-center justify-between">
-                  <div><p className="text-xs text-slate-400">Oferta destaque</p><p className="mt-1 font-bold text-white">Setup Pro 2025</p></div>
-                  <span className="rounded-lg bg-blue-600 px-3 py-2 text-sm font-black text-white">-25%</span>
+                  <div><p className="text-xs text-slate-400">Oferta em destaque</p><p className="mt-1 font-bold text-white">Boombox Bluetooth</p></div>
+                  <span className="rounded-lg bg-blue-600 px-3 py-2 text-sm font-black text-white">-50%</span>
                 </div>
               </div>
             </div>
