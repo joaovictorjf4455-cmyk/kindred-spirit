@@ -2,7 +2,7 @@ import { useMemo, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import {
   ArrowRight, ChevronRight, Headphones, Heart, Menu,
-  Search, ShieldCheck, ShoppingBag, Sparkles, Star, Truck, Heart, UserRound, CreditCard,
+  Search, ShieldCheck, ShoppingBag, Sparkles, Star, Truck, UserRound, CreditCard,
   Watch, X,
 } from "lucide-react";
 
