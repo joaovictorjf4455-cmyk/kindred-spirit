@@ -49,8 +49,8 @@ function Index() {
   const addToCart = () => setCart((value) => value + 1);
 
   return (
-    <main className="min-h-screen bg-[#F4F6F8] text-[#2B2D42]">
-      <div className="bg-[#2B2D42] px-4 py-2 text-center text-xs font-medium text-white">
+    <main className="storefront min-h-screen bg-[#F4F6F8] text-[#2B2D42]">
+      <div className="promo-strip bg-[#2B2D42] px-4 py-2 text-center text-xs font-bold text-white">
         <span>⚡ Semana do Consumidor: até 30% OFF + frete grátis acima de R$ 199</span>
       </div>
 
@@ -87,7 +87,7 @@ function Index() {
         </div>
       </header>
 
-      <section className="relative overflow-hidden bg-[#2B2D42]">
+      <section className="hero-vibrant relative overflow-hidden bg-[#2B2D42]">
         <div className="mx-auto grid max-w-7xl items-center gap-10 px-5 py-14 md:grid-cols-2 md:py-20 lg:px-8">
           <div className="relative z-10">
             <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-[#2D6CDF]/30 bg-[#2D6CDF]/15 px-3 py-1.5 text-xs font-bold uppercase tracking-widest text-[#8EB4FF]">
@@ -139,15 +139,15 @@ function Index() {
         </div>
       </section>
 
-      <section id="ofertas" className="mx-auto max-w-7xl px-5 py-14 lg:px-8">
+      <section id="ofertas" className="offers-section mx-auto max-w-7xl px-5 py-14 lg:px-8">
         <div className="mb-7 flex items-end justify-between gap-4">
           <div><p className="text-sm font-bold uppercase tracking-widest text-[#2D6CDF]">Só por tempo limitado</p><h2 className="mt-1 text-3xl font-black tracking-tight">Ofertas que valem o clique</h2></div>
           <a href="#produtos" className="hidden items-center gap-1 text-sm font-bold text-[#2D6CDF] sm:flex">Ver tudo <ChevronRight className="size-4" /></a>
         </div>
         <div id="produtos" className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {filteredProducts.map((product) => (
-            <article key={product.name} className="group overflow-hidden rounded-2xl border border-[#E1E4EA] bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-[#2B2D42]/10">
-              <div className="relative bg-white">
+            <article key={product.name} className="product-card group overflow-hidden rounded-2xl border border-[#E1E4EA] bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-[#2B2D42]/10">
+              <div className="product-image-wrap relative bg-white">
                 <img src={product.image} alt={product.name} onError={(event) => { if (product.name.includes("Powerbank")) {
       event.currentTarget.onerror = null;
       event.currentTarget.src = "https://m.magazineluiza.com.br/a-static/420x420/bateria-magsafe-apple-para-iphones-12-12-pro-12-max-e-12-mini-branco-mjwy3be-a/kabum/462812/2caaad4cb668bbc0e571a3aeedc5cc9c.jpeg";
@@ -176,7 +176,7 @@ function Index() {
         {filteredProducts.length === 0 && <div className="rounded-2xl border border-dashed border-slate-300 bg-white p-12 text-center text-[#686C7E]">Nenhum produto encontrado. Tente outra busca.</div>}
       </section>
 
-      <section id="beneficios" className="border-y border-[#E1E4EA] bg-white">
+      <section id="beneficios" className="benefits-section border-y border-[#E1E4EA] bg-white">
         <div className="mx-auto grid max-w-7xl gap-px px-5 py-12 sm:grid-cols-3 lg:px-8">
           {[
             [Truck, "Entrega rápida", "Despachamos seu pedido com agilidade e rastreio completo."],
@@ -192,7 +192,7 @@ function Index() {
       </section>
 
       <section id="depoimentos" className="mx-auto max-w-7xl px-5 py-14 lg:px-8">
-        <div className="rounded-[2rem] bg-[#2D6CDF] px-6 py-12 text-center text-white sm:px-12">
+        <div className="testimonial-panel rounded-[2rem] bg-[#2D6CDF] px-6 py-12 text-center text-white sm:px-12">
           <p className="text-sm font-bold uppercase tracking-widest text-[#DCE7FF]">Quem compra, recomenda</p>
           <div className="mx-auto mt-4 flex max-w-2xl items-center justify-center gap-1">{[1,2,3,4,5].map((i) => <Star key={i} className="size-5 fill-current" />)}</div>
           <blockquote className="mx-auto mt-5 max-w-2xl text-2xl font-bold leading-snug sm:text-3xl">“Comprei na Ohmira Eletrônicos e foi a melhor experiência online que já tive. Entrega rápida e atendimento impecável.”</blockquote>
