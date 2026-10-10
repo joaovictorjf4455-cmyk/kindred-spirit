@@ -324,4 +324,4 @@ body { -webkit-font-smoothing: antialiased; }
 @media (min-width:1024px) { .category-filter > div { grid-template-columns:repeat(6,minmax(0,1fr)); } }
 
 /* Keep the actual Boombox product photo colors intact in the hero. */
-.reference-product-stage img.boombox-hero-image { mix-blend-mode: normal; object-fit: contain; }
+.reference-product-stage img.boombox-hero-image { mix-blend-mode: multiply; object-fit: contain; }
