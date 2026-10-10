@@ -63,14 +63,14 @@ function Index() {
             <span className="grid size-10 place-items-center rounded-xl bg-[#2563eb] text-white shadow-lg shadow-blue-200">
               <Zap className="size-5 fill-current" />
             </span>
-            <span>Volt<span className="text-[#2563eb]">.</span></span>
+            <span>Ohmira <span className="text-[#2563eb]">Eletrônicos</span></span>
           </a>
 
           <nav className={`absolute left-0 top-20 w-full border-b bg-white p-5 lg:static lg:ml-5 lg:flex lg:w-auto lg:border-0 lg:p-0 ${menuOpen ? "block" : "hidden"}`}>
             <div className="flex flex-col gap-4 text-sm font-semibold lg:flex-row lg:items-center lg:gap-7">
               <a href="#ofertas" className="hover:text-blue-600">Ofertas</a>
               <a href="#produtos" className="hover:text-blue-600">Eletrônicos</a>
-              <a href="#beneficios" className="hover:text-blue-600">Por que a Volt?</a>
+              <a href="#beneficios" className="hover:text-blue-600">Por que a Ohmira?</a>
               <a href="#depoimentos" className="hover:text-blue-600">Avaliações</a>
             </div>
           </nav>
@@ -195,15 +195,15 @@ function Index() {
         <div className="rounded-[2rem] bg-blue-600 px-6 py-12 text-center text-white sm:px-12">
           <p className="text-sm font-bold uppercase tracking-widest text-blue-100">Quem compra, recomenda</p>
           <div className="mx-auto mt-4 flex max-w-2xl items-center justify-center gap-1">{[1,2,3,4,5].map((i) => <Star key={i} className="size-5 fill-current" />)}</div>
-          <blockquote className="mx-auto mt-5 max-w-2xl text-2xl font-bold leading-snug sm:text-3xl">“Comprei meu notebook na Volt e foi a melhor experiência online que já tive. Entrega rápida e atendimento impecável.”</blockquote>
+          <blockquote className="mx-auto mt-5 max-w-2xl text-2xl font-bold leading-snug sm:text-3xl">“Comprei na Ohmira Eletrônicos e foi a melhor experiência online que já tive. Entrega rápida e atendimento impecável.”</blockquote>
           <p className="mt-5 text-sm text-blue-100">Mariana S. · Cliente verificada</p>
         </div>
       </section>
 
       <footer className="bg-[#101828] px-5 py-10 text-white lg:px-8">
         <div className="mx-auto flex max-w-7xl flex-col justify-between gap-6 sm:flex-row sm:items-center">
-          <div><div className="flex items-center gap-2 text-lg font-black"><span className="grid size-8 place-items-center rounded-lg bg-blue-600"><Zap className="size-4 fill-current" /></span>Volt.</div><p className="mt-2 text-xs text-slate-400">Tecnologia sem complicação.</p></div>
-          <p className="text-xs text-slate-500">© 2025 Volt. Todos os direitos reservados.</p>
+          <div><div className="flex items-center gap-2 text-lg font-black"><span className="grid size-8 place-items-center rounded-lg bg-blue-600"><Zap className="size-4 fill-current" /></span>Ohmira Eletrônicos</div><p className="mt-2 text-xs text-slate-400">Tecnologia para o seu dia a dia.</p></div>
+          <p className="text-xs text-slate-500">© 2026 Ohmira Eletrônicos. Todos os direitos reservados.</p>
         </div>
       </footer>
     </main>
