@@ -3,7 +3,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import {
   ArrowRight, ChevronRight, Headphones, Heart, Menu,
   Search, ShieldCheck, ShoppingBag, Sparkles, Star, Truck,
-  Watch, X, Zap,
+  Watch, X,
 } from "lucide-react";
 
 export const Route = createFileRoute("/")({ component: Index });
@@ -59,11 +59,18 @@ function Index() {
           <button className="rounded-lg p-2 lg:hidden" onClick={() => setMenuOpen(!menuOpen)} aria-label="Menu">
             {menuOpen ? <X /> : <Menu />}
           </button>
-          <a href="#" className="flex items-center gap-2.5 text-xl font-black tracking-tight">
-            <span className="grid size-10 place-items-center rounded-xl bg-[#2D6CDF] text-white shadow-lg shadow-[#2B2D42]/15">
-              <Zap className="size-5 fill-current" />
+          <a href="#" aria-label="Ohmira Eletrônicos — página inicial" className="group flex shrink-0 items-center gap-2.5">
+            <svg viewBox="0 0 48 48" aria-hidden="true" className="size-11 drop-shadow-[0_3px_8px_rgba(45,108,223,0.28)]">
+              <defs><linearGradient id="ohmira-metal" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stopColor="#FFFFFF"/><stop offset="48%" stopColor="#AAB7CE"/><stop offset="100%" stopColor="#F8FAFF"/></linearGradient><linearGradient id="ohmira-blue" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stopColor="#69B5FF"/><stop offset="100%" stopColor="#1760D5"/></linearGradient></defs>
+              <path d="M24 5.5a17.5 17.5 0 1 0 17.5 17.5" fill="none" stroke="url(#ohmira-metal)" strokeWidth="5.5" strokeLinecap="round"/>
+              <path d="M24 2.5v15" stroke="url(#ohmira-blue)" strokeWidth="5.5" strokeLinecap="round"/>
+              <path d="M5.5 31.5c7.5 8 24 8.5 35-5.5 2-2.5 3.5-5 4.5-7.5-10.5 7-24.5 9.5-40 7.5" fill="none" stroke="url(#ohmira-blue)" strokeWidth="3.8" strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="M8 34.5c7 5.5 19.5 6.5 28.5-.5" fill="none" stroke="#DCEBFF" strokeOpacity=".8" strokeWidth="1.2" strokeLinecap="round"/>
+            </svg>
+            <span className="flex flex-col leading-none">
+              <span className="text-[1.55rem] font-black tracking-[-0.055em] text-white">Ohmira</span>
+              <span className="mt-1 text-[0.58rem] font-bold tracking-[0.32em] text-[#72A8FF]">ELETRÔNICOS</span>
             </span>
-            <span>Ohmira <span className="text-[#2D6CDF]">Eletrônicos</span></span>
           </a>
 
           <nav className={`absolute left-0 top-20 w-full border-b border-[#E1E4EA] bg-[#2B2D42] p-5 text-white lg:static lg:ml-5 lg:flex lg:w-auto lg:border-0 lg:p-0 ${menuOpen ? "block" : "hidden"}`}>
@@ -202,7 +209,7 @@ function Index() {
 
       <footer className="bg-[#2B2D42] px-5 py-10 text-white lg:px-8">
         <div className="mx-auto flex max-w-7xl flex-col justify-between gap-6 sm:flex-row sm:items-center">
-          <div><div className="flex items-center gap-2 text-lg font-black"><span className="grid size-8 place-items-center rounded-lg bg-[#2D6CDF]"><Zap className="size-4 fill-current" /></span>Ohmira Eletrônicos</div><p className="mt-2 text-xs text-[#777B8D]">Tecnologia para o seu dia a dia.</p></div>
+          <div><div className="flex items-center gap-2.5"><svg viewBox="0 0 48 48" aria-hidden="true" className="size-9"><path d="M24 5.5a17.5 17.5 0 1 0 17.5 17.5" fill="none" stroke="#DCE6F7" strokeWidth="5.5" strokeLinecap="round"/><path d="M24 2.5v15" stroke="#2D6CDF" strokeWidth="5.5" strokeLinecap="round"/><path d="M5.5 31.5c7.5 8 24 8.5 35-5.5 2-2.5 3.5-5 4.5-7.5-10.5 7-24.5 9.5-40 7.5" fill="none" stroke="#2D6CDF" strokeWidth="3.8" strokeLinecap="round"/></svg><span className="flex flex-col leading-none"><span className="text-lg font-black tracking-tight">Ohmira</span><span className="mt-1 text-[0.48rem] font-bold tracking-[0.28em] text-[#2D6CDF]">ELETRÔNICOS</span></span></div><p className="mt-2 text-xs text-[#777B8D]">Tecnologia que facilita sua vida.</p></div>
           <p className="text-xs text-[#686C7E]">© 2026 Ohmira Eletrônicos. Todos os direitos reservados.</p>
         </div>
       </footer>
