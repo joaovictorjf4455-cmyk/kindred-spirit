@@ -78,11 +78,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Volt. — Tecnologia sem complicação" },
+      { title: "Ohmira Eletrônicos — Tecnologia para o seu dia a dia" },
       { name: "description", content: "Eletrônicos, ofertas exclusivas e tecnologia para o seu dia a dia." },
       { name: "author", content: "Lovable" },
       { property: "og:title", content: "Volt. — Tecnologia sem complicação" },
-      { property: "og:description", content: "Os melhores eletrônicos, preços que fazem sentido e compra segura." },
+      { property: "og:description", content: "Ohmira Eletrônicos: ofertas, tecnologia e compra segura." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:site", content: "@Lovable" },
