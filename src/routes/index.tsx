@@ -2,7 +2,7 @@ import { useMemo, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import {
   ArrowRight, ChevronRight, Headphones, Heart, Menu,
-  Search, ShieldCheck, ShoppingBag, Sparkles, Star, Truck,
+  Search, ShieldCheck, ShoppingBag, Sparkles, Star, Truck, Heart, UserRound, CreditCard,
   Watch, X,
 } from "lucide-react";
 
@@ -51,11 +51,11 @@ function Index() {
   return (
     <main className="storefront min-h-screen bg-[#F4F6F8] text-[#2B2D42]">
       <div className="promo-strip bg-[#2B2D42] px-4 py-2 text-center text-xs font-bold text-white">
-        <span>⚡ Semana do Consumidor: até 30% OFF + frete grátis acima de R$ 199</span>
+        <span>⚡ OFERTAS ESPECIAIS • Tecnologia para o seu dia a dia</span>
       </div>
 
-      <header className="sticky top-0 z-30 border-b border-white/10 bg-[#2B2D42]/95 text-white backdrop-blur">
-        <div className="mx-auto flex h-20 max-w-7xl items-center gap-5 px-5 lg:px-8">
+      <header className="ohmira-header sticky top-0 z-30 text-white">
+        <div className="mx-auto flex min-h-[82px] max-w-7xl items-center gap-4 px-4 py-3 lg:px-8">
           <button className="rounded-lg p-2 lg:hidden" onClick={() => setMenuOpen(!menuOpen)} aria-label="Menu">
             {menuOpen ? <X /> : <Menu />}
           </button>
@@ -65,77 +65,69 @@ function Index() {
               <path d="M24 5.5a17.5 17.5 0 1 0 17.5 17.5" fill="none" stroke="url(#ohmira-metal)" strokeWidth="5.5" strokeLinecap="round"/>
               <path d="M24 2.5v15" stroke="url(#ohmira-blue)" strokeWidth="5.5" strokeLinecap="round"/>
               <path d="M5.5 31.5c7.5 8 24 8.5 35-5.5 2-2.5 3.5-5 4.5-7.5-10.5 7-24.5 9.5-40 7.5" fill="none" stroke="url(#ohmira-blue)" strokeWidth="3.8" strokeLinecap="round" strokeLinejoin="round"/>
-              <path d="M8 34.5c7 5.5 19.5 6.5 28.5-.5" fill="none" stroke="#DCEBFF" strokeOpacity=".8" strokeWidth="1.2" strokeLinecap="round"/>
             </svg>
             <span className="flex flex-col leading-none">
               <span className="text-[1.55rem] font-black tracking-[-0.055em] text-white">Ohmira</span>
               <span className="mt-1 text-[0.58rem] font-bold tracking-[0.32em] text-[#72A8FF]">ELETRÔNICOS</span>
             </span>
           </a>
-
-          <nav className={`absolute left-0 top-20 w-full border-b border-[#E1E4EA] bg-[#2B2D42] p-5 text-white lg:static lg:ml-5 lg:flex lg:w-auto lg:border-0 lg:p-0 ${menuOpen ? "block" : "hidden"}`}>
-            <div className="flex flex-col gap-4 text-sm font-semibold lg:flex-row lg:items-center lg:gap-7">
-              <a href="#ofertas" className="hover:text-[#2D6CDF]">Ofertas</a>
-              <a href="#produtos" className="hover:text-[#2D6CDF]">Eletrônicos</a>
-              <a href="#beneficios" className="hover:text-[#2D6CDF]">Por que a Ohmira?</a>
-              <a href="#depoimentos" className="hover:text-[#2D6CDF]">Avaliações</a>
-            </div>
-          </nav>
-
-          <div className="ml-auto hidden max-w-md flex-1 items-center rounded-xl border border-[#E1E4EA] bg-[#F4F6F8] px-3 md:flex">
-            <Search className="size-5 text-[#777B8D]" />
-            <input value={search} onChange={(e) => setSearch(e.target.value)} placeholder="Busque por produto ou categoria..." className="h-11 w-full bg-transparent px-3 text-sm outline-none placeholder:text-[#777B8D]" />
+          <div className="ohmira-search ml-auto hidden max-w-xl flex-1 items-center rounded-xl px-3 md:flex">
+            <input value={search} onChange={(e) => setSearch(e.target.value)} placeholder="O que você está buscando?" className="h-11 w-full bg-transparent px-2 text-sm text-slate-900 outline-none placeholder:text-slate-500" />
+            <Search className="size-5 shrink-0 text-white" />
           </div>
-
-          <button className="relative rounded-xl p-2.5 hover:bg-[#F4F6F8]" aria-label="Carrinho">
-            <ShoppingBag className="size-5" />
-            {cart > 0 && <span className="absolute -right-1 -top-1 grid size-5 place-items-center rounded-full bg-[#2D6CDF] text-[10px] font-bold text-white">{cart}</span>}
-          </button>
+          <div className="ml-auto flex items-center gap-1 md:ml-0 md:gap-3">
+            <div className="hidden items-center gap-2 px-2 lg:flex"><UserRound className="size-5 text-[#4389FF]"/><span className="text-xs leading-4"><b className="block">Minha conta</b><span className="text-slate-300">Bem-vindo(a)</span></span></div>
+            <div className="hidden items-center gap-2 px-2 sm:flex"><Heart className="size-5 text-[#4389FF]"/><span className="text-xs leading-4"><b className="block">Favoritos</b><span className="text-slate-300">Salve produtos</span></span></div>
+            <button className="relative flex items-center gap-2 rounded-xl p-2.5 transition hover:bg-white/10" aria-label="Carrinho">
+              <ShoppingBag className="size-5 text-[#4389FF]" />
+              <span className="hidden text-xs sm:block"><b className="block">Carrinho</b><span className="text-slate-300">{cart} itens</span></span>
+              {cart > 0 && <span className="absolute right-0 top-0 grid size-5 place-items-center rounded-full bg-[#0877FF] text-[10px] font-bold text-white">{cart}</span>}
+            </button>
+          </div>
         </div>
+        <nav className={`ohmira-nav ${menuOpen ? "block" : "hidden"} lg:block`}>
+          <div className="mx-auto flex max-w-7xl flex-col gap-1 px-5 py-3 text-sm font-semibold sm:flex-row sm:items-center sm:gap-7 lg:px-8">
+            <a href="#categorias" className="flex items-center gap-2 py-2 text-white"><Menu className="size-4"/> Todas as categorias</a>
+            <a href="#inicio" onClick={() => setMenuOpen(false)} className="py-2 text-[#65A4FF]">Início</a>
+            <a href="#produtos" onClick={() => setMenuOpen(false)} className="py-2 hover:text-[#65A4FF]">Eletrônicos</a>
+            <a href="#ofertas" onClick={() => setMenuOpen(false)} className="py-2 hover:text-[#65A4FF]">Ofertas</a>
+            <a href="#beneficios" onClick={() => setMenuOpen(false)} className="py-2 hover:text-[#65A4FF]">Compra segura</a>
+            <a href="#depoimentos" onClick={() => setMenuOpen(false)} className="py-2 hover:text-[#65A4FF]">Avaliações</a>
+          </div>
+        </nav>
       </header>
 
-      <section className="hero-vibrant relative overflow-hidden bg-[#2B2D42]">
-        <div className="mx-auto grid max-w-7xl items-center gap-10 px-5 py-14 md:grid-cols-2 md:py-20 lg:px-8">
-          <div className="relative z-10">
-            <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-[#2D6CDF]/30 bg-[#2D6CDF]/15 px-3 py-1.5 text-xs font-bold uppercase tracking-widest text-[#8EB4FF]">
-              <Sparkles className="size-3.5" /> Tecnologia que acompanha você
+      <section id="inicio" className="reference-hero relative overflow-hidden">
+        <div className="reference-hero-glow" aria-hidden="true"/>
+        <div className="relative mx-auto grid max-w-7xl items-center gap-5 px-5 py-8 md:min-h-[360px] md:grid-cols-[0.92fr_1.08fr] md:py-10 lg:px-8">
+          <div className="relative z-10 py-3">
+            <span className="mb-4 inline-flex items-center gap-2 rounded-full bg-[#0877FF] px-4 py-2 text-xs font-extrabold uppercase tracking-wide text-white shadow-lg shadow-blue-950/30"><Sparkles className="size-4"/> Oferta em destaque</span>
+            <p className="text-base font-bold text-white/90">Ohmira apresenta</p>
+            <h1 className="mt-2 max-w-xl text-4xl font-black leading-[1.02] tracking-tight text-white sm:text-5xl lg:text-[3.5rem]">Tecnologia que acompanha você. <span className="text-[#1680FF]">Preços que surpreendem.</span></h1>
+            <p className="mt-4 max-w-lg text-sm leading-6 text-slate-300 sm:text-base">Eletrônicos para o dia a dia, ofertas selecionadas e uma experiência de compra simples e segura.</p>
+            <div className="mt-6 flex flex-wrap gap-3">
+              <a href="#ofertas" className="inline-flex h-12 items-center gap-2 rounded-xl bg-[#0877FF] px-6 text-sm font-extrabold text-white shadow-lg shadow-blue-950/30 transition hover:bg-blue-500">Aproveitar ofertas <ArrowRight className="size-4"/></a>
+              <a href="#produtos" className="inline-flex h-12 items-center rounded-xl border border-white/25 px-5 text-sm font-bold text-white transition hover:bg-white/10">Ver produtos</a>
             </div>
-            <h1 className="max-w-xl text-4xl font-black leading-[1.04] tracking-tight text-white sm:text-5xl lg:text-6xl">
-              Upgrade no seu mundo. <span className="text-[#2D6CDF]">Sem complicação.</span>
-            </h1>
-            <p className="mt-6 max-w-lg text-base leading-7 text-slate-300 sm:text-lg">
-              Os melhores eletrônicos, preços que fazem sentido e uma experiência de compra feita para você.
-            </p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <a href="#ofertas" className="inline-flex h-12 items-center gap-2 rounded-xl bg-[#2D6CDF] px-6 text-sm font-bold text-white shadow-xl shadow-[#2B2D42]/30 transition hover:bg-[#2459B8]">
-                Ver ofertas <ArrowRight className="size-4" />
-              </a>
-              <a href="#produtos" className="inline-flex h-12 items-center rounded-xl border border-white/15 px-6 text-sm font-bold text-white transition hover:bg-white/10">
-                Explorar produtos
-              </a>
-            </div>
-            <div className="mt-9 flex flex-wrap gap-x-7 gap-y-3 text-xs font-medium text-[#777B8D]">
-              <span className="flex items-center gap-2"><ShieldCheck className="size-4 text-[#2D6CDF]" /> Compra segura</span>
-              <span className="flex items-center gap-2"><Truck className="size-4 text-[#2D6CDF]" /> Envio rápido</span>
-              <span className="flex items-center gap-2"><Headphones className="size-4 text-[#2D6CDF]" /> Suporte humano</span>
-            </div>
+            <div className="mt-6 flex flex-wrap gap-x-5 gap-y-2 text-xs font-semibold text-slate-300"><span className="flex items-center gap-2"><ShieldCheck className="size-4 text-[#4396FF]"/> Compra segura</span><span className="flex items-center gap-2"><Truck className="size-4 text-[#4396FF]"/> Entrega rápida</span><span className="flex items-center gap-2"><CreditCard className="size-4 text-[#4396FF]"/> Pagamento facilitado</span></div>
           </div>
-          <div className="relative">
-            <div className="absolute -inset-10 rounded-full bg-[#2D6CDF]/20 blur-3xl" />
-            <div className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-gradient-to-br from-white/10 to-white/[0.02] p-3 shadow-2xl">
-              <img src="https://app.seuarmazemdrop.com.br/uploads/1752234501-4.png" alt="Caixa de som Boombox Bluetooth em oferta" className="h-[390px] w-full rounded-[1.5rem] object-cover" />
-              <div className="absolute bottom-7 left-7 right-7 rounded-2xl border border-white/10 bg-[#2B2D42]/85 p-4 backdrop-blur">
-                <div className="flex items-center justify-between">
-                  <div><p className="text-xs text-[#777B8D]">Oferta em destaque</p><p className="mt-1 font-bold text-white">Boombox Bluetooth</p></div>
-                  <span className="rounded-lg bg-[#2D6CDF] px-3 py-2 text-sm font-black text-white">-50%</span>
-                </div>
-              </div>
-            </div>
+          <div className="reference-product-stage relative flex min-h-[270px] items-center justify-center md:min-h-[330px]">
+            <div className="reference-orbit reference-orbit-one" aria-hidden="true"/><div className="reference-orbit reference-orbit-two" aria-hidden="true"/>
+            <img src="https://app.seuarmazemdrop.com.br/uploads/1752234501-4.png" alt="Caixa de som Boombox Bluetooth da seleção de produtos Ohmira" className="relative z-10 max-h-[300px] w-full object-contain drop-shadow-[0_25px_35px_rgba(0,0,0,0.5)] md:max-h-[350px]"/>
+            <div className="absolute right-0 top-3 z-20 grid size-24 -rotate-6 place-items-center rounded-[1.6rem] bg-[#0877FF] text-center text-white shadow-xl shadow-blue-950/50 sm:right-5 sm:size-28"><span><b className="block text-3xl font-black sm:text-4xl">50%</b><span className="text-sm font-black uppercase">OFF*</span></span></div>
+            <div className="absolute bottom-2 left-2 z-20 rounded-2xl border border-white/15 bg-[#101B30]/90 px-4 py-3 text-white shadow-xl backdrop-blur sm:left-8"><p className="text-[10px] font-bold uppercase tracking-widest text-[#75B2FF]">Destaque da loja</p><p className="mt-1 font-extrabold">Boombox Bluetooth</p><p className="text-xs text-slate-300">Som para curtir cada momento</p></div>
           </div>
         </div>
       </section>
-
-      <section className="border-b border-[#E1E4EA] bg-white">
+      <section id="categorias" className="reference-trust-strip border-b border-slate-200">
+        <div className="mx-auto grid max-w-7xl grid-cols-2 gap-3 px-5 py-5 sm:grid-cols-4 lg:px-8">
+          <div className="flex items-center gap-3 rounded-xl px-2 py-2"><ShieldCheck className="size-8 shrink-0 text-[#3988FF]"/><span className="text-xs leading-5"><b className="block text-white">Compra segura</b><span className="text-slate-300">Mais tranquilidade</span></span></div>
+          <div className="flex items-center gap-3 rounded-xl px-2 py-2"><Truck className="size-8 shrink-0 text-[#3988FF]"/><span className="text-xs leading-5"><b className="block text-white">Entrega rápida</b><span className="text-slate-300">Acompanhe seu pedido</span></span></div>
+          <div className="flex items-center gap-3 rounded-xl px-2 py-2"><CreditCard className="size-8 shrink-0 text-[#3988FF]"/><span className="text-xs leading-5"><b className="block text-white">Pagamento facilitado</b><span className="text-slate-300">Praticidade para comprar</span></span></div>
+          <div className="flex items-center gap-3 rounded-xl px-2 py-2"><Headphones className="size-8 shrink-0 text-[#3988FF]"/><span className="text-xs leading-5"><b className="block text-white">Suporte especializado</b><span className="text-slate-300">Conte com a Ohmira</span></span></div>
+        </div>
+      </section>
+      <section className="category-filter border-b border-[#E1E4EA] bg-white">
         <div className="mx-auto flex max-w-7xl gap-3 overflow-x-auto bg-[#F4F6F8] px-5 py-5 lg:px-8">
           <button onClick={() => setActiveCategory("Todos")} className={`shrink-0 rounded-full px-5 py-2.5 text-sm font-bold ${activeCategory === "Todos" ? "bg-[#2D6CDF] text-white" : "bg-white text-[#55596D] hover:bg-[#E8EBF0]"}`}>Todos</button>
           {categories.map(({ name, icon: Icon }) => (
@@ -146,9 +138,9 @@ function Index() {
         </div>
       </section>
 
-      <section id="ofertas" className="offers-section mx-auto max-w-7xl px-5 py-14 lg:px-8">
+      <section id="ofertas" className="offers-section mx-auto max-w-7xl px-5 py-12 lg:px-8">
         <div className="mb-7 flex items-end justify-between gap-4">
-          <div><p className="text-sm font-bold uppercase tracking-widest text-[#2D6CDF]">Só por tempo limitado</p><h2 className="mt-1 text-3xl font-black tracking-tight">Ofertas que valem o clique</h2></div>
+          <div><p className="text-sm font-bold uppercase tracking-widest text-[#0877FF]">Escolhas da Ohmira</p><h2 className="mt-1 text-3xl font-black tracking-tight">Produtos em <span className="text-[#0877FF]">destaque</span></h2></div>
           <a href="#produtos" className="hidden items-center gap-1 text-sm font-bold text-[#2D6CDF] sm:flex">Ver tudo <ChevronRight className="size-4" /></a>
         </div>
         <div id="produtos" className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
