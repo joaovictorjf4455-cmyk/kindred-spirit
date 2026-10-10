@@ -314,3 +314,11 @@ body { -webkit-font-smoothing: antialiased; }
 @media (prefers-reduced-motion: reduce) {
   .reference-product-stage img,.category-filter button,.offers-section article.product-card { transition:none !important; }
 }
+
+/* Category shortcuts presented as compact storefront tiles */
+.category-filter > div { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); overflow:visible; gap:10px; }
+.category-filter > div > button { min-height:62px; justify-content:center; border:1px solid #e6ebf3; border-radius:14px; background:#fff; box-shadow:0 3px 12px rgba(24,43,75,.035); }
+.category-filter > div > button:first-child { border-color:rgba(8,119,255,.3); }
+.category-filter > div > button svg { color:#0877ff; }
+@media (min-width:640px) { .category-filter > div { grid-template-columns:repeat(3,minmax(0,1fr)); } }
+@media (min-width:1024px) { .category-filter > div { grid-template-columns:repeat(6,minmax(0,1fr)); } }
