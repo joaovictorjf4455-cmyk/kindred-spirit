@@ -322,3 +322,6 @@ body { -webkit-font-smoothing: antialiased; }
 .category-filter > div > button svg { color:#0877ff; }
 @media (min-width:640px) { .category-filter > div { grid-template-columns:repeat(3,minmax(0,1fr)); } }
 @media (min-width:1024px) { .category-filter > div { grid-template-columns:repeat(6,minmax(0,1fr)); } }
+
+/* Blend the Boombox hero image into the dark banner and remove its white image background. */
+.reference-product-stage img.boombox-hero-image { mix-blend-mode: multiply; }
