@@ -103,10 +103,10 @@ function Index() {
           <div className="relative z-10 py-3">
             <span className="mb-4 inline-flex items-center gap-2 rounded-full bg-[#0877FF] px-4 py-2 text-xs font-extrabold uppercase tracking-wide text-white shadow-lg shadow-blue-950/30"><Sparkles className="size-4"/> Oferta em destaque</span>
             <p className="text-base font-bold text-white/90">Ohmira apresenta</p>
-            <h1 className="mt-2 max-w-xl text-4xl font-black leading-[1.02] tracking-tight text-white sm:text-5xl lg:text-[3.5rem]">Tecnologia que acompanha você. <span className="text-[#1680FF]">Preços que surpreendem.</span></h1>
-            <p className="mt-4 max-w-lg text-sm leading-6 text-slate-300 sm:text-base">Eletrônicos para o dia a dia, ofertas selecionadas e uma experiência de compra simples e segura.</p>
+            <h1 className="mt-2 max-w-xl text-4xl font-black leading-[1.02] tracking-tight text-white sm:text-5xl lg:text-[3.5rem]">Boombox Bluetooth. <span className="text-[#1680FF]">Som potente, oferta imperdível.</span></h1>
+            <p className="mt-4 max-w-lg text-sm leading-6 text-slate-300 sm:text-base">Curta seus momentos com a caixa de som Boombox Bluetooth por tempo limitado com 50% OFF.</p>
             <div className="mt-6 flex flex-wrap gap-3">
-              <a href="#ofertas" className="inline-flex h-12 items-center gap-2 rounded-xl bg-[#0877FF] px-6 text-sm font-extrabold text-white shadow-lg shadow-blue-950/30 transition hover:bg-blue-500">Aproveitar ofertas <ArrowRight className="size-4"/></a>
+              <a href="https://pay.kaiross.com.br/iUtzjjIQUYbv" target="_blank" rel="noreferrer" className="inline-flex h-12 items-center gap-2 rounded-xl bg-[#0877FF] px-6 text-sm font-extrabold text-white shadow-lg shadow-blue-950/30 transition hover:bg-blue-500">Comprar Boombox <ArrowRight className="size-4"/></a>
               <a href="#produtos" className="inline-flex h-12 items-center rounded-xl border border-white/25 px-5 text-sm font-bold text-white transition hover:bg-white/10">Ver produtos</a>
             </div>
             <div className="mt-6 flex flex-wrap gap-x-5 gap-y-2 text-xs font-semibold text-slate-300"><span className="flex items-center gap-2"><ShieldCheck className="size-4 text-[#4396FF]"/> Compra segura</span><span className="flex items-center gap-2"><Truck className="size-4 text-[#4396FF]"/> Entrega rápida</span><span className="flex items-center gap-2"><CreditCard className="size-4 text-[#4396FF]"/> Pagamento facilitado</span></div>
