@@ -3,7 +3,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import boomboxBanner from "@/assets/boombox-banner.png.asset.json";
 import {
   ArrowRight, ChevronRight, Headphones, Heart, Menu,
-  Search, ShieldCheck, ShoppingBag, Sparkles, Star, Truck, UserRound, CreditCard,
+  Search, ShieldCheck, ShoppingBag, Sparkles, Truck, UserRound, CreditCard,
   Watch, X,
 } from "lucide-react";
 
@@ -36,13 +36,13 @@ const products = [
   { name: "CARREGADOR PORTÁTIL DOBRÁVEL Magsafe 3 em 1 - Branco", category: "Acessórios", price: "R$ 99,90", oldPrice: "R$ 189,90", discount: "47% OFF", rating: "4.8", reviews: "Oferta especial", image: "/magsafe.jpg", checkout: "https://pay.kaiross.com.br/crT4puVOrlIX" },
   { name: "Bateria Powerbank MagSafe Apple — encaixe magnético", category: "Acessórios", price: "R$ 99,90", oldPrice: "R$ 149,90", discount: "33% OFF", rating: "5.0", reviews: "Novo", image: "https://m.magazineluiza.com.br/a-static/420x420/bateria-magsafe-apple-para-iphones-12-12-pro-12-max-e-12-mini-branco-mjwy3be-a/kabum/462812/2caaad4cb668bbc0e571a3aeedc5cc9c.jpeg", checkout: "https://pay.kaiross.com.br/LTrcwjrKwkEv" },
   { name: "BRANCO - Conjunto de Teclado + Mouse Sem Fio Bluetooth Para Notebook e Tablet", category: "Teclado", price: "R$ 99,90", oldPrice: "", discount: "", rating: "4.8", reviews: "Oferta especial", image: "/tecladomouse.jpg", checkout: "https://pay.kaiross.com.br/SdGy86ZVqs1x" },
-  { name: "BRANCO - Conjunto de Teclado + Mouse Sem Fio Bluetooth Para Notebook e Tablet", category: "Teclado", price: "R$ 99,90", oldPrice: "", discount: "", rating: "4.8", reviews: "Oferta especial", image: "https://raw.githubusercontent.com/joaovictorjf4455-cmyk/kindred-spirit/main/public/tecladomouse-preto.jpg?rev=6067bf3", checkout: "https://pay.kaiross.com.br/FAcrHlBuEbH9" },
+  { name: "PRETO - Conjunto de Teclado + Mouse Sem Fio Bluetooth Para Notebook e Tablet", category: "Teclado", price: "R$ 99,90", oldPrice: "", discount: "", rating: "4.8", reviews: "Oferta especial", image: "https://raw.githubusercontent.com/joaovictorjf4455-cmyk/kindred-spirit/main/public/tecladomouse-preto.jpg?rev=6067bf3", checkout: "https://pay.kaiross.com.br/FAcrHlBuEbH9" },
 ];
 
 function Index() {
   const [search, setSearch] = useState("");
   const [activeCategory, setActiveCategory] = useState("Todos");
-  const [cart, setCart] = useState(0);
+  const [favorites, setFavorites] = useState<string[]>([]);
   const [menuOpen, setMenuOpen] = useState(false);
 
   const filteredProducts = useMemo(
@@ -57,7 +57,13 @@ function Index() {
     [activeCategory, search],
   );
 
-  const addToCart = () => setCart((value) => value + 1);
+  const toggleFavorite = (productName: string) => {
+    setFavorites((current) =>
+      current.includes(productName)
+        ? current.filter((name) => name !== productName)
+        : [...current, productName],
+    );
+  };
 
   return (
     <main className="storefront min-h-screen bg-[#F4F6F8] text-[#2B2D42]">
@@ -89,12 +95,21 @@ function Index() {
           <div className="ml-auto flex items-center gap-1 md:ml-0 md:gap-3">
             <div className="hidden items-center gap-2 px-2 lg:flex"><UserRound className="size-5 text-[#4389FF]"/><span className="text-xs leading-4"><b className="block">Minha conta</b><span className="text-slate-300">Bem-vindo(a)</span></span></div>
             <div className="hidden items-center gap-2 px-2 sm:flex"><Heart className="size-5 text-[#4389FF]"/><span className="text-xs leading-4"><b className="block">Favoritos</b><span className="text-slate-300">Salve produtos</span></span></div>
-            <button className="relative flex items-center gap-2 rounded-xl p-2.5 transition hover:bg-white/10" aria-label="Carrinho">
+            <a href="#ofertas" className="flex items-center gap-2 rounded-xl p-2.5 transition hover:bg-white/10" aria-label="Ver ofertas e produtos">
               <ShoppingBag className="size-5 text-[#4389FF]" />
-              <span className="hidden text-xs sm:block"><b className="block">Carrinho</b><span className="text-slate-300">{cart} itens</span></span>
-              {cart > 0 && <span className="absolute right-0 top-0 grid size-5 place-items-center rounded-full bg-[#0877FF] text-[10px] font-bold text-white">{cart}</span>}
-            </button>
+              <span className="hidden text-xs sm:block"><b className="block">Comprar</b><span className="text-slate-300">Ver ofertas</span></span>
+            </a>
           </div>
+        </div>
+        <div className="ohmira-search mx-4 mb-3 flex items-center rounded-xl px-3 md:hidden">
+          <input
+            value={search}
+            onChange={(event) => setSearch(event.target.value)}
+            placeholder="O que você está buscando?"
+            aria-label="Buscar produtos"
+            className="h-11 w-full bg-transparent px-2 text-sm text-slate-900 outline-none placeholder:text-slate-500"
+          />
+          <Search className="size-5 shrink-0 text-white" />
         </div>
         <nav className={`ohmira-nav ${menuOpen ? "block" : "hidden"} lg:block`}>
           <div className="mx-auto flex max-w-7xl flex-col gap-1 px-5 py-3 text-sm font-semibold sm:flex-row sm:items-center sm:gap-7 lg:px-8">
@@ -103,7 +118,7 @@ function Index() {
             <a href="#produtos" onClick={() => setMenuOpen(false)} className="py-2 hover:text-[#65A4FF]">Eletrônicos</a>
             <a href="#ofertas" onClick={() => setMenuOpen(false)} className="py-2 hover:text-[#65A4FF]">Ofertas</a>
             <a href="#beneficios" onClick={() => setMenuOpen(false)} className="py-2 hover:text-[#65A4FF]">Compra segura</a>
-            <a href="#depoimentos" onClick={() => setMenuOpen(false)} className="py-2 hover:text-[#65A4FF]">Avaliações</a>
+            <a href="#produtos" onClick={() => setMenuOpen(false)} className="py-2 hover:text-[#65A4FF]">Produtos</a>
           </div>
         </nav>
       </header>
@@ -163,22 +178,23 @@ function Index() {
       event.currentTarget.src = "https://m.magazineluiza.com.br/a-static/420x420/bateria-magsafe-apple-para-iphones-12-12-pro-12-max-e-12-mini-branco-mjwy3be-a/kabum/462812/2caaad4cb668bbc0e571a3aeedc5cc9c.jpeg";
     } }} className={`h-56 w-full transition duration-500 group-hover:scale-[1.02] ${product.name.includes("Powerbank") ? "bg-white object-contain p-5 drop-shadow-[0_14px_22px_rgba(15,23,42,0.10)]" : product.name.includes("C20Pro") ? "bg-white object-contain p-3" : product.name.includes("HEADSET GAMER RGB") ? "bg-white object-contain p-3" : product.category === "Acessórios" ? "bg-white object-contain p-3" : "object-cover"}`} />
                 {product.discount && <span className="absolute left-3 top-3 rounded-lg bg-[#2D6CDF] px-2.5 py-1 text-[11px] font-black text-white">{product.discount}</span>}
-                <button className="absolute right-3 top-3 grid size-9 place-items-center rounded-full bg-white/90 text-[#686C7E] shadow-sm hover:text-red-500" aria-label="Favoritar"><Heart className="size-4" /></button>
+                <button
+                  type="button"
+                  onClick={() => toggleFavorite(product.name)}
+                  aria-label={favorites.includes(product.name) ? "Remover " + product.name + " dos favoritos" : "Adicionar " + product.name + " aos favoritos"}
+                  aria-pressed={favorites.includes(product.name)}
+                  className={`absolute right-3 top-3 grid size-9 place-items-center rounded-full bg-white/90 shadow-sm transition-colors ${favorites.includes(product.name) ? "text-red-500" : "text-[#686C7E] hover:text-red-500"}`}
+                >
+                  <Heart className={`size-4 ${favorites.includes(product.name) ? "fill-current" : ""}`} />
+                </button>
               </div>
               <div className="p-4">
                 <p className="text-xs font-semibold text-[#777B8D]">{product.category}</p>
                 <h3 className="mt-1 font-bold">{product.name}</h3>
-                <div className="mt-2 flex items-center gap-1 text-xs"><Star className="size-3.5 fill-amber-400 text-amber-400" /><b>{product.rating}</b><span className="text-[#777B8D]">({product.reviews})</span></div>
                 <div className="mt-4 flex items-end gap-2"><span className="text-xl font-black text-[#2D6CDF]">{product.price}</span>{product.oldPrice && <del className="text-xs text-[#777B8D]">{product.oldPrice}</del>}</div>
-                {"checkout" in product ? (
-                  <a href={product.checkout} target="_blank" rel="noreferrer" className="mt-4 flex h-10 w-full items-center justify-center gap-2 rounded-xl bg-[#2D6CDF] text-sm font-bold text-white transition hover:bg-[#2459B8]">
-                    <ShoppingBag className="size-4" /> Comprar agora
-                  </a>
-                ) : (
-                  <button onClick={addToCart} className="mt-4 flex h-10 w-full items-center justify-center gap-2 rounded-xl bg-[#2D6CDF] text-sm font-bold text-white transition hover:bg-[#2459B8]">
-                    <ShoppingBag className="size-4" /> Adicionar ao carrinho
-                  </button>
-                )}
+                <a href={product.checkout} target="_blank" rel="noopener noreferrer" className="mt-4 flex h-10 w-full items-center justify-center gap-2 rounded-xl bg-[#2D6CDF] text-sm font-bold text-white transition hover:bg-[#2459B8]">
+                  <ShoppingBag className="size-4" /> Comprar agora
+                </a>
               </div>
             </article>
           ))}
@@ -198,15 +214,6 @@ function Index() {
               <div><h3 className="font-bold">{title as string}</h3><p className="mt-1 text-sm leading-6 text-[#686C7E]">{text as string}</p></div>
             </div>
           ))}
-        </div>
-      </section>
-
-      <section id="depoimentos" className="mx-auto max-w-7xl px-5 py-14 lg:px-8">
-        <div className="testimonial-panel rounded-[2rem] bg-[#2D6CDF] px-6 py-12 text-center text-white sm:px-12">
-          <p className="text-sm font-bold uppercase tracking-widest text-[#DCE7FF]">Quem compra, recomenda</p>
-          <div className="mx-auto mt-4 flex max-w-2xl items-center justify-center gap-1">{[1,2,3,4,5].map((i) => <Star key={i} className="size-5 fill-current" />)}</div>
-          <blockquote className="mx-auto mt-5 max-w-2xl text-2xl font-bold leading-snug sm:text-3xl">“Comprei na Ohmira Eletrônicos e foi a melhor experiência online que já tive. Entrega rápida e atendimento impecável.”</blockquote>
-          <p className="mt-5 text-sm text-[#DCE7FF]">Mariana S. · Cliente verificada</p>
         </div>
       </section>
 
