@@ -96,9 +96,7 @@ function Index() {
             {menuOpen ? <X /> : <Menu />}
           </button>
           <a href="#" aria-label="Ohmira Eletrônicos — página inicial" className="group flex shrink-0 items-center gap-3">
-            <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-white p-1.5 shadow-[0_6px_18px_rgba(8,18,36,.28)]">
-              <img src={ohmiraLogo.url} alt="Símbolo OE da Ohmira" className="h-full w-auto" />
-            </span>
+            <img src={ohmiraLogo.url} alt="Símbolo OE da Ohmira" className="h-10 w-auto drop-shadow-[0_0_16px_rgba(120,175,255,.45)]" />
             <span className="flex flex-col leading-none">
               <span className="text-[1.55rem] font-black tracking-[-0.055em] text-white">Ohmira</span>
               <span className="mt-1 text-[0.58rem] font-bold tracking-[0.32em] text-[#72A8FF]">ELETRÔNICOS</span>
@@ -270,7 +268,7 @@ function Index() {
 
       <footer className="bg-[#2B2D42] px-5 py-10 text-white lg:px-8">
         <div className="mx-auto flex max-w-7xl flex-col justify-between gap-6 sm:flex-row sm:items-center">
-          <div><div className="flex items-center gap-2.5"><span className="flex h-9 w-9 items-center justify-center rounded-lg bg-white p-1"><img src={ohmiraLogo.url} alt="Símbolo OE da Ohmira" className="h-full w-auto" /></span><span className="flex flex-col leading-none"><span className="text-lg font-black tracking-tight">Ohmira</span><span className="mt-1 text-[0.48rem] font-bold tracking-[0.28em] text-[#2D6CDF]">ELETRÔNICOS</span></span></div><p className="mt-2 text-xs text-[#777B8D]">Tecnologia que facilita sua vida.</p></div>
+          <div><div className="flex items-center gap-2.5"><img src={ohmiraLogo.url} alt="Símbolo OE da Ohmira" className="h-8 w-auto drop-shadow-[0_0_12px_rgba(120,175,255,.4)]" /><span className="flex flex-col leading-none"><span className="text-lg font-black tracking-tight">Ohmira</span><span className="mt-1 text-[0.48rem] font-bold tracking-[0.28em] text-[#2D6CDF]">ELETRÔNICOS</span></span></div><p className="mt-2 text-xs text-[#777B8D]">Tecnologia que facilita sua vida.</p></div>
           <p className="text-xs text-[#686C7E]">© 2026 Ohmira Eletrônicos. Todos os direitos reservados.</p>
         </div>
       </footer>
