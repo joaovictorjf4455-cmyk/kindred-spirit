@@ -1,12 +1,23 @@
 import { useMemo, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
+import boomboxBanner from "@/assets/boombox-banner.png.asset.json";
 import {
   ArrowRight, ChevronRight, Headphones, Heart, Menu,
   Search, ShieldCheck, ShoppingBag, Sparkles, Star, Truck, UserRound, CreditCard,
   Watch, X,
 } from "lucide-react";
 
-export const Route = createFileRoute("/")({ component: Index });
+export const Route = createFileRoute("/")({
+  component: Index,
+  head: () => ({ meta: [
+    { title: "Ohmira Eletrônicos | Boombox e ofertas" },
+    { name: "description", content: "Confira a Boombox Bluetooth e as ofertas de eletrônicos da Ohmira." },
+    { property: "og:title", content: "Ohmira Eletrônicos | Boombox e ofertas" },
+    { property: "og:description", content: "Confira a Boombox Bluetooth e as ofertas de eletrônicos da Ohmira." },
+    { property: "og:type", content: "website" },
+    { name: "twitter:card", content: "summary_large_image" },
+  ] }),
+});
 
 const categories = [
   { name: "Áudio", icon: Headphones },
@@ -113,7 +124,7 @@ function Index() {
           </div>
           <div className="reference-product-stage relative flex min-h-[270px] items-center justify-center md:min-h-[330px]">
             <div className="reference-orbit reference-orbit-one" aria-hidden="true"/><div className="reference-orbit reference-orbit-two" aria-hidden="true"/>
-            <img src="https://app.seuarmazemdrop.com.br/uploads/1752234501-4.png" alt="Caixa de som Boombox preta" className="boombox-hero-image relative z-10 max-h-[330px] w-full object-contain drop-shadow-[0_25px_35px_rgba(0,0,0,0.5)] md:max-h-[390px]" />
+            <img src={boomboxBanner.url} alt="Caixa de som Boombox preta" className="boombox-hero-image relative z-10 max-h-[330px] w-full object-contain drop-shadow-[0_25px_35px_rgba(0,0,0,0.5)] md:max-h-[390px]" />
             <div className="absolute right-0 top-3 z-20 grid size-24 -rotate-6 place-items-center rounded-[1.6rem] bg-[#0877FF] text-center text-white shadow-xl shadow-blue-950/50 sm:right-5 sm:size-28"><span><b className="block text-3xl font-black sm:text-4xl">50%</b><span className="text-sm font-black uppercase">OFF*</span></span></div>
             <div className="absolute bottom-2 left-2 z-20 rounded-2xl border border-white/15 bg-[#101B30]/90 px-4 py-3 text-white shadow-xl backdrop-blur sm:left-8"><p className="text-[10px] font-bold uppercase tracking-widest text-[#75B2FF]">Destaque da loja</p><p className="mt-1 font-extrabold">Boombox Bluetooth</p><p className="text-xs text-slate-300">Som para curtir cada momento</p></div>
           </div>
@@ -177,11 +188,11 @@ function Index() {
 
       <section id="beneficios" className="benefits-section border-y border-[#E1E4EA] bg-white">
         <div className="mx-auto grid max-w-7xl gap-px px-5 py-12 sm:grid-cols-3 lg:px-8">
-          {[
+          {([
             [Truck, "Entrega rápida", "Despachamos seu pedido com agilidade e rastreio completo."],
             [ShieldCheck, "Compra protegida", "Pagamento seguro e garantia para você comprar tranquilo."],
             [Headphones, "Suporte de verdade", "Time especializado para ajudar antes e depois da compra."],
-          ].map(([Icon, title, text]) => (
+          ] as const).map(([Icon, title, text]) => (
             <div key={title as string} className="flex gap-4 p-5">
               <span className="grid size-11 shrink-0 place-items-center rounded-xl bg-[#F4F6F8] text-[#2D6CDF]"><Icon className="size-5" /></span>
               <div><h3 className="font-bold">{title as string}</h3><p className="mt-1 text-sm leading-6 text-[#686C7E]">{text as string}</p></div>
