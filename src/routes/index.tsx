@@ -188,7 +188,7 @@ function Index() {
 
       <section id="beneficios" className="benefits-section border-y border-[#E1E4EA] bg-white">
         <div className="mx-auto grid max-w-7xl gap-px px-5 py-12 sm:grid-cols-3 lg:px-8">
-          {[
+          {([
             [Truck, "Entrega rápida", "Despachamos seu pedido com agilidade e rastreio completo."],
             [ShieldCheck, "Compra protegida", "Pagamento seguro e garantia para você comprar tranquilo."],
             [Headphones, "Suporte de verdade", "Time especializado para ajudar antes e depois da compra."],
