@@ -32,7 +32,7 @@ const products = [
   { name: "PRETO - FONE HEADSET GAMER RGB Rainbow", category: "Áudio", price: "R$ 99,90", oldPrice: "", discount: "", image: "/gamer.jpg", checkout: "https://pay.kaiross.com.br/1tl7a6atNmMU" },
   { name: "PRETO - D20 - Relógio Inteligente", category: "Relógios", price: "R$ 99,90", oldPrice: "", discount: "", image: "https://app.seuarmazemdrop.com.br/uploads/1756474573-3.png", checkout: "https://pay.kaiross.com.br/8UiczJZxaWGb" },
   { name: "Smartwatch C20Pro com chamada Bluetooth e modo esportivo outdoor", category: "Relógios", price: "R$ 500,00", oldPrice: "R$ 1.000,00", discount: "50% OFF", image: "https://i5.walmartimages.com/seo/C20-PRO-Military-Smart-Watches-Men-IP68-Waterproof-Rugged-Bluetooth-Call-Answer-Dial-Calls-1-83-Tactical-Fitness-Watch-Tracker-Android-iOS-Outdoor-Sp_a9806e58-368a-4f70-b9a7-b77fc1d86769.9c217738ee84b32b67a7223eef00e453.jpeg?odnBg=FFFFFF&odnHeight=1200&odnWidth=1200", checkout: "https://pay.kaiross.com.br/yGf0c73o8S1l" },
-  { name: "PRETO - Caixa De Som Boombox Bluetooth Bivolt", category: "Boombox", price: "R$ 500,00", oldPrice: "R$ 1.000,00", discount: "50% OFF", image: "https://app.seuarmazemdrop.com.br/uploads/1752234501-4.png", checkout: "https://pay.kaiross.com.br/iUtzjjIQUYbv" },
+  { name: "PRETO - Caixa De Som Boombox Bluetooth Bivolt", category: "Boombox", price: "R$ 500,00", oldPrice: "R$ 1.000,00", discount: "50% OFF", image: boomboxBanner.url, checkout: "https://pay.kaiross.com.br/iUtzjjIQUYbv" },
   { name: "CARREGADOR PORTÁTIL DOBRÁVEL Magsafe 3 em 1 - Branco", category: "Acessórios", price: "R$ 99,90", oldPrice: "R$ 189,90", discount: "47% OFF", image: "/magsafe.jpg", checkout: "https://pay.kaiross.com.br/crT4puVOrlIX" },
   { name: "Bateria Powerbank MagSafe Apple — encaixe magnético", category: "Acessórios", price: "R$ 99,90", oldPrice: "R$ 149,90", discount: "33% OFF", image: "https://m.magazineluiza.com.br/a-static/420x420/bateria-magsafe-apple-para-iphones-12-12-pro-12-max-e-12-mini-branco-mjwy3be-a/kabum/462812/2caaad4cb668bbc0e571a3aeedc5cc9c.jpeg", checkout: "https://pay.kaiross.com.br/LTrcwjrKwkEv" },
   { name: "BRANCO - Conjunto de Teclado + Mouse Sem Fio Bluetooth Para Notebook e Tablet", category: "Teclado", price: "R$ 99,90", oldPrice: "", discount: "", image: "/tecladomouse.jpg", checkout: "https://pay.kaiross.com.br/SdGy86ZVqs1x" },
@@ -130,12 +130,12 @@ function Index() {
             <span className="mb-4 inline-flex items-center gap-2 rounded-full bg-[#0877FF] px-4 py-2 text-xs font-extrabold uppercase tracking-wide text-white shadow-lg shadow-blue-950/30"><Sparkles className="size-4"/> Oferta em destaque</span>
             <p className="text-base font-bold text-white/90">Ohmira apresenta</p>
             <h1 className="mt-2 max-w-xl text-4xl font-black leading-[1.02] tracking-tight text-white sm:text-5xl lg:text-[3.5rem]">Boombox Bluetooth. <span className="text-[#1680FF]">Som potente, oferta imperdível.</span></h1>
-            <p className="mt-4 max-w-lg text-sm leading-6 text-slate-300 sm:text-base">Curta seus momentos com a caixa de som Boombox Bluetooth por tempo limitado com 50% OFF.</p>
+            <p className="mt-4 max-w-lg text-sm leading-6 text-slate-300 sm:text-base">Curta seus momentos com a caixa de som Boombox Bluetooth. Confira o preço e as condições atuais antes de finalizar sua compra.</p>
             <div className="mt-6 flex flex-wrap gap-3">
               <a href="https://pay.kaiross.com.br/iUtzjjIQUYbv" target="_blank" rel="noreferrer" className="inline-flex h-12 items-center gap-2 rounded-xl bg-[#0877FF] px-6 text-sm font-extrabold text-white shadow-lg shadow-blue-950/30 transition hover:bg-blue-500">Comprar Boombox <ArrowRight className="size-4"/></a>
               <a href="#produtos" className="inline-flex h-12 items-center rounded-xl border border-white/25 px-5 text-sm font-bold text-white transition hover:bg-white/10">Ver produtos</a>
             </div>
-            <div className="mt-6 flex flex-wrap gap-x-5 gap-y-2 text-xs font-semibold text-slate-300"><span className="flex items-center gap-2"><ShieldCheck className="size-4 text-[#4396FF]"/> Compra segura</span><span className="flex items-center gap-2"><Truck className="size-4 text-[#4396FF]"/> Entrega rápida</span><span className="flex items-center gap-2"><CreditCard className="size-4 text-[#4396FF]"/> Pagamento facilitado</span></div>
+            <div className="mt-6 flex flex-wrap gap-x-5 gap-y-2 text-xs font-semibold text-slate-300"><span className="flex items-center gap-2"><ShieldCheck className="size-4 text-[#4396FF]"/> Pagamento pelo checkout</span><span className="flex items-center gap-2"><Truck className="size-4 text-[#4396FF]"/> Consulte prazo de entrega</span><span className="flex items-center gap-2"><CreditCard className="size-4 text-[#4396FF]"/> Confira as formas de pagamento</span></div>
           </div>
           <div className="reference-product-stage relative flex min-h-[270px] items-center justify-center md:min-h-[330px]">
             <div className="reference-orbit reference-orbit-one" aria-hidden="true"/><div className="reference-orbit reference-orbit-two" aria-hidden="true"/>
@@ -147,10 +147,10 @@ function Index() {
       </section>
       <section id="categorias" className="reference-trust-strip border-b border-slate-200">
         <div className="mx-auto grid max-w-7xl grid-cols-2 gap-3 px-5 py-5 sm:grid-cols-4 lg:px-8">
-          <div className="flex items-center gap-3 rounded-xl px-2 py-2"><ShieldCheck className="size-8 shrink-0 text-[#3988FF]"/><span className="text-xs leading-5"><b className="block text-white">Compra segura</b><span className="text-slate-300">Mais tranquilidade</span></span></div>
-          <div className="flex items-center gap-3 rounded-xl px-2 py-2"><Truck className="size-8 shrink-0 text-[#3988FF]"/><span className="text-xs leading-5"><b className="block text-white">Entrega rápida</b><span className="text-slate-300">Acompanhe seu pedido</span></span></div>
-          <div className="flex items-center gap-3 rounded-xl px-2 py-2"><CreditCard className="size-8 shrink-0 text-[#3988FF]"/><span className="text-xs leading-5"><b className="block text-white">Pagamento facilitado</b><span className="text-slate-300">Praticidade para comprar</span></span></div>
-          <div className="flex items-center gap-3 rounded-xl px-2 py-2"><Headphones className="size-8 shrink-0 text-[#3988FF]"/><span className="text-xs leading-5"><b className="block text-white">Suporte especializado</b><span className="text-slate-300">Conte com a Ohmira</span></span></div>
+          <div className="flex items-center gap-3 rounded-xl px-2 py-2"><ShieldCheck className="size-8 shrink-0 text-[#3988FF]"/><span className="text-xs leading-5"><b className="block text-white">Checkout externo</b><span className="text-slate-300">Finalize pelo link do produto</span></span></div>
+          <div className="flex items-center gap-3 rounded-xl px-2 py-2"><Truck className="size-8 shrink-0 text-[#3988FF]"/><span className="text-xs leading-5"><b className="block text-white">Entrega</b><span className="text-slate-300">Consulte prazo no checkout</span></span></div>
+          <div className="flex items-center gap-3 rounded-xl px-2 py-2"><CreditCard className="size-8 shrink-0 text-[#3988FF]"/><span className="text-xs leading-5"><b className="block text-white">Pagamento</b><span className="text-slate-300">Confira as opções no checkout</span></span></div>
+          <div className="flex items-center gap-3 rounded-xl px-2 py-2"><Headphones className="size-8 shrink-0 text-[#3988FF]"/><span className="text-xs leading-5"><b className="block text-white">Dúvidas?</b><span className="text-slate-300">Confira os canais do vendedor</span></span></div>
         </div>
       </section>
       <section className="category-filter border-b border-[#E1E4EA] bg-white">
@@ -205,9 +205,9 @@ function Index() {
       <section id="beneficios" className="benefits-section border-y border-[#E1E4EA] bg-white">
         <div className="mx-auto grid max-w-7xl gap-px px-5 py-12 sm:grid-cols-3 lg:px-8">
           {([
-            [Truck, "Entrega rápida", "Despachamos seu pedido com agilidade e rastreio completo."],
-            [ShieldCheck, "Compra protegida", "Pagamento seguro e garantia para você comprar tranquilo."],
-            [Headphones, "Suporte de verdade", "Time especializado para ajudar antes e depois da compra."],
+            [Truck, "Entrega", "Consulte o prazo, o frete e o rastreamento disponíveis no checkout."],
+            [ShieldCheck, "Condições de compra", "Confira as condições de pagamento, garantia e devolução antes de concluir o pedido."],
+            [Headphones, "Informações do vendedor", "Confira os canais de atendimento e as informações do vendedor no checkout."],
           ] as const).map(([Icon, title, text]) => (
             <div key={title as string} className="flex gap-4 p-5">
               <span className="grid size-11 shrink-0 place-items-center rounded-xl bg-[#F4F6F8] text-[#2D6CDF]"><Icon className="size-5" /></span>
