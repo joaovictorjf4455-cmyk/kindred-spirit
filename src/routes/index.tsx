@@ -270,7 +270,7 @@ function Index() {
 
       <footer className="bg-[#2B2D42] px-5 py-10 text-white lg:px-8">
         <div className="mx-auto flex max-w-7xl flex-col justify-between gap-6 sm:flex-row sm:items-center">
-          <div><div className="flex items-center gap-2.5"><img src={ohmiraLogo.url} alt="Símbolo OE da Ohmira" className="h-8 w-auto" /><span className="flex flex-col leading-none"><span className="text-lg font-black tracking-tight">Ohmira</span><span className="mt-1 text-[0.48rem] font-bold tracking-[0.28em] text-[#2D6CDF]">ELETRÔNICOS</span></span></div><p className="mt-2 text-xs text-[#777B8D]">Tecnologia que facilita sua vida.</p></div>
+          <div><div className="flex items-center gap-2.5"><span className="flex h-9 w-9 items-center justify-center rounded-lg bg-white p-1"><img src={ohmiraLogo.url} alt="Símbolo OE da Ohmira" className="h-full w-auto" /></span><span className="flex flex-col leading-none"><span className="text-lg font-black tracking-tight">Ohmira</span><span className="mt-1 text-[0.48rem] font-bold tracking-[0.28em] text-[#2D6CDF]">ELETRÔNICOS</span></span></div><p className="mt-2 text-xs text-[#777B8D]">Tecnologia que facilita sua vida.</p></div>
           <p className="text-xs text-[#686C7E]">© 2026 Ohmira Eletrônicos. Todos os direitos reservados.</p>
         </div>
       </footer>
