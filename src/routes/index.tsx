@@ -58,10 +58,10 @@ function Index() {
   };
 
   const cartCount = cart.reduce((total, item) => total + item.quantity, 0);
-  const cartProducts = cart.map((item) => ({
-    ...item,
-    product: products.find((product) => product.name === item.name)!,
-  }));
+  const cartProducts = cart.flatMap((item) => {
+    const product = products.find((candidate) => candidate.name === item.name);
+    return product ? [{ ...item, product }] : [];
+  });
 
   const filteredProducts = useMemo(
     () =>
@@ -183,6 +183,35 @@ function Index() {
         </div>
       </section>
 
+      {cartOpen && (
+        <section id="carrinho" className="mx-auto max-w-7xl px-5 pb-10 lg:px-8" aria-label="Seu carrinho">
+          <div className="rounded-2xl border border-[#D9E2F2] bg-white p-5 shadow-sm">
+            <div className="flex items-center justify-between gap-3">
+              <div><h2 className="text-xl font-black">Seu carrinho</h2><p className="mt-1 text-sm text-[#686C7E]">{cartCount} {cartCount === 1 ? "item" : "itens"} adicionados</p></div>
+              <button type="button" onClick={() => setCartOpen(false)} className="rounded-lg p-2 text-[#686C7E] hover:bg-slate-100" aria-label="Fechar carrinho"><X className="size-5" /></button>
+            </div>
+            {cartProducts.length === 0 ? (
+              <p className="mt-4 text-sm text-[#686C7E]">Seu carrinho está vazio. Adicione um produto para vê-lo aqui.</p>
+            ) : (
+              <div className="mt-4 divide-y divide-slate-100">
+                {cartProducts.map(({ name, quantity, product }) => (
+                  <div key={name} className="flex flex-wrap items-center justify-between gap-3 py-3">
+                    <div className="min-w-0 flex-1"><p className="font-bold">{name}</p><p className="text-sm text-[#686C7E]">{product.price} · Quantidade: {quantity}</p></div>
+                    <div className="flex items-center gap-2">
+                      <button type="button" onClick={() => setCart((current) => current.flatMap((item) => item.name !== name ? [item] : item.quantity > 1 ? [{ ...item, quantity: item.quantity - 1 }] : []))} className="grid size-8 place-items-center rounded-lg border border-slate-200 font-bold" aria-label={`Remover uma unidade de ${name}`}>−</button>
+                      <span className="min-w-5 text-center text-sm font-bold">{quantity}</span>
+                      <button type="button" onClick={() => addToCart(name)} className="grid size-8 place-items-center rounded-lg border border-slate-200 font-bold" aria-label={`Adicionar mais uma unidade de ${name}`}>+</button>
+                      <a href={product.checkout} target="_blank" rel="noopener noreferrer" className="ml-1 rounded-lg bg-[#2D6CDF] px-3 py-2 text-xs font-bold text-white hover:bg-[#2459B8]">Comprar</a>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+            <p className="mt-3 text-xs leading-5 text-[#686C7E]">A finalização e o pagamento acontecem no checkout externo de cada produto. Os itens do carrinho são mantidos nesta página enquanto ela estiver aberta.</p>
+          </div>
+        </section>
+      )}
+
       <section id="ofertas" className="offers-section mx-auto max-w-7xl px-5 py-12 lg:px-8">
         <div className="mb-7 flex items-end justify-between gap-4">
           <div><p className="text-sm font-bold uppercase tracking-widest text-[#0877FF]">Escolhas da Ohmira</p><h2 className="mt-1 text-3xl font-black tracking-tight">Produtos em <span className="text-[#0877FF]">destaque</span></h2></div>
@@ -225,35 +254,6 @@ function Index() {
         </div>
         {filteredProducts.length === 0 && <div className="rounded-2xl border border-dashed border-slate-300 bg-white p-12 text-center text-[#686C7E]">Nenhum produto encontrado. Tente outra busca.</div>}
       </section>
-
-      {cartOpen && (
-        <section id="carrinho" className="mx-auto max-w-7xl px-5 pb-10 lg:px-8" aria-label="Seu carrinho">
-          <div className="rounded-2xl border border-[#D9E2F2] bg-white p-5 shadow-sm">
-            <div className="flex items-center justify-between gap-3">
-              <div><h2 className="text-xl font-black">Seu carrinho</h2><p className="mt-1 text-sm text-[#686C7E]">{cartCount} {cartCount === 1 ? "item" : "itens"} adicionados</p></div>
-              <button type="button" onClick={() => setCartOpen(false)} className="rounded-lg p-2 text-[#686C7E] hover:bg-slate-100" aria-label="Fechar carrinho"><X className="size-5" /></button>
-            </div>
-            {cartProducts.length === 0 ? (
-              <p className="mt-4 text-sm text-[#686C7E]">Seu carrinho está vazio. Adicione um produto para vê-lo aqui.</p>
-            ) : (
-              <div className="mt-4 divide-y divide-slate-100">
-                {cartProducts.map(({ name, quantity, product }) => (
-                  <div key={name} className="flex flex-wrap items-center justify-between gap-3 py-3">
-                    <div className="min-w-0 flex-1"><p className="font-bold">{name}</p><p className="text-sm text-[#686C7E]">{product.price} · Quantidade: {quantity}</p></div>
-                    <div className="flex items-center gap-2">
-                      <button type="button" onClick={() => setCart((current) => current.flatMap((item) => item.name !== name ? [item] : item.quantity > 1 ? [{ ...item, quantity: item.quantity - 1 }] : []))} className="grid size-8 place-items-center rounded-lg border border-slate-200 font-bold" aria-label={`Remover uma unidade de ${name}`}>−</button>
-                      <span className="min-w-5 text-center text-sm font-bold">{quantity}</span>
-                      <button type="button" onClick={() => addToCart(name)} className="grid size-8 place-items-center rounded-lg border border-slate-200 font-bold" aria-label={`Adicionar mais uma unidade de ${name}`}>+</button>
-                      <a href={product.checkout} target="_blank" rel="noopener noreferrer" className="ml-1 rounded-lg bg-[#2D6CDF] px-3 py-2 text-xs font-bold text-white hover:bg-[#2459B8]">Comprar</a>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            )}
-            <p className="mt-3 text-xs leading-5 text-[#686C7E]">A finalização e o pagamento acontecem no checkout externo de cada produto. Os itens do carrinho são mantidos nesta página enquanto ela estiver aberta.</p>
-          </div>
-        </section>
-      )}
 
       <section id="beneficios" className="benefits-section border-y border-[#E1E4EA] bg-white">
         <div className="mx-auto grid max-w-7xl gap-px px-5 py-12 sm:grid-cols-3 lg:px-8">
