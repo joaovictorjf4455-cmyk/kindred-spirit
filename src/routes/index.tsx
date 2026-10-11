@@ -96,7 +96,9 @@ function Index() {
             {menuOpen ? <X /> : <Menu />}
           </button>
           <a href="#" aria-label="Ohmira Eletrônicos — página inicial" className="group flex shrink-0 items-center gap-3">
-            <img src={ohmiraLogo.url} alt="Símbolo OE da Ohmira" className="h-10 w-auto drop-shadow-[0_3px_8px_rgba(45,108,223,0.28)]" />
+            <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-white p-1.5 shadow-[0_6px_18px_rgba(8,18,36,.28)]">
+              <img src={ohmiraLogo.url} alt="Símbolo OE da Ohmira" className="h-full w-auto" />
+            </span>
             <span className="flex flex-col leading-none">
               <span className="text-[1.55rem] font-black tracking-[-0.055em] text-white">Ohmira</span>
               <span className="mt-1 text-[0.58rem] font-bold tracking-[0.32em] text-[#72A8FF]">ELETRÔNICOS</span>
