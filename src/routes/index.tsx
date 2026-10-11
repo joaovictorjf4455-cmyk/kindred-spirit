@@ -268,7 +268,7 @@ function Index() {
 
       <footer className="bg-[#2B2D42] px-5 py-10 text-white lg:px-8">
         <div className="mx-auto flex max-w-7xl flex-col justify-between gap-6 sm:flex-row sm:items-center">
-          <div><div className="flex items-center gap-2.5"><svg viewBox="0 0 48 48" aria-hidden="true" className="size-9"><path d="M24 5.5a17.5 17.5 0 1 0 17.5 17.5" fill="none" stroke="#DCE6F7" strokeWidth="5.5" strokeLinecap="round"/><path d="M24 2.5v15" stroke="#2D6CDF" strokeWidth="5.5" strokeLinecap="round"/><path d="M5.5 31.5c7.5 8 24 8.5 35-5.5 2-2.5 3.5-5 4.5-7.5-10.5 7-24.5 9.5-40 7.5" fill="none" stroke="#2D6CDF" strokeWidth="3.8" strokeLinecap="round"/></svg><span className="flex flex-col leading-none"><span className="text-lg font-black tracking-tight">Ohmira</span><span className="mt-1 text-[0.48rem] font-bold tracking-[0.28em] text-[#2D6CDF]">ELETRÔNICOS</span></span></div><p className="mt-2 text-xs text-[#777B8D]">Tecnologia que facilita sua vida.</p></div>
+          <div><div className="flex items-center gap-2.5"><img src={ohmiraLogo.url} alt="Símbolo OE da Ohmira" className="h-8 w-auto" /><span className="flex flex-col leading-none"><span className="text-lg font-black tracking-tight">Ohmira</span><span className="mt-1 text-[0.48rem] font-bold tracking-[0.28em] text-[#2D6CDF]">ELETRÔNICOS</span></span></div><p className="mt-2 text-xs text-[#777B8D]">Tecnologia que facilita sua vida.</p></div>
           <p className="text-xs text-[#686C7E]">© 2026 Ohmira Eletrônicos. Todos os direitos reservados.</p>
         </div>
       </footer>
