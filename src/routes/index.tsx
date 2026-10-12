@@ -166,7 +166,7 @@ function Index() {
                 <span className="text-3xl font-black text-white sm:text-4xl">R$ 1.199,00</span>
                 <del className="pb-1 text-sm font-semibold text-slate-400">R$ 2.199,00</del>
               </div>
-              <p className="mt-1 text-sm font-bold text-[#75B2FF]">ou até 12x de R$ 123,90 no cartão</p>
+              <p className="mt-1 text-sm font-bold text-[#75B2FF]">ou até {boomboxLastInstallment.n}x de {boomboxLastInstallment.value} no cartão</p>
               <div className="mt-3 flex max-w-md gap-2 overflow-x-auto pb-1">
                 {boomboxInstallments.map((option) => (
                   <span key={option.n} className="shrink-0 rounded-lg border border-white/10 bg-[#101B30]/80 px-2.5 py-1 text-[11px] font-semibold text-slate-300">{option.n}x {option.value}</span>
