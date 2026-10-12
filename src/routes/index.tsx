@@ -209,8 +209,8 @@ function Index() {
       </section>
 
       {cartOpen && (
-        <section id="carrinho" className="mx-auto max-w-7xl px-5 pb-10 lg:px-8" aria-label="Seu carrinho">
-          <div className="rounded-2xl border border-[#D9E2F2] bg-white p-5 shadow-sm">
+        <section id="carrinho" role="dialog" aria-modal="true" className="fixed inset-0 z-[100] flex items-end justify-center bg-black/60 p-0 sm:items-center sm:p-5" aria-label="Seu carrinho" onClick={() => setCartOpen(false)}>
+          <div className="max-h-[90dvh] w-full overflow-y-auto rounded-t-2xl border border-[#D9E2F2] bg-white p-5 text-slate-900 shadow-2xl sm:max-w-xl sm:rounded-2xl" onClick={(event) => event.stopPropagation()}>
             <div className="flex items-center justify-between gap-3">
               <div><h2 className="text-xl font-black">Seu carrinho</h2><p className="mt-1 text-sm text-[#686C7E]">{cartCount} {cartCount === 1 ? "item" : "itens"} adicionados</p></div>
               <button type="button" onClick={() => setCartOpen(false)} className="rounded-lg p-2 text-[#686C7E] hover:bg-slate-100" aria-label="Fechar carrinho"><X className="size-5" /></button>
@@ -232,7 +232,7 @@ function Index() {
                 ))}
               </div>
             )}
-            <p className="mt-3 text-xs leading-5 text-[#686C7E]">A finalização e o pagamento acontecem no checkout externo de cada produto. Os itens do carrinho são mantidos nesta página enquanto ela estiver aberta.</p>
+            <p className="mt-3 text-xs leading-5 text-[#686C7E]">A finalização e o pagamento acontecem no checkout externo de cada produto. Os itens ficam no carrinho enquanto você navega nesta página.</p>
           </div>
         </section>
       )}
