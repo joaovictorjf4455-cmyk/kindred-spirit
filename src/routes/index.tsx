@@ -146,6 +146,19 @@ function Index() {
             <p className="text-base font-bold text-white/90">Ohmira apresenta</p>
             <h1 className="mt-2 max-w-xl text-4xl font-black leading-[1.02] tracking-tight text-white sm:text-5xl lg:text-[3.5rem]">Boombox Bluetooth. <span className="text-[#1680FF]">Som potente, oferta imperdível.</span></h1>
             <p className="mt-4 max-w-lg text-sm leading-6 text-slate-300 sm:text-base">Curta seus momentos com a caixa de som Boombox Bluetooth. Confira o preço e as condições atuais antes de finalizar sua compra.</p>
+            <div className="mt-5 inline-block rounded-2xl border border-white/12 bg-white/[0.05] px-5 py-4 backdrop-blur">
+              <div className="flex items-end gap-3">
+                <span className="text-3xl font-black text-white sm:text-4xl">R$ 1.199,00</span>
+                <del className="pb-1 text-sm font-semibold text-slate-400">R$ 2.199,00</del>
+              </div>
+              <p className="mt-1 text-sm font-bold text-[#75B2FF]">ou até 12x de R$ 123,90 no cartão</p>
+              <div className="mt-3 flex max-w-md gap-2 overflow-x-auto pb-1">
+                {boomboxInstallments.map((option) => (
+                  <span key={option.n} className="shrink-0 rounded-lg border border-white/10 bg-[#101B30]/80 px-2.5 py-1 text-[11px] font-semibold text-slate-300">{option.n}x {option.value}</span>
+                ))}
+              </div>
+              <p className="mt-2 max-w-md text-[11px] leading-4 text-slate-400">Simulação com juros: em 12x o total fica R$ 1.486,76. Confira as condições no checkout.</p>
+            </div>
             <div className="mt-6 flex flex-wrap gap-3">
               <a href="https://pay.kaiross.com.br/iUtzjjIQUYbv" target="_blank" rel="noreferrer" className="inline-flex h-12 items-center gap-2 rounded-xl bg-[#0877FF] px-6 text-sm font-extrabold text-white shadow-lg shadow-blue-950/30 transition hover:bg-blue-500">Comprar Boombox <ArrowRight className="size-4"/></a>
               <a href="#produtos" className="inline-flex h-12 items-center rounded-xl border border-white/25 px-5 text-sm font-bold text-white transition hover:bg-white/10">Ver produtos</a>
