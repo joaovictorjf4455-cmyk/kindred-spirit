@@ -53,7 +53,7 @@ const boomboxInstallments = [
   { n: 11, value: "R$ 132,98" },
   { n: 12, value: "R$ 123,90" },
 ];
-const boomboxLastInstallment = boomboxInstallments[boomboxInstallments.length - 1];
+const boomboxLastInstallment = boomboxInstallments[boomboxInstallments.length - 1] ?? { n: 12, value: "R$ 123,90" };
 
 function Index() {
   const [search, setSearch] = useState("");
