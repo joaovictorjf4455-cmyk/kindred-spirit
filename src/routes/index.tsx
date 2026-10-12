@@ -68,6 +68,7 @@ function Index() {
   const [consent, setConsent] = useState(false);
   const [saveMessage, setSaveMessage] = useState("");
   const [cartLoaded, setCartLoaded] = useState(false);
+  const [savingCart, setSavingCart] = useState(false);
   useEffect(() => {
     try {
       const data = JSON.parse(localStorage.getItem("vibe-cart") || "[]");
@@ -79,15 +80,43 @@ function Index() {
     if (!cartLoaded) return;
     try { localStorage.setItem("vibe-cart", JSON.stringify(cart)); } catch { /* Storage unavailable */ }
   }, [cart, cartLoaded]);
-  const saveCart = (event: React.FormEvent<HTMLFormElement>) => {
+  const saveCart = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (!customerName.trim() || !/^\\d{10,11}$/.test(customerPhone.replace(/\\D/g, ""))) {
+    if (savingCart) return;
+    const phone = customerPhone.replace(/\D/g, "");
+    if (customerName.trim().length < 2 || !/^[0-9]{10,11}$/.test(phone)) {
       setSaveMessage("Informe seu nome e WhatsApp com DDD válido.");
       return;
     }
-    setSaveMessage("Carrinho salvo neste aparelho. O envio de seus dados para a loja depende da conexão do cadastro seguro.");
+    if (!consent) {
+      setSaveMessage("Para enviar seu contato à loja, marque a autorização de contato. O carrinho já fica salvo neste aparelho sem isso.");
+      return;
+    }
+    if (!cartProducts.length) return;
+    setSavingCart(true);
+    setSaveMessage("Enviando sua solicitação...");
+    try {
+      const response = await fetch("https://ondwevgwqzvpmbycoimq.supabase.co/rest/v1/rpc/submit_saved_cart", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", apikey: "sb_publishable_7IGQQLaQGXhg0HVeGDdd2g_LWklzHkI" },
+        body: JSON.stringify({
+          p_name: customerName.trim(),
+          p_whatsapp: phone,
+          p_consent: true,
+          p_items: cartProducts.map(({ name, quantity }) => ({ name, quantity }))
+        })
+      });
+      if (!response.ok) throw new Error("Não foi possível registrar seu contato.");
+      setSaveMessage("Pronto! Seu carrinho foi registrado. A Vibe Digital poderá entrar em contato pelo WhatsApp sobre esses produtos.");
+      setCustomerName("");
+      setCustomerPhone("");
+      setConsent(false);
+    } catch {
+      setSaveMessage("Não conseguimos enviar seu contato agora. Seus produtos continuam salvos neste aparelho; tente novamente mais tarde.");
+    } finally {
+      setSavingCart(false);
+    }
   };
-
 
   const addToCart = (productName: string) => {
     setCart((current) => {
@@ -219,7 +248,7 @@ function Index() {
           <div className="flex items-center gap-3 rounded-xl px-2 py-2"><ShieldCheck className="size-8 shrink-0 text-[#3988FF]"/><span className="text-xs leading-5"><b className="block text-white">Checkout externo</b><span className="text-slate-300">Finalize pelo link do produto</span></span></div>
           <div className="flex items-center gap-3 rounded-xl px-2 py-2"><Truck className="size-8 shrink-0 text-[#3988FF]"/><span className="text-xs leading-5"><b className="block text-white">Entrega</b><span className="text-slate-300">Consulte prazo no checkout</span></span></div>
           <div className="flex items-center gap-3 rounded-xl px-2 py-2"><CreditCard className="size-8 shrink-0 text-[#3988FF]"/><span className="text-xs leading-5"><b className="block text-white">Pagamento</b><span className="text-slate-300">Confira as opções no checkout</span></span></div>
-          <div className="flex items-center gap-3 rounded-xl px-2 py-2"><Headphones className="size-8 shrink-0 text-[#3988FF]"/><span className="text-xs leading-5"><b className="block text-white">Dúvidas?</b><span className="text-slate-300">Confira os canais do vendedor</span></span></div>
+          <div className="flex items-center gap-3 rounded-xl px-2 py-2"><Headphones className="size-8 shrink-0 text-[#3988FF]"/><span className="text-xs leading-5"><b className="block text-white">Dúvidas?</b><span className="text-slate-300">Confira os canais no checkout</span></span></div>
         </div>
       </section>
       <section className="category-filter border-b border-[#E1E4EA] bg-white">
@@ -260,19 +289,19 @@ function Index() {
 
             {cartProducts.length > 0 && (
               <form onSubmit={saveCart} className="mt-5 rounded-xl border border-blue-100 bg-blue-50 p-4">
-                <h3 className="font-black">Salve seu carrinho para depois</h3>
-                <p className="mt-1 text-sm text-slate-600">Seus produtos ficam salvos neste celular, mesmo depois de fechar a página.</p>
+                <h3 className="font-black">Quer ajuda para finalizar sua compra?</h3>
+                <p className="mt-1 text-sm text-slate-600">Seu carrinho já fica salvo neste aparelho. Se desejar atendimento sobre esses produtos, deixe seu contato abaixo.</p>
                 <div className="mt-3 grid gap-2 sm:grid-cols-2">
                   <input value={customerName} onChange={(e) => setCustomerName(e.target.value)} placeholder="Seu nome" aria-label="Seu nome" autoComplete="name" maxLength={100} className="min-h-11 rounded-lg border border-slate-300 bg-white px-3 text-sm" />
                   <input value={customerPhone} onChange={(e) => setCustomerPhone(e.target.value)} placeholder="WhatsApp com DDD" aria-label="WhatsApp com DDD" autoComplete="tel" inputMode="tel" maxLength={20} className="min-h-11 rounded-lg border border-slate-300 bg-white px-3 text-sm" />
                 </div>
-                <label className="mt-3 flex items-start gap-2 text-xs text-slate-600"><input type="checkbox" checked={consent} onChange={(e) => setConsent(e.target.checked)} className="mt-0.5" /> Autorizo receber mensagens da Vibe Digital sobre meu carrinho pelo WhatsApp (opcional).</label>
-                <button type="submit" className="mt-3 min-h-11 w-full rounded-lg bg-[#2D6CDF] px-4 py-2 text-sm font-bold text-white">Salvar carrinho neste celular</button>
+                <label className="mt-3 flex items-start gap-2 text-xs text-slate-600"><input type="checkbox" checked={consent} onChange={(e) => setConsent(e.target.checked)} className="mt-0.5" /> Autorizo a Vibe Digital a guardar meu nome, WhatsApp e itens do carrinho para entrar em contato sobre esta compra. Posso pedir a exclusão dos meus dados pelo canal de atendimento.</label>
+                <button type="submit" disabled={savingCart} className="mt-3 min-h-11 w-full rounded-lg bg-[#2D6CDF] px-4 py-2 text-sm font-bold text-white disabled:opacity-50">{savingCart ? "Enviando..." : "Solicitar contato pelo WhatsApp"}</button>
                 {saveMessage && <p role="status" className="mt-2 text-xs">{saveMessage}</p>}
-                <p className="mt-2 text-xs text-slate-600">Cadastro em preparação: nome e telefone ainda não são enviados ou armazenados. Para receber contatos, precisamos conectar um banco de dados seguro.</p>
+                <p className="mt-2 text-xs text-slate-600">O contato é opcional. O pagamento é feito no checkout externo do produto. Não informe dados de cartão neste formulário.</p>
               </form>
             )}
-            <p className="mt-3 text-xs leading-5 text-[#686C7E]">A finalização e o pagamento acontecem no checkout externo de cada produto. Os itens ficam no carrinho enquanto você navega nesta página.</p>
+            <p className="mt-3 text-xs leading-5 text-[#686C7E]">A finalização e o pagamento acontecem no checkout externo de cada produto, em uma nova aba. O carrinho desta loja não finaliza vários produtos em um único pagamento; confira produto, frete e vendedor antes de pagar.</p>
           </div>
         </section>
       )}
@@ -337,7 +366,7 @@ function Index() {
         </div>
       </section>
 
-      <footer className="bg-[#2B2D42] px-5 py-10 text-white lg:px-8">
+      <section className="bg-[#EEF4FF] px-5 py-9 text-slate-800" aria-label="Informações importantes para comprar"><div className="mx-auto max-w-7xl grid gap-6 md:grid-cols-3"><div><h2 className="font-black">Como comprar</h2><p className="mt-2 text-sm leading-6">Cada botão Comprar abre o checkout externo daquele produto. Confira preço final, frete, prazo de entrega, identificação do vendedor e formas de pagamento antes de concluir.</p></div><div><h2 className="font-black">Trocas e devoluções</h2><p className="mt-2 text-sm leading-6">Antes da compra, consulte no checkout a identificação e as políticas do vendedor. Em compras online, o direito de arrependimento previsto no CDC é de até 7 dias após o recebimento, nas condições legais aplicáveis.</p></div><div><h2 className="font-black">Privacidade e atendimento</h2><p className="mt-2 text-sm leading-6">Se você autorizar contato, registramos nome, WhatsApp e produtos escolhidos para atendimento sobre sua compra. Para solicitar acesso ou exclusão desses dados, utilize o canal de atendimento identificado no checkout enquanto o canal próprio da loja é configurado.</p></div></div></section>\n      <footer className="bg-[#2B2D42] px-5 py-10 text-white lg:px-8">
         <div className="mx-auto flex max-w-7xl flex-col justify-between gap-6 sm:flex-row sm:items-center">
           <div><div className="flex items-center gap-2.5"><img src={vibeSymbol.url} alt="Símbolo Vibe Digital" className="size-8 shrink-0" /><span className="flex flex-col leading-none"><span className="text-lg font-black tracking-tight">Vibe Digital</span><span className="mt-1 text-[0.48rem] font-bold tracking-[0.28em] text-[#2D6CDF]">TECNOLOGIA</span></span></div><p className="mt-2 text-xs text-[#777B8D]">Tecnologia que facilita sua vida.</p></div>
           <p className="text-xs text-[#686C7E]">© 2026 Vibe Digital. Todos os direitos reservados. <a href="https://vibedigital.com.br" className="text-[#72A8FF] hover:underline">vibedigital.com.br</a></p>
