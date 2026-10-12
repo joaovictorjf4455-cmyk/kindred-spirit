@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import boomboxBanner from "@/assets/boombox-banner.png.asset.json";
 import vibeSymbol from "@/assets/vibe-digital-symbol.png.asset.json";
@@ -63,6 +63,31 @@ function Index() {
   const [cart, setCart] = useState<{ name: string; quantity: number }[]>([]);
   const [cartOpen, setCartOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [customerName, setCustomerName] = useState("");
+  const [customerPhone, setCustomerPhone] = useState("");
+  const [consent, setConsent] = useState(false);
+  const [saveMessage, setSaveMessage] = useState("");
+  const [cartLoaded, setCartLoaded] = useState(false);
+  useEffect(() => {
+    try {
+      const data = JSON.parse(localStorage.getItem("vibe-cart") || "[]");
+      if (Array.isArray(data)) setCart(data.filter((item) => item && typeof item.name === "string" && products.some((p) => p.name === item.name) && Number.isInteger(item.quantity) && item.quantity > 0 && item.quantity <= 99));
+    } catch { /* Storage unavailable */ }
+    setCartLoaded(true);
+  }, []);
+  useEffect(() => {
+    if (!cartLoaded) return;
+    try { localStorage.setItem("vibe-cart", JSON.stringify(cart)); } catch { /* Storage unavailable */ }
+  }, [cart, cartLoaded]);
+  const saveCart = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    if (!customerName.trim() || !/^\\d{10,11}$/.test(customerPhone.replace(/\\D/g, ""))) {
+      setSaveMessage("Informe seu nome e WhatsApp com DDD válido.");
+      return;
+    }
+    setSaveMessage("Carrinho salvo neste aparelho. O envio de seus dados para a loja depende da conexão do cadastro seguro.");
+  };
+
 
   const addToCart = (productName: string) => {
     setCart((current) => {
@@ -231,6 +256,21 @@ function Index() {
                   </div>
                 ))}
               </div>
+            )}
+
+            {cartProducts.length > 0 && (
+              <form onSubmit={saveCart} className="mt-5 rounded-xl border border-blue-100 bg-blue-50 p-4">
+                <h3 className="font-black">Salve seu carrinho para depois</h3>
+                <p className="mt-1 text-sm text-slate-600">Seus produtos ficam salvos neste celular, mesmo depois de fechar a página.</p>
+                <div className="mt-3 grid gap-2 sm:grid-cols-2">
+                  <input value={customerName} onChange={(e) => setCustomerName(e.target.value)} placeholder="Seu nome" aria-label="Seu nome" autoComplete="name" maxLength={100} className="min-h-11 rounded-lg border border-slate-300 bg-white px-3 text-sm" />
+                  <input value={customerPhone} onChange={(e) => setCustomerPhone(e.target.value)} placeholder="WhatsApp com DDD" aria-label="WhatsApp com DDD" autoComplete="tel" inputMode="tel" maxLength={20} className="min-h-11 rounded-lg border border-slate-300 bg-white px-3 text-sm" />
+                </div>
+                <label className="mt-3 flex items-start gap-2 text-xs text-slate-600"><input type="checkbox" checked={consent} onChange={(e) => setConsent(e.target.checked)} className="mt-0.5" /> Autorizo receber mensagens da Vibe Digital sobre meu carrinho pelo WhatsApp (opcional).</label>
+                <button type="submit" className="mt-3 min-h-11 w-full rounded-lg bg-[#2D6CDF] px-4 py-2 text-sm font-bold text-white">Salvar carrinho neste celular</button>
+                {saveMessage && <p role="status" className="mt-2 text-xs">{saveMessage}</p>}
+                <p className="mt-2 text-xs text-slate-600">Cadastro em preparação: nome e telefone ainda não são enviados ou armazenados. Para receber contatos, precisamos conectar um banco de dados seguro.</p>
+              </form>
             )}
             <p className="mt-3 text-xs leading-5 text-[#686C7E]">A finalização e o pagamento acontecem no checkout externo de cada produto. Os itens ficam no carrinho enquanto você navega nesta página.</p>
           </div>
