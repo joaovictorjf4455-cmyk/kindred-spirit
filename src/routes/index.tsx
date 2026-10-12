@@ -264,6 +264,7 @@ function Index() {
                 <p className="text-xs font-semibold text-[#777B8D]">{product.category}</p>
                 <h3 className="mt-1 font-bold">{product.name}</h3>
                 <div className="mt-4 flex items-end gap-2"><span className="text-xl font-black text-[#2D6CDF]">{product.price}</span>{product.oldPrice && <del className="text-xs text-[#777B8D]">{product.oldPrice}</del>}</div>
+                {product.category === "Boombox" && <p className="mt-1 text-xs font-semibold text-[#686C7E]">ou até {boomboxLastInstallment.n}x de {boomboxLastInstallment.value} no cartão</p>}
                 <div className="mt-4 grid grid-cols-2 gap-2">
                   <button type="button" onClick={() => addToCart(product.name)} className="flex min-h-10 items-center justify-center gap-1 rounded-xl border border-[#2D6CDF] px-2 py-2 text-xs font-bold text-[#2D6CDF] transition hover:bg-blue-50">
                     <ShoppingBag className="size-4 shrink-0" /> Adicionar ao carrinho
