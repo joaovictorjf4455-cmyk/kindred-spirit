@@ -55,7 +55,7 @@ function Admin() {
         <div className="flex flex-wrap gap-3"><button onClick={() => void loadCarts(token)} className="rounded-lg bg-blue-700 px-4 py-2 font-bold text-white">Atualizar</button><button onClick={() => { setToken(""); setCarts([]); }} className="rounded-lg border px-4 py-2">Sair</button></div>
         <p className="mt-4 font-bold">{carts.length} carrinhos encontrados</p>
         <div className="mt-3 space-y-3">{carts.map(c => <article key={c.id} className="rounded-xl border p-4">
-          <div className="font-bold">{c.customer_name}</div><p className="text-sm">{c.whatsapp} · {new Date(c.created_at).toLocaleString("pt-BR")} · {c.status}</p>
+          <div className="font-bold">{c.customer_name}</div><p className="text-sm">{c.whatsapp} · {new Date(c.created_at).toLocaleString("pt-BR")} · {c.status}</p><a href={"https://wa.me/55" + c.whatsapp + "?text=" + encodeURIComponent("Olá, " + c.customer_name + "! Aqui é da Vibe Digital. Você autorizou contato sobre os produtos do seu carrinho. Posso ajudar?")} target="_blank" rel="noopener noreferrer" className="mt-2 inline-block rounded-lg bg-green-700 px-3 py-2 text-sm font-bold text-white">Conversar no WhatsApp</a>
           <ul className="mt-2 list-inside list-disc text-sm">{c.items.map((i,j) => <li key={j}>{i.name} × {i.quantity}</li>)}</ul>
         </article>)}</div>
       </div>}
