@@ -1,7 +1,7 @@
 import { useMemo, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import boomboxBanner from "@/assets/boombox-banner.png.asset.json";
-import ohmiraLogo from "@/assets/ohmira-logo.png.asset.json";
+import vibeSymbol from "@/assets/vibe-digital-symbol.png.asset.json";
 import {
   ArrowRight, ChevronRight, Headphones, Heart, Menu,
   Search, ShieldCheck, ShoppingBag, Sparkles, Truck, UserRound, CreditCard,
@@ -111,7 +111,7 @@ function Index() {
             {menuOpen ? <X /> : <Menu />}
           </button>
           <a href="#" aria-label="Vibe Digital — página inicial" className="group flex shrink-0 items-center gap-3">
-            <span className="grid size-10 place-items-center rounded-xl bg-[#0877FF] text-white shadow-lg shadow-blue-950/40"><Sparkles className="size-6" /></span>
+            <img src={vibeSymbol.url} alt="Símbolo Vibe Digital" className="size-10 shrink-0 drop-shadow-[0_0_12px_rgba(45,108,223,.45)]" />
             <span className="flex flex-col leading-none">
               <span className="text-[1.55rem] font-black tracking-[-0.055em] text-white">Vibe Digital</span>
               <span className="mt-1 text-[0.58rem] font-bold tracking-[0.32em] text-[#72A8FF]">TECNOLOGIA</span>
