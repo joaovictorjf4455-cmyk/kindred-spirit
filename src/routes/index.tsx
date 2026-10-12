@@ -40,6 +40,21 @@ const products = [
   { name: "PRETO - Conjunto de Teclado + Mouse Sem Fio Bluetooth Para Notebook e Tablet", category: "Teclado", price: "R$ 99,90", oldPrice: "", discount: "", image: "https://raw.githubusercontent.com/joaovictorjf4455-cmyk/kindred-spirit/main/public/tecladomouse-preto.jpg?rev=6067bf3", checkout: "https://pay.kaiross.com.br/FAcrHlBuEbH9" },
 ];
 
+const boomboxInstallments = [
+  { n: 2, value: "R$ 623,48" },
+  { n: 3, value: "R$ 423,65" },
+  { n: 4, value: "R$ 323,73" },
+  { n: 5, value: "R$ 263,78" },
+  { n: 6, value: "R$ 223,81" },
+  { n: 7, value: "R$ 195,27" },
+  { n: 8, value: "R$ 173,86" },
+  { n: 9, value: "R$ 157,20" },
+  { n: 10, value: "R$ 143,88" },
+  { n: 11, value: "R$ 132,98" },
+  { n: 12, value: "R$ 123,90" },
+];
+const boomboxLastInstallment = boomboxInstallments[boomboxInstallments.length - 1];
+
 function Index() {
   const [search, setSearch] = useState("");
   const [activeCategory, setActiveCategory] = useState("Todos");
