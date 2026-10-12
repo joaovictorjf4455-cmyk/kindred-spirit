@@ -14,8 +14,9 @@ function Admin() {
   const sendLink = async () => {
     setBusy(true); setMessage("");
     try {
-      const r = await fetch(base + "/auth/v1/otp", { method: "POST", headers: { "Content-Type": "application/json", apikey: key }, body: JSON.stringify({ email, create_user: false, gotrue_meta_security: {} }) });
-      setMessage(r.ok ? "Se seu e-mail estiver autorizado, confira sua caixa de entrada." : "Não foi possível enviar o acesso. Confira se o e-mail está autorizado.");
+      const r = await fetch(base + "/auth/v1/otp", { method: "POST", headers: { "Content-Type": "application/json", apikey: key }, body: JSON.stringify({ email: email.trim().toLowerCase(), create_user: false }) });
+      const result = await r.json().catch(() => ({}));
+      setMessage(r.ok ? "Solicitação enviada! Confira seu Gmail e a pasta de spam. Dependendo da configuração do Supabase, você receberá um link em vez de um código." : `Falha no envio (${r.status}): ${String(result.msg || result.error_description || result.message || result.error || "verifique a configuração de e-mail no Supabase").slice(0, 240)}`);
     } catch { setMessage("Não foi possível conectar ao serviço."); }
     setBusy(false);
   };
