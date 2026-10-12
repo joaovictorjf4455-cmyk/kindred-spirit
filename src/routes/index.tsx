@@ -11,10 +11,10 @@ import {
 export const Route = createFileRoute("/")({
   component: Index,
   head: () => ({ meta: [
-    { title: "Ohmira Eletrônicos | Boombox e ofertas" },
-    { name: "description", content: "Confira a Boombox Bluetooth e as ofertas de eletrônicos da Ohmira." },
-    { property: "og:title", content: "Ohmira Eletrônicos | Boombox e ofertas" },
-    { property: "og:description", content: "Confira a Boombox Bluetooth e as ofertas de eletrônicos da Ohmira." },
+    { title: "Vibe Digital | Eletrônicos e ofertas" },
+    { name: "description", content: "Confira a Boombox Bluetooth e as ofertas de eletrônicos da Vibe Digital." },
+    { property: "og:title", content: "Vibe Digital | Eletrônicos e ofertas" },
+    { property: "og:description", content: "Confira a Boombox Bluetooth e as ofertas de eletrônicos da Vibe Digital." },
     { property: "og:type", content: "website" },
     { name: "twitter:card", content: "summary_large_image" },
   ] }),
@@ -110,11 +110,11 @@ function Index() {
           <button className="rounded-lg p-2 lg:hidden" onClick={() => setMenuOpen(!menuOpen)} aria-label="Menu">
             {menuOpen ? <X /> : <Menu />}
           </button>
-          <a href="#" aria-label="Ohmira Eletrônicos — página inicial" className="group flex shrink-0 items-center gap-3">
-            <img src={ohmiraLogo.url} alt="Símbolo OE da Ohmira" className="h-10 w-auto drop-shadow-[0_0_16px_rgba(120,175,255,.45)]" />
+          <a href="#" aria-label="Vibe Digital — página inicial" className="group flex shrink-0 items-center gap-3">
+            <span className="grid size-10 place-items-center rounded-xl bg-[#0877FF] text-white shadow-lg shadow-blue-950/40"><Sparkles className="size-6" /></span>
             <span className="flex flex-col leading-none">
-              <span className="text-[1.55rem] font-black tracking-[-0.055em] text-white">Ohmira</span>
-              <span className="mt-1 text-[0.58rem] font-bold tracking-[0.32em] text-[#72A8FF]">ELETRÔNICOS</span>
+              <span className="text-[1.55rem] font-black tracking-[-0.055em] text-white">Vibe Digital</span>
+              <span className="mt-1 text-[0.58rem] font-bold tracking-[0.32em] text-[#72A8FF]">TECNOLOGIA</span>
             </span>
           </a>
           <div className="ohmira-search ml-auto hidden max-w-xl flex-1 items-center rounded-xl px-3 md:flex">
@@ -158,7 +158,7 @@ function Index() {
         <div className="relative mx-auto grid max-w-7xl items-center gap-5 px-5 py-8 md:min-h-[360px] md:grid-cols-[0.92fr_1.08fr] md:py-10 lg:px-8">
           <div className="relative z-10 py-3">
             <span className="mb-4 inline-flex items-center gap-2 rounded-full bg-[#0877FF] px-4 py-2 text-xs font-extrabold uppercase tracking-wide text-white shadow-lg shadow-blue-950/30"><Sparkles className="size-4"/> Oferta em destaque</span>
-            <p className="text-base font-bold text-white/90">Ohmira apresenta</p>
+            <p className="text-base font-bold text-white/90">Vibe Digital apresenta</p>
             <h1 className="mt-2 max-w-xl text-4xl font-black leading-[1.02] tracking-tight text-white sm:text-5xl lg:text-[3.5rem]">Boombox Bluetooth. <span className="text-[#1680FF]">Som potente, oferta imperdível.</span></h1>
             <p className="mt-4 max-w-lg text-sm leading-6 text-slate-300 sm:text-base">Curta seus momentos com a caixa de som Boombox Bluetooth. Confira o preço e as condições atuais antes de finalizar sua compra.</p>
             <div className="mt-5 inline-block rounded-2xl border border-white/12 bg-white/[0.05] px-5 py-4 backdrop-blur">
@@ -238,7 +238,7 @@ function Index() {
 
       <section id="ofertas" className="offers-section mx-auto max-w-7xl px-5 py-12 lg:px-8">
         <div className="mb-7 flex items-end justify-between gap-4">
-          <div><p className="text-sm font-bold uppercase tracking-widest text-[#0877FF]">Escolhas da Ohmira</p><h2 className="mt-1 text-3xl font-black tracking-tight">Produtos em <span className="text-[#0877FF]">destaque</span></h2></div>
+          <div><p className="text-sm font-bold uppercase tracking-widest text-[#0877FF]">Escolhas da Vibe Digital</p><h2 className="mt-1 text-3xl font-black tracking-tight">Produtos em <span className="text-[#0877FF]">destaque</span></h2></div>
           <a href="#produtos" className="hidden items-center gap-1 text-sm font-bold text-[#2D6CDF] sm:flex">Ver tudo <ChevronRight className="size-4" /></a>
         </div>
         <div id="produtos" className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
@@ -298,8 +298,8 @@ function Index() {
 
       <footer className="bg-[#2B2D42] px-5 py-10 text-white lg:px-8">
         <div className="mx-auto flex max-w-7xl flex-col justify-between gap-6 sm:flex-row sm:items-center">
-          <div><div className="flex items-center gap-2.5"><img src={ohmiraLogo.url} alt="Símbolo OE da Ohmira" className="h-8 w-auto drop-shadow-[0_0_12px_rgba(120,175,255,.4)]" /><span className="flex flex-col leading-none"><span className="text-lg font-black tracking-tight">Ohmira</span><span className="mt-1 text-[0.48rem] font-bold tracking-[0.28em] text-[#2D6CDF]">ELETRÔNICOS</span></span></div><p className="mt-2 text-xs text-[#777B8D]">Tecnologia que facilita sua vida.</p></div>
-          <p className="text-xs text-[#686C7E]">© 2026 Ohmira Eletrônicos. Todos os direitos reservados.</p>
+          <div><div className="flex items-center gap-2.5"><span className="grid size-8 place-items-center rounded-lg bg-[#0877FF] text-white"><Sparkles className="size-5" /></span><span className="flex flex-col leading-none"><span className="text-lg font-black tracking-tight">Vibe Digital</span><span className="mt-1 text-[0.48rem] font-bold tracking-[0.28em] text-[#2D6CDF]">TECNOLOGIA</span></span></div><p className="mt-2 text-xs text-[#777B8D]">Tecnologia que facilita sua vida.</p></div>
+          <p className="text-xs text-[#686C7E]">© 2026 Vibe Digital. Todos os direitos reservados.</p>
         </div>
       </footer>
     </main>
