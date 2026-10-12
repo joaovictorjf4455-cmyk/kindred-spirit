@@ -40,6 +40,21 @@ const products = [
   { name: "PRETO - Conjunto de Teclado + Mouse Sem Fio Bluetooth Para Notebook e Tablet", category: "Teclado", price: "R$ 99,90", oldPrice: "", discount: "", image: "https://raw.githubusercontent.com/joaovictorjf4455-cmyk/kindred-spirit/main/public/tecladomouse-preto.jpg?rev=6067bf3", checkout: "https://pay.kaiross.com.br/FAcrHlBuEbH9" },
 ];
 
+const boomboxInstallments = [
+  { n: 2, value: "R$ 623,48" },
+  { n: 3, value: "R$ 423,65" },
+  { n: 4, value: "R$ 323,73" },
+  { n: 5, value: "R$ 263,78" },
+  { n: 6, value: "R$ 223,81" },
+  { n: 7, value: "R$ 195,27" },
+  { n: 8, value: "R$ 173,86" },
+  { n: 9, value: "R$ 157,20" },
+  { n: 10, value: "R$ 143,88" },
+  { n: 11, value: "R$ 132,98" },
+  { n: 12, value: "R$ 123,90" },
+];
+const boomboxLastInstallment = boomboxInstallments[boomboxInstallments.length - 1] ?? { n: 12, value: "R$ 123,90" };
+
 function Index() {
   const [search, setSearch] = useState("");
   const [activeCategory, setActiveCategory] = useState("Todos");
@@ -146,6 +161,19 @@ function Index() {
             <p className="text-base font-bold text-white/90">Ohmira apresenta</p>
             <h1 className="mt-2 max-w-xl text-4xl font-black leading-[1.02] tracking-tight text-white sm:text-5xl lg:text-[3.5rem]">Boombox Bluetooth. <span className="text-[#1680FF]">Som potente, oferta imperdível.</span></h1>
             <p className="mt-4 max-w-lg text-sm leading-6 text-slate-300 sm:text-base">Curta seus momentos com a caixa de som Boombox Bluetooth. Confira o preço e as condições atuais antes de finalizar sua compra.</p>
+            <div className="mt-5 inline-block rounded-2xl border border-white/12 bg-white/[0.05] px-5 py-4 backdrop-blur">
+              <div className="flex items-end gap-3">
+                <span className="text-3xl font-black text-white sm:text-4xl">R$ 1.199,00</span>
+                <del className="pb-1 text-sm font-semibold text-slate-400">R$ 2.199,00</del>
+              </div>
+              <p className="mt-1 text-sm font-bold text-[#75B2FF]">ou até {boomboxLastInstallment.n}x de {boomboxLastInstallment.value} no cartão</p>
+              <div className="mt-3 flex max-w-md gap-2 overflow-x-auto pb-1">
+                {boomboxInstallments.map((option) => (
+                  <span key={option.n} className="shrink-0 rounded-lg border border-white/10 bg-[#101B30]/80 px-2.5 py-1 text-[11px] font-semibold text-slate-300">{option.n}x {option.value}</span>
+                ))}
+              </div>
+              <p className="mt-2 max-w-md text-[11px] leading-4 text-slate-400">Simulação com juros: em 12x o total fica R$ 1.486,76. Confira as condições no checkout.</p>
+            </div>
             <div className="mt-6 flex flex-wrap gap-3">
               <a href="https://pay.kaiross.com.br/iUtzjjIQUYbv" target="_blank" rel="noreferrer" className="inline-flex h-12 items-center gap-2 rounded-xl bg-[#0877FF] px-6 text-sm font-extrabold text-white shadow-lg shadow-blue-950/30 transition hover:bg-blue-500">Comprar Boombox <ArrowRight className="size-4"/></a>
               <a href="#produtos" className="inline-flex h-12 items-center rounded-xl border border-white/25 px-5 text-sm font-bold text-white transition hover:bg-white/10">Ver produtos</a>
@@ -236,6 +264,7 @@ function Index() {
                 <p className="text-xs font-semibold text-[#777B8D]">{product.category}</p>
                 <h3 className="mt-1 font-bold">{product.name}</h3>
                 <div className="mt-4 flex items-end gap-2"><span className="text-xl font-black text-[#2D6CDF]">{product.price}</span>{product.oldPrice && <del className="text-xs text-[#777B8D]">{product.oldPrice}</del>}</div>
+                {product.category === "Boombox" && <p className="mt-1 text-xs font-semibold text-[#686C7E]">ou até {boomboxLastInstallment.n}x de {boomboxLastInstallment.value} no cartão</p>}
                 <div className="mt-4 grid grid-cols-2 gap-2">
                   <button type="button" onClick={() => addToCart(product.name)} className="flex min-h-10 items-center justify-center gap-1 rounded-xl border border-[#2D6CDF] px-2 py-2 text-xs font-bold text-[#2D6CDF] transition hover:bg-blue-50">
                     <ShoppingBag className="size-4 shrink-0" /> Adicionar ao carrinho
