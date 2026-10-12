@@ -298,7 +298,7 @@ function Index() {
 
       <footer className="bg-[#2B2D42] px-5 py-10 text-white lg:px-8">
         <div className="mx-auto flex max-w-7xl flex-col justify-between gap-6 sm:flex-row sm:items-center">
-          <div><div className="flex items-center gap-2.5"><span className="grid size-8 place-items-center rounded-lg bg-[#0877FF] text-white"><Sparkles className="size-5" /></span><span className="flex flex-col leading-none"><span className="text-lg font-black tracking-tight">Vibe Digital</span><span className="mt-1 text-[0.48rem] font-bold tracking-[0.28em] text-[#2D6CDF]">TECNOLOGIA</span></span></div><p className="mt-2 text-xs text-[#777B8D]">Tecnologia que facilita sua vida.</p></div>
+          <div><div className="flex items-center gap-2.5"><img src={vibeSymbol.url} alt="Símbolo Vibe Digital" className="size-8 shrink-0" /><span className="flex flex-col leading-none"><span className="text-lg font-black tracking-tight">Vibe Digital</span><span className="mt-1 text-[0.48rem] font-bold tracking-[0.28em] text-[#2D6CDF]">TECNOLOGIA</span></span></div><p className="mt-2 text-xs text-[#777B8D]">Tecnologia que facilita sua vida.</p></div>
           <p className="text-xs text-[#686C7E]">© 2026 Vibe Digital. Todos os direitos reservados.</p>
         </div>
       </footer>
