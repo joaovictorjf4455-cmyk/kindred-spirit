@@ -56,7 +56,18 @@ const boomboxInstallments = [
 ];
 const boomboxLastInstallment = boomboxInstallments[boomboxInstallments.length - 1] ?? { n: 12, value: "R$ 123,90" };
 
+type StoreReview = { id: string; display_name: string; rating: number; comment: string; created_at: string; verified_purchase: boolean };
+
 function Index() {
+  const [storeReviews, setStoreReviews] = useState<StoreReview[]>([]);
+  useEffect(() => {
+    let active = true;
+    fetch("https://ondwevgwqzvpmbycoimq.supabase.co/rest/v1/product_reviews?select=id,display_name,rating,comment,created_at,verified_purchase&status=eq.approved&product_name=eq."+encodeURIComponent("Vibe Digital — avaliação da loja")+"&order=created_at.desc&limit=6", { headers: { apikey: "sb_publishable_7IGQQLaQGXhg0HVeGDdd2g_LWklzHkI" } })
+      .then(response => response.ok ? response.json() : Promise.reject())
+      .then((data: StoreReview[]) => { if (active && Array.isArray(data)) setStoreReviews(data); })
+      .catch(() => { /* Não exibir avaliações não confirmadas. */ });
+    return () => { active = false; };
+  }, []);
   const [search, setSearch] = useState("");
   const [activeCategory, setActiveCategory] = useState("Todos");
   const [favorites, setFavorites] = useState<string[]>([]);
@@ -352,7 +363,7 @@ function Index() {
         {filteredProducts.length === 0 && <div className="rounded-2xl border border-dashed border-slate-300 bg-white p-12 text-center text-[#686C7E]">Nenhum produto encontrado. Tente outra busca.</div>}
       </section>
 
-      <section id="avaliacoes-loja" className="bg-white px-5 py-12"><div className="mx-auto max-w-7xl rounded-2xl border border-[#DCE7F9] bg-[#F4F8FF] p-6 sm:p-9"><h2 className="text-2xl font-black text-[#173D7A]">Sua opinião sobre a Vibe Digital importa 💙</h2><p className="mt-3 max-w-2xl text-sm leading-6 text-slate-700">Já comprou ou conversou com nossa equipe? Conte como foi sua experiência com a loja, o atendimento ou a entrega. Aceitamos elogios e críticas construtivas. As avaliações são publicadas após análise.</p><a href="/avaliacoes?produto=Vibe%20Digital%20%E2%80%94%20avalia%C3%A7%C3%A3o%20da%20loja" className="mt-5 inline-flex rounded-xl bg-[#2459B8] px-5 py-3 text-sm font-bold text-white hover:bg-[#173D7A]">Ver comentários e avaliar a Vibe Digital →</a></div></section>
+      <section id="avaliacoes-loja" className="bg-white px-5 py-12"><div className="mx-auto max-w-7xl rounded-2xl border border-[#DCE7F9] bg-[#F4F8FF] p-6 sm:p-9"><h2 className="text-2xl font-black text-[#173D7A]">Sua opinião sobre a Vibe Digital importa 💙</h2><p className="mt-3 max-w-2xl text-sm leading-6 text-slate-700">Já comprou ou conversou com nossa equipe? Conte como foi sua experiência com a loja, o atendimento ou a entrega. Aceitamos elogios e críticas construtivas. As avaliações são publicadas após análise.</p><div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">{storeReviews.map(review => <article key={review.id} className="rounded-xl border border-blue-100 bg-white p-5 shadow-sm"><div className="flex items-center justify-between gap-2"><strong className="break-words text-sm text-[#173D7A]">{review.display_name}</strong><span className="text-xs text-slate-500">{new Date(review.created_at).toLocaleDateString("pt-BR")}</span></div><p className="mt-2 text-lg tracking-wide text-amber-500" aria-label={review.rating+" de 5 estrelas"}>{"★".repeat(review.rating)}<span className="text-slate-300">{"☆".repeat(5-review.rating)}</span></p>{review.verified_purchase && <span className="mt-1 inline-block text-xs font-semibold text-green-700">Compra verificada</span>}<p className="mt-3 whitespace-pre-wrap break-words text-sm leading-6 text-slate-700">{review.comment}</p></article>)}</div>{storeReviews.length===0&&<p className="mt-5 rounded-xl border border-dashed border-blue-200 bg-white p-4 text-sm text-slate-600">Ainda não há comentários de clientes publicados sobre a Vibe Digital. Sua avaliação pode ser a primeira!</p>}<a href="/avaliacoes?produto=Vibe%20Digital%20%E2%80%94%20avalia%C3%A7%C3%A3o%20da%20loja" className="mt-5 inline-flex rounded-xl bg-[#2459B8] px-5 py-3 text-sm font-bold text-white hover:bg-[#173D7A]">Ver comentários e avaliar a Vibe Digital →</a></div></section>
 
       <section id="beneficios" className="benefits-section border-y border-[#E1E4EA] bg-white">
         <div className="mx-auto grid max-w-7xl gap-px px-5 py-12 sm:grid-cols-3 lg:px-8">
