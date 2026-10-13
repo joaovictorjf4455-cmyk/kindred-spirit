@@ -344,6 +344,7 @@ function Index() {
                     Comprar agora <ArrowRight className="size-4 shrink-0" />
                   </a>
                 </div>
+                <a href={"/avaliacoes?produto="+encodeURIComponent(product.name)} className="mt-3 inline-flex items-center gap-1 text-xs font-bold text-[#2459B8] hover:underline">★ Ver avaliações e enviar foto ou vídeo</a>
               </div>
             </article>
           ))}
