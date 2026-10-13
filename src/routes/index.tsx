@@ -73,6 +73,7 @@ function Index() {
   const [favorites, setFavorites] = useState<string[]>([]);
   const [cart, setCart] = useState<{ name: string; quantity: number }[]>([]);
   const [cartOpen, setCartOpen] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState<(typeof products)[number] | null>(null);
   const [menuOpen, setMenuOpen] = useState(false);
   const [customerName, setCustomerName] = useState("");
   const [customerPhone, setCustomerPhone] = useState("");
@@ -273,6 +274,32 @@ function Index() {
         </div>
       </section>
 
+      {selectedProduct && (
+        <section role="dialog" aria-modal="true" aria-label={"Detalhes de " + selectedProduct.name} className="fixed inset-0 z-[110] flex items-end justify-center bg-black/70 p-0 sm:items-center sm:p-5" onClick={() => setSelectedProduct(null)}>
+          <div className="relative max-h-[95dvh] w-full max-w-3xl overflow-y-auto rounded-t-2xl bg-white p-5 text-slate-900 shadow-2xl sm:rounded-2xl sm:p-7" onClick={(event) => event.stopPropagation()}>
+            <button type="button" onClick={() => setSelectedProduct(null)} aria-label="Fechar detalhes do produto" className="absolute right-3 top-3 z-10 grid size-11 place-items-center rounded-full bg-slate-100 text-slate-800"><X className="size-5" /></button>
+            <div className="grid gap-6 sm:grid-cols-2">
+              <div className="flex min-h-64 items-center justify-center overflow-hidden rounded-xl bg-slate-50 p-3">
+                <img src={selectedProduct.image} alt={selectedProduct.name} className="max-h-[48dvh] w-full object-contain" />
+              </div>
+              <div className="min-w-0 pt-2">
+                <p className="text-xs font-bold uppercase tracking-wider text-[#2459B8]">{selectedProduct.category}</p>
+                <h2 className="mt-2 break-words text-xl font-black leading-snug sm:text-2xl">{selectedProduct.name}</h2>
+                {selectedProduct.discount && <span className="mt-3 inline-flex rounded-md bg-blue-100 px-2 py-1 text-xs font-bold text-blue-800">{selectedProduct.discount}</span>}
+                <div className="mt-5 flex flex-wrap items-baseline gap-3"><strong className="text-3xl font-black text-[#2459B8]">{selectedProduct.price}</strong>{selectedProduct.oldPrice && <del className="text-sm text-slate-500">{selectedProduct.oldPrice}</del>}</div>
+                <p className="mt-4 text-sm leading-6 text-slate-600">Confira as informações e condições de compra no checkout antes de finalizar seu pedido.</p>
+                {selectedProduct.name === "Relógio Inteligente D20 Preto" && <p className="mt-3 rounded-lg bg-amber-50 p-3 text-sm font-semibold text-amber-800">Esgotado no momento.</p>}
+                <div className="mt-6 grid gap-3">
+                  <button type="button" onClick={() => { addToCart(selectedProduct.name); setSelectedProduct(null); setCartOpen(true); }} className="flex min-h-12 items-center justify-center gap-2 rounded-xl border-2 border-[#2459B8] px-4 font-bold text-[#2459B8]"><ShoppingBag className="size-5" /> Adicionar ao carrinho</button>
+                  <a href={selectedProduct.checkout} target="_blank" rel="noopener noreferrer" className="flex min-h-12 items-center justify-center gap-2 rounded-xl bg-[#2459B8] px-4 font-bold text-white">Comprar agora <ArrowRight className="size-5" /></a>
+                  <a href={"/avaliacoes?produto=" + encodeURIComponent(selectedProduct.name)} className="text-center text-sm font-semibold text-[#2459B8] underline">Ver avaliações deste produto</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+
       {cartOpen && (
         <section id="carrinho" role="dialog" aria-modal="true" className="fixed inset-0 z-[100] flex items-end justify-center bg-black/60 p-0 sm:items-center sm:p-5" aria-label="Seu carrinho" onClick={() => setCartOpen(false)}>
           <div className="max-h-[90dvh] w-full overflow-y-auto rounded-t-2xl border border-[#D9E2F2] bg-white p-5 text-slate-900 shadow-2xl sm:max-w-xl sm:rounded-2xl" onClick={(event) => event.stopPropagation()}>
@@ -326,10 +353,10 @@ function Index() {
           {filteredProducts.map((product) => (
             <article key={product.name} className="product-card group min-w-0 overflow-hidden rounded-2xl border border-[#E1E4EA] bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-[#2B2D42]/10">
               <div className="product-image-wrap relative bg-white">
-                <img src={product.image} alt={product.name} loading="lazy" decoding="async" onError={(event) => { if (product.name.includes("Powerbank")) {
+                <img onClick={() => setSelectedProduct(product)} title="Toque para ver detalhes do produto" role="button" tabIndex={0} onKeyDown={(event) => { if (event.key === "Enter" || event.key === " ") { event.preventDefault(); setSelectedProduct(product); } }} src={product.image} alt={product.name} loading="lazy" decoding="async" onError={(event) => { if (product.name.includes("Powerbank")) {
       event.currentTarget.onerror = null;
       event.currentTarget.src = "https://m.magazineluiza.com.br/a-static/420x420/bateria-magsafe-apple-para-iphones-12-12-pro-12-max-e-12-mini-branco-mjwy3be-a/kabum/462812/2caaad4cb668bbc0e571a3aeedc5cc9c.jpeg";
-    } }} className={`h-56 w-full transition duration-500 group-hover:scale-[1.02] ${product.name.includes("Powerbank") ? "bg-white object-contain p-5 drop-shadow-[0_14px_22px_rgba(15,23,42,0.10)]" : product.name.includes("C20Pro") ? "bg-white object-contain p-3" : product.name.includes("HEADSET GAMER RGB") ? "bg-white object-contain p-3" : product.category === "Acessórios" ? "bg-white object-contain p-3" : "object-cover"}`} />
+    } }} className={`h-56 w-full cursor-pointer transition duration-500 group-hover:scale-[1.02] ${product.name.includes("Powerbank") ? "bg-white object-contain p-5 drop-shadow-[0_14px_22px_rgba(15,23,42,0.10)]" : product.name.includes("C20Pro") ? "bg-white object-contain p-3" : product.name.includes("HEADSET GAMER RGB") ? "bg-white object-contain p-3" : product.category === "Acessórios" ? "bg-white object-contain p-3" : "object-cover"}`} />
                 {product.discount && <span className="absolute left-3 top-3 rounded-lg bg-[#2D6CDF] px-2.5 py-1 text-[11px] font-black text-white">{product.discount}</span>}
                 <button
                   type="button"
@@ -343,7 +370,7 @@ function Index() {
               </div>
               <div className="p-4">
                 <p className="text-xs font-semibold text-[#777B8D]">{product.category}</p>
-                <h3 className="mt-1 break-words font-bold">{product.name}</h3>
+                <button type="button" onClick={() => setSelectedProduct(product)} className="mt-1 block break-words text-left font-bold hover:text-[#2459B8] hover:underline">{product.name}</button>
                 <div className="mt-4 flex items-end gap-2"><span className="text-xl font-black text-[#2D6CDF]">{product.price}</span>{product.oldPrice && <del className="text-xs text-[#777B8D]">{product.oldPrice}</del>}</div>
                 {product.name === "Relógio Inteligente D20 Preto" && <p className="mt-2 rounded-lg bg-amber-50 px-3 py-2 text-xs font-bold leading-5 text-amber-800">Esgotado no momento. A compra será liberada novamente em breve, com unidades limitadas.</p>}
                 {product.category === "Boombox" && <p className="mt-1 text-xs font-semibold text-[#686C7E]">ou até {boomboxLastInstallment.n}x de {boomboxLastInstallment.value} no cartão</p>}
