@@ -173,7 +173,7 @@ function Index() {
 
       <header className="ohmira-header sticky top-0 z-30 text-white">
         <div className="mx-auto flex min-h-[82px] max-w-7xl items-center gap-4 px-4 py-3 lg:px-8">
-          <button className="rounded-lg p-2 lg:hidden" onClick={() => setMenuOpen(!menuOpen)} aria-label="Menu">
+          <button className="flex min-h-11 min-w-11 items-center justify-center rounded-lg p-2 lg:hidden" onClick={() => setMenuOpen(!menuOpen)} aria-label="Menu">
             {menuOpen ? <X /> : <Menu />}
           </button>
           <a href="#" aria-label="Vibe Digital — página inicial" className="group flex shrink-0 items-center gap-3">
@@ -219,13 +219,13 @@ function Index() {
         </nav>
       </header>
 
-      <section id="inicio" className="reference-hero relative overflow-hidden">
+      <section id="inicio" className="reference-hero relative min-w-0 overflow-hidden">
         <div className="reference-hero-glow" aria-hidden="true"/>
         <div className="relative mx-auto grid max-w-7xl items-center gap-5 px-5 py-8 md:min-h-[360px] md:grid-cols-[0.92fr_1.08fr] md:py-10 lg:px-8">
           <div className="relative z-10 py-3">
             <span className="mb-4 inline-flex items-center gap-2 rounded-full bg-[#0877FF] px-4 py-2 text-xs font-extrabold uppercase tracking-wide text-white shadow-lg shadow-blue-950/30"><Sparkles className="size-4"/> Oferta em destaque</span>
             <p className="text-base font-bold text-white/90">Vibe Digital apresenta</p>
-            <h1 className="mt-2 max-w-xl text-4xl font-black leading-[1.02] tracking-tight text-white sm:text-5xl lg:text-[3.5rem]">Boombox Bluetooth. <span className="text-[#1680FF]">Som potente, oferta imperdível.</span></h1>
+            <h1 className="mt-2 max-w-xl text-3xl font-black leading-[1.02] tracking-tight text-white sm:text-5xl lg:text-[3.5rem]">Boombox Bluetooth. <span className="text-[#1680FF]">Som potente, oferta imperdível.</span></h1>
             <p className="mt-4 max-w-lg text-sm leading-6 text-slate-300 sm:text-base">Curta seus momentos com a caixa de som Boombox Bluetooth. Confira o preço e as condições atuais antes de finalizar sua compra.</p>
             <div className="mt-5 inline-block rounded-2xl border border-white/12 bg-white/[0.05] px-5 py-4 backdrop-blur">
               <div className="flex items-end gap-3">
@@ -324,7 +324,7 @@ function Index() {
         </div>
         <div id="produtos" className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {filteredProducts.map((product) => (
-            <article key={product.name} className="product-card group overflow-hidden rounded-2xl border border-[#E1E4EA] bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-[#2B2D42]/10">
+            <article key={product.name} className="product-card group min-w-0 overflow-hidden rounded-2xl border border-[#E1E4EA] bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-[#2B2D42]/10">
               <div className="product-image-wrap relative bg-white">
                 <img src={product.image} alt={product.name} loading="lazy" decoding="async" onError={(event) => { if (product.name.includes("Powerbank")) {
       event.currentTarget.onerror = null;
@@ -343,15 +343,15 @@ function Index() {
               </div>
               <div className="p-4">
                 <p className="text-xs font-semibold text-[#777B8D]">{product.category}</p>
-                <h3 className="mt-1 font-bold">{product.name}</h3>
+                <h3 className="mt-1 break-words font-bold">{product.name}</h3>
                 <div className="mt-4 flex items-end gap-2"><span className="text-xl font-black text-[#2D6CDF]">{product.price}</span>{product.oldPrice && <del className="text-xs text-[#777B8D]">{product.oldPrice}</del>}</div>
                 {product.name === "Relógio Inteligente D20 Preto" && <p className="mt-2 rounded-lg bg-amber-50 px-3 py-2 text-xs font-bold leading-5 text-amber-800">Esgotado no momento. A compra será liberada novamente em breve, com unidades limitadas.</p>}
                 {product.category === "Boombox" && <p className="mt-1 text-xs font-semibold text-[#686C7E]">ou até {boomboxLastInstallment.n}x de {boomboxLastInstallment.value} no cartão</p>}
-                <div className="mt-4 grid grid-cols-2 gap-2">
-                  <button type="button" onClick={() => addToCart(product.name)} className="flex min-h-10 items-center justify-center gap-1 rounded-xl border border-[#2D6CDF] px-2 py-2 text-xs font-bold text-[#2D6CDF] transition hover:bg-blue-50">
+                <div className="mt-4 grid grid-cols-1 gap-2 min-[390px]:grid-cols-2">
+                  <button type="button" onClick={() => addToCart(product.name)} className="flex min-h-11 min-w-0 items-center justify-center gap-1 rounded-xl border border-[#2D6CDF] px-2 py-2 text-xs font-bold text-[#2D6CDF] transition hover:bg-blue-50">
                     <ShoppingBag className="size-4 shrink-0" /> Adicionar ao carrinho
                   </button>
-                  <a href={product.checkout} target="_blank" rel="noopener noreferrer" className="flex min-h-10 items-center justify-center gap-1 rounded-xl bg-[#2D6CDF] px-2 py-2 text-xs font-bold text-white transition hover:bg-[#2459B8]">
+                  <a href={product.checkout} target="_blank" rel="noopener noreferrer" className="flex min-h-11 min-w-0 items-center justify-center gap-1 rounded-xl bg-[#2D6CDF] px-2 py-2 text-xs font-bold text-white transition hover:bg-[#2459B8]">
                     Comprar agora <ArrowRight className="size-4 shrink-0" />
                   </a>
                 </div>
@@ -367,7 +367,7 @@ function Index() {
         <div className="mx-auto max-w-7xl">
           <div className="mb-7 text-center">
             <p className="text-sm font-bold uppercase tracking-widest text-[#0877FF]">Avaliações da Vibe Digital</p>
-            <h2 className="mt-2 text-3xl font-black text-[#173D7A]">Comentários e avaliações 💙</h2>
+            <h2 className="mt-2 text-2xl font-black text-[#173D7A] sm:text-3xl">Comentários e avaliações 💙</h2>
             <p className="mx-auto mt-3 max-w-2xl text-sm leading-6 text-slate-600">Conheça o espaço de avaliações da nossa loja. Veja como funciona nosso espaço de avaliações e compartilhe sua experiência com a loja.</p>
           </div>
           {storeReviews.length === 0 ? (
