@@ -254,7 +254,7 @@ function Index() {
       <section className="category-filter border-b border-[#E1E4EA] bg-white">
         <div className="mx-auto flex max-w-7xl gap-3 overflow-x-auto bg-[#F4F6F8] px-5 py-5 lg:px-8">
           <button onClick={() => setActiveCategory("Todos")} className={`shrink-0 rounded-full px-5 py-2.5 text-sm font-bold ${activeCategory === "Todos" ? "bg-[#2D6CDF] text-white" : "bg-white text-[#55596D] hover:bg-[#E8EBF0]"}`}>Todos</button>
-          {categories.map(({ name, icon: Icon }) => (
+          {categories.filter(({ name }) => products.some((product) => product.category === name)).map(({ name, icon: Icon }) => (
             <button key={name} onClick={() => setActiveCategory(name)} className={`flex shrink-0 items-center gap-2 rounded-full px-5 py-2.5 text-sm font-bold ${activeCategory === name ? "bg-[#2D6CDF] text-white" : "bg-white text-[#55596D] hover:bg-[#E8EBF0]"}`}>
               <Icon className="size-4" /> {name}
             </button>
