@@ -368,7 +368,7 @@ function Index() {
           <div className="mb-7 text-center">
             <p className="text-sm font-bold uppercase tracking-widest text-[#0877FF]">Avaliações da Vibe Digital</p>
             <h2 className="mt-2 text-3xl font-black text-[#173D7A]">Comentários e avaliações 💙</h2>
-            <p className="mx-auto mt-3 max-w-2xl text-sm leading-6 text-slate-600">Conheça o espaço de avaliações da nossa loja. Os exemplos abaixo são ilustrativos e serão substituídos por opiniões reais de clientes.</p>
+            <p className="mx-auto mt-3 max-w-2xl text-sm leading-6 text-slate-600">Conheça o espaço de avaliações da nossa loja. Veja como funciona nosso espaço de avaliações e compartilhe sua experiência com a loja.</p>
           </div>
           {storeReviews.length === 0 ? (
             <div className="grid gap-5 md:grid-cols-3">
@@ -378,7 +378,7 @@ function Index() {
                 { title: "Informações dos produtos", rating: 4, comment: "Fotos e descrições claras ajudam a entender melhor as opções antes de seguir para a compra." },
               ].map(item => (
                 <article key={item.title} className="rounded-2xl border border-[#DCE7F9] bg-[#F4F8FF] p-6 shadow-sm">
-                  <span className="rounded-full bg-blue-100 px-3 py-1 text-[11px] font-bold uppercase tracking-wide text-[#173D7A]">Avaliação ilustrativa — não é cliente real</span>
+                  <span className="rounded-full bg-blue-100 px-3 py-1 text-[11px] font-bold uppercase tracking-wide text-[#173D7A]">Exemplo de avaliação</span>
                   <p className="mt-4 text-xl tracking-wider text-amber-500" aria-label={item.rating + " de 5 estrelas (exemplo)"}>{"★".repeat(item.rating)}<span className="text-slate-300">{"☆".repeat(5 - item.rating)}</span></p>
                   <h3 className="mt-3 text-lg font-bold text-[#173D7A]">{item.title}</h3>
                   <p className="mt-3 text-sm leading-6 text-slate-700">“{item.comment}”</p>
@@ -398,7 +398,7 @@ function Index() {
             </div>
           )}
           <div className="mt-8 text-center">
-            {storeReviews.length === 0 && <p className="mb-4 text-sm text-slate-600">Ainda não há avaliações reais publicadas. Seja a primeira pessoa a avaliar a Vibe Digital!</p>}
+            {storeReviews.length === 0 && <p className="mb-4 text-sm text-slate-600">Gostou da Vibe Digital? Compartilhe sua experiência!</p>}
             <a href="/avaliacoes?produto=Vibe%20Digital%20%E2%80%94%20avalia%C3%A7%C3%A3o%20da%20loja" className="inline-flex min-h-11 items-center justify-center rounded-xl bg-[#2459B8] px-6 py-3 text-sm font-bold text-white hover:bg-[#173D7A]">★ Enviar minha avaliação</a>
           </div>
         </div>
