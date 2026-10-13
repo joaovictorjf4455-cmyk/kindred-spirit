@@ -352,6 +352,8 @@ function Index() {
         {filteredProducts.length === 0 && <div className="rounded-2xl border border-dashed border-slate-300 bg-white p-12 text-center text-[#686C7E]">Nenhum produto encontrado. Tente outra busca.</div>}
       </section>
 
+      <section id="avaliacoes-loja" className="bg-white px-5 py-12"><div className="mx-auto max-w-7xl rounded-2xl border border-[#DCE7F9] bg-[#F4F8FF] p-6 sm:p-9"><h2 className="text-2xl font-black text-[#173D7A]">Sua opinião sobre a Vibe Digital importa 💙</h2><p className="mt-3 max-w-2xl text-sm leading-6 text-slate-700">Já comprou ou conversou com nossa equipe? Conte como foi sua experiência com a loja, o atendimento ou a entrega. Aceitamos elogios e críticas construtivas. As avaliações são publicadas após análise.</p><a href="/avaliacoes?produto=Vibe%20Digital%20%E2%80%94%20avalia%C3%A7%C3%A3o%20da%20loja" className="mt-5 inline-flex rounded-xl bg-[#2459B8] px-5 py-3 text-sm font-bold text-white hover:bg-[#173D7A]">Ver comentários e avaliar a Vibe Digital →</a></div></section>
+
       <section id="beneficios" className="benefits-section border-y border-[#E1E4EA] bg-white">
         <div className="mx-auto grid max-w-7xl gap-px px-5 py-12 sm:grid-cols-3 lg:px-8">
           {([
