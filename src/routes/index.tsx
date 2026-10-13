@@ -16,7 +16,7 @@ export const Route = createFileRoute("/")({
     { property: "og:title", content: "Vibe Digital | Eletrônicos e ofertas" },
     { property: "og:description", content: "Confira a Boombox Bluetooth e as ofertas de eletrônicos da Vibe Digital." },
     { property: "og:type", content: "website" },
-    { property: "og:url", content: "https://vibedigital.com.br" },
+    { property: "og:url", content: "https://vibedigitalcombr.lovable.app" },
     { name: "twitter:card", content: "summary_large_image" },
   ] }),
 });
@@ -177,7 +177,7 @@ function Index() {
             <Search className="size-5 shrink-0 text-white" />
           </div>
           <div className="ml-auto flex items-center gap-1 md:ml-0 md:gap-3">
-            <div className="hidden items-center gap-2 px-2 lg:flex"><UserRound className="size-5 text-[#4389FF]"/><span className="text-xs leading-4"><b className="block">Minha conta</b><span className="text-slate-300">Bem-vindo(a)</span></span></div>
+            <a href="/conta" className="flex items-center gap-2 rounded-xl px-2 py-2 hover:bg-white/10" aria-label="Minha conta: entrar ou cadastrar"><UserRound className="size-5 text-[#4389FF]"/><span className="text-xs leading-4"><b className="block">Minha conta</b><span className="text-slate-300">Entrar ou cadastrar</span></span></a>
             <div className="hidden items-center gap-2 px-2 sm:flex"><Heart className="size-5 text-[#4389FF]"/><span className="text-xs leading-4"><b className="block">Favoritos</b><span className="text-slate-300">Salve produtos</span></span></div>
             <button type="button" onClick={() => setCartOpen((open) => !open)} className="relative flex items-center gap-2 rounded-xl p-2.5 transition hover:bg-white/10" aria-label={`Abrir carrinho, ${cartCount} itens`} aria-expanded={cartOpen}>
               <ShoppingBag className="size-5 text-[#4389FF]" />
@@ -366,7 +366,8 @@ function Index() {
         </div>
       </section>
 
-      <section className="bg-[#EEF4FF] px-5 py-9 text-slate-800" aria-label="Informações importantes para comprar"><div className="mx-auto max-w-7xl grid gap-6 md:grid-cols-3"><div><h2 className="font-black">Como comprar</h2><p className="mt-2 text-sm leading-6">Cada botão Comprar abre o checkout externo daquele produto. Confira preço final, frete, prazo de entrega, identificação do vendedor e formas de pagamento antes de concluir.</p></div><div><h2 className="font-black">Trocas e devoluções</h2><p className="mt-2 text-sm leading-6">Antes da compra, consulte no checkout a identificação e as políticas do vendedor. Em compras online, o direito de arrependimento previsto no CDC é de até 7 dias após o recebimento, nas condições legais aplicáveis.</p></div><div><h2 className="font-black">Privacidade e atendimento</h2><p className="mt-2 text-sm leading-6">Se você autorizar contato, registramos nome, WhatsApp e produtos escolhidos para atendimento sobre sua compra. Para solicitar acesso ou exclusão desses dados, utilize o canal de atendimento identificado no checkout enquanto o canal próprio da loja é configurado.</p></div></div></section>\n      <footer className="bg-[#2B2D42] px-5 py-10 text-white lg:px-8">
+      <section className="bg-[#EEF4FF] px-5 py-9 text-slate-800" aria-label="Informações importantes para comprar"><div className="mx-auto max-w-7xl grid gap-6 md:grid-cols-3"><div><h2 className="font-black">Como comprar</h2><p className="mt-2 text-sm leading-6">Cada botão Comprar abre o checkout externo daquele produto. Confira preço final, frete, prazo de entrega, identificação do vendedor e formas de pagamento antes de concluir.</p></div><div><h2 className="font-black">Trocas e devoluções</h2><p className="mt-2 text-sm leading-6">Antes da compra, consulte no checkout a identificação e as políticas do vendedor. Em compras online, o direito de arrependimento previsto no CDC é de até 7 dias após o recebimento, nas condições legais aplicáveis.</p></div><div><h2 className="font-black">Privacidade e atendimento</h2><p className="mt-2 text-sm leading-6">Se você autorizar contato, registramos nome, WhatsApp e produtos escolhidos para atendimento sobre sua compra. Para solicitar acesso ou exclusão desses dados, utilize o canal de atendimento identificado no checkout enquanto o canal próprio da loja é configurado.</p></div></div></section>
+      <footer className="bg-[#2B2D42] px-5 py-10 text-white lg:px-8">
         <div className="mx-auto flex max-w-7xl flex-col justify-between gap-6 sm:flex-row sm:items-center">
           <div><div className="flex items-center gap-2.5"><img src={vibeSymbol.url} alt="Símbolo Vibe Digital" className="size-8 shrink-0" /><span className="flex flex-col leading-none"><span className="text-lg font-black tracking-tight">Vibe Digital</span><span className="mt-1 text-[0.48rem] font-bold tracking-[0.28em] text-[#2D6CDF]">TECNOLOGIA</span></span></div><p className="mt-2 text-xs text-[#777B8D]">Tecnologia que facilita sua vida.</p></div>
           <p className="text-xs text-[#686C7E]">© 2026 Vibe Digital. Todos os direitos reservados. <a href="https://vibedigital.com.br" className="text-[#72A8FF] hover:underline">vibedigital.com.br</a></p>
