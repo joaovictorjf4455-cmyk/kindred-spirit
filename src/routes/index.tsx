@@ -363,8 +363,46 @@ function Index() {
         {filteredProducts.length === 0 && <div className="rounded-2xl border border-dashed border-slate-300 bg-white p-12 text-center text-[#686C7E]">Nenhum produto encontrado. Tente outra busca.</div>}
       </section>
 
-      <section id="avaliacoes-loja" className="bg-white px-5 py-12"><div className="mx-auto max-w-7xl rounded-2xl border border-[#DCE7F9] bg-[#F4F8FF] p-6 sm:p-9"><h2 className="text-2xl font-black text-[#173D7A]">Sua opinião sobre a Vibe Digital importa 💙</h2><p className="mt-3 max-w-2xl text-sm leading-6 text-slate-700">Já comprou ou conversou com nossa equipe? Conte como foi sua experiência com a loja, o atendimento ou a entrega. Aceitamos elogios e críticas construtivas. As avaliações são publicadas após análise.</p>{storeReviews.length===0&&<div className="mt-6"><p className="mb-3 text-xs font-semibold uppercase tracking-wide text-slate-500">Exemplos ilustrativos de comentários — não são avaliações de clientes</p><div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">{[{title:"Sobre o atendimento",comment:"Gostei de encontrar informações claras e um canal para tirar dúvidas antes de comprar."},{title:"Sobre a experiência na loja",comment:"É bom poder comparar os produtos e conferir as condições antes de finalizar o pedido."},{title:"Sobre a escolha dos produtos",comment:"Fotos, descrições e preços ajudam a escolher o eletrônico mais adequado."}].map(item=><article key={item.title} className="rounded-xl border border-blue-100 bg-white p-5 shadow-sm"><span className="text-xs font-bold text-blue-700">EXEMPLO ILUSTRATIVO</span><h3 className="mt-2 font-bold text-[#173D7A]">{item.title}</h3><p className="mt-3 text-sm leading-6 text-slate-700">“{item.comment}”</p></article>)}</div></div>}
-      <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">{storeReviews.map(review => <article key={review.id} className="rounded-xl border border-blue-100 bg-white p-5 shadow-sm"><div className="flex items-center justify-between gap-2"><strong className="break-words text-sm text-[#173D7A]">{review.display_name}</strong><span className="text-xs text-slate-500">{new Date(review.created_at).toLocaleDateString("pt-BR")}</span></div><p className="mt-2 text-lg tracking-wide text-amber-500" aria-label={review.rating+" de 5 estrelas"}>{"★".repeat(review.rating)}<span className="text-slate-300">{"☆".repeat(5-review.rating)}</span></p>{review.verified_purchase && <span className="mt-1 inline-block text-xs font-semibold text-green-700">Compra verificada</span>}<p className="mt-3 whitespace-pre-wrap break-words text-sm leading-6 text-slate-700">{review.comment}</p></article>)}</div>{storeReviews.length===0&&<p className="mt-5 rounded-xl border border-dashed border-blue-200 bg-white p-4 text-sm text-slate-600">Os exemplos acima mostram como a área ficará. Ainda não há avaliações reais publicadas. Sua avaliação pode ser a primeira!</p>}<a href="/avaliacoes?produto=Vibe%20Digital%20%E2%80%94%20avalia%C3%A7%C3%A3o%20da%20loja" className="mt-5 inline-flex rounded-xl bg-[#2459B8] px-5 py-3 text-sm font-bold text-white hover:bg-[#173D7A]">Ver comentários e avaliar a Vibe Digital →</a></div></section>
+      <section id="avaliacoes-loja" className="bg-white px-5 py-14">
+        <div className="mx-auto max-w-7xl">
+          <div className="mb-7 text-center">
+            <p className="text-sm font-bold uppercase tracking-widest text-[#0877FF]">Avaliações da Vibe Digital</p>
+            <h2 className="mt-2 text-3xl font-black text-[#173D7A]">Comentários e avaliações 💙</h2>
+            <p className="mx-auto mt-3 max-w-2xl text-sm leading-6 text-slate-600">Conheça o espaço de avaliações da nossa loja. Os exemplos abaixo são ilustrativos e serão substituídos por opiniões reais de clientes.</p>
+          </div>
+          {storeReviews.length === 0 ? (
+            <div className="grid gap-5 md:grid-cols-3">
+              {[
+                { title: "Atendimento e suporte", rating: 5, comment: "Uma loja com informações de contato e atendimento acessíveis facilita muito na hora de tirar dúvidas sobre os produtos." },
+                { title: "Navegação e ofertas", rating: 5, comment: "Encontrar as categorias, comparar preços e visualizar as ofertas em um só lugar torna a escolha bem mais prática." },
+                { title: "Informações dos produtos", rating: 4, comment: "Fotos e descrições claras ajudam a entender melhor as opções antes de seguir para a compra." },
+              ].map(item => (
+                <article key={item.title} className="rounded-2xl border border-[#DCE7F9] bg-[#F4F8FF] p-6 shadow-sm">
+                  <span className="rounded-full bg-blue-100 px-3 py-1 text-[11px] font-bold uppercase tracking-wide text-[#173D7A]">Avaliação ilustrativa — não é cliente real</span>
+                  <p className="mt-4 text-xl tracking-wider text-amber-500" aria-label={item.rating + " de 5 estrelas (exemplo)"}>{"★".repeat(item.rating)}<span className="text-slate-300">{"☆".repeat(5 - item.rating)}</span></p>
+                  <h3 className="mt-3 text-lg font-bold text-[#173D7A]">{item.title}</h3>
+                  <p className="mt-3 text-sm leading-6 text-slate-700">“{item.comment}”</p>
+                </article>
+              ))}
+            </div>
+          ) : (
+            <div className="grid gap-5 md:grid-cols-3">
+              {storeReviews.map(review => (
+                <article key={review.id} className="rounded-2xl border border-[#DCE7F9] bg-[#F4F8FF] p-6 shadow-sm">
+                  <div className="flex items-center justify-between gap-2"><strong className="break-words text-sm text-[#173D7A]">{review.display_name}</strong><span className="text-xs text-slate-500">{new Date(review.created_at).toLocaleDateString("pt-BR")}</span></div>
+                  <p className="mt-3 text-xl tracking-wider text-amber-500" aria-label={review.rating + " de 5 estrelas"}>{"★".repeat(review.rating)}<span className="text-slate-300">{"☆".repeat(5 - review.rating)}</span></p>
+                  {review.verified_purchase && <span className="mt-2 inline-block text-xs font-semibold text-green-700">Compra verificada</span>}
+                  <p className="mt-3 whitespace-pre-wrap break-words text-sm leading-6 text-slate-700">{review.comment}</p>
+                </article>
+              ))}
+            </div>
+          )}
+          <div className="mt-8 text-center">
+            {storeReviews.length === 0 && <p className="mb-4 text-sm text-slate-600">Ainda não há avaliações reais publicadas. Seja a primeira pessoa a avaliar a Vibe Digital!</p>}
+            <a href="/avaliacoes?produto=Vibe%20Digital%20%E2%80%94%20avalia%C3%A7%C3%A3o%20da%20loja" className="inline-flex min-h-11 items-center justify-center rounded-xl bg-[#2459B8] px-6 py-3 text-sm font-bold text-white hover:bg-[#173D7A]">★ Enviar minha avaliação</a>
+          </div>
+        </div>
+      </section>
 
       <section id="beneficios" className="benefits-section border-y border-[#E1E4EA] bg-white">
         <div className="mx-auto grid max-w-7xl gap-px px-5 py-12 sm:grid-cols-3 lg:px-8">
