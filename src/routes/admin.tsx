@@ -11,10 +11,28 @@ function Admin() {
   const [mediaUrls,setMediaUrls]=useState<Record<string,string>>({});
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [registerMode, setRegisterMode] = useState(false);
   const [token, setToken] = useState("");
   const [message, setMessage] = useState("");
   const [carts, setCarts] = useState<Cart[]>([]);
   const [busy, setBusy] = useState(false);
+  const signUp = async () => {
+    setBusy(true); setMessage("");
+    try {
+      if (password.length < 8) { setMessage("Crie uma senha com pelo menos 8 caracteres."); return; }
+      const r = await fetch(base + "/auth/v1/signup", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", apikey: key },
+        body: JSON.stringify({ email: email.trim().toLowerCase(), password })
+      });
+      const data = await r.json();
+      if (!r.ok) { setMessage(data.msg || data.error_description || data.message || "Não foi possível criar a conta."); return; }
+      setPassword("");
+      setRegisterMode(false);
+      setMessage("Cadastro solicitado! Verifique seu e-mail para confirmar a conta, se necessário. O acesso administrativo só será liberado após autorização do responsável pela loja.");
+    } catch { setMessage("Não foi possível criar a conta agora."); }
+    finally { setBusy(false); }
+  };
   const signIn = async () => {
     setBusy(true); setMessage("");
     try {
@@ -50,13 +68,13 @@ function Admin() {
       <a href="/" className="text-sm text-blue-700">← Voltar à Vibe Digital</a>
       <h1 className="mt-5 text-2xl font-black">Painel administrativo · Vibe Digital</h1>
       <p className="mt-2 text-sm text-slate-600">Acesso exclusivo para administradores autorizados. Entre com seu e-mail e senha. Acesso exclusivo para administradores autorizados.</p>
-      {!token ? <div className="mt-6 space-y-3">
+      {!token ? <div className="mt-6 space-y-3">\n        <div className="flex gap-2"><button type="button" onClick={() => { setRegisterMode(false); setMessage(""); }} className={"rounded-lg px-4 py-2 text-sm font-bold " + (!registerMode ? "bg-blue-700 text-white" : "border")}>Entrar</button><button type="button" onClick={() => { setRegisterMode(true); setMessage(""); }} className={"rounded-lg px-4 py-2 text-sm font-bold " + (registerMode ? "bg-blue-700 text-white" : "border")}>Criar conta de administrador</button></div>
         <label className="block text-sm font-semibold" htmlFor="admin-email">E-mail de administrador</label>
         <input id="admin-email" type="email" autoComplete="email" value={email} onChange={e => setEmail(e.target.value)} className="w-full rounded-lg border p-3" placeholder="seu@email.com" />
         <label className="block text-sm font-semibold" htmlFor="admin-password">Senha</label>
         <input id="admin-password" type="password" autoComplete="current-password" value={password} onChange={e => setPassword(e.target.value)} className="w-full rounded-lg border p-3" placeholder="Sua senha de administrador" />
-        <button disabled={busy || !email.includes("@") || !password} onClick={() => void signIn()} className="rounded-lg bg-blue-700 px-4 py-3 font-bold text-white disabled:opacity-50">Entrar no painel</button>
-        <p className="text-xs text-slate-600">Ainda não tem senha? O administrador do Supabase precisa definir uma senha para sua conta em Authentication → Users. Não compartilhe sua senha.</p>
+        <button disabled={busy || !email.includes("@") || !password} onClick={() => void (registerMode ? signUp() : signIn())} className="rounded-lg bg-blue-700 px-4 py-3 font-bold text-white disabled:opacity-50">{busy ? "Aguarde..." : registerMode ? "Criar minha conta" : "Entrar no painel"}</button>
+        <p className="text-xs text-slate-600">{registerMode ? "O cadastro cria uma conta comum. Para proteger os dados dos clientes, o acesso de administrador depende de aprovação no Supabase. Nunca compartilhe sua senha." : "Ainda não tem conta? Use Criar conta de administrador e aguarde a liberação de acesso. Não compartilhe sua senha."}</p>
       </div> : <div className="mt-6">
         <div className="flex flex-wrap gap-3"><button onClick={() => void loadCarts(token)} className="rounded-lg bg-blue-700 px-4 py-2 font-bold text-white">Atualizar</button><button onClick={() => { setToken(""); setCarts([]); setReviews([]); }} className="rounded-lg border px-4 py-2">Sair</button></div>
         <section className="mt-7 border-t pt-6"><div className="flex flex-wrap items-center justify-between gap-3"><h2 className="text-xl font-black">Avaliações dos produtos</h2><button onClick={()=>void loadReviews(token)} className="rounded-lg border px-3 py-2 text-sm font-bold">Atualizar avaliações</button></div><p className="mt-2 text-sm text-slate-600">Aprove opiniões reais, inclusive críticas respeitosas. Rejeite spam, ofensas e dados pessoais. Nunca marque uma compra como verificada sem comprovação.</p><div className="mt-4 space-y-3">{reviews.filter(r=>r.status==="pending").map(r=><article key={r.id} className="rounded-xl border p-4"><b>{r.product_name}</b><p className="mt-1 text-sm">{r.display_name} · {r.rating}/5 estrelas · {new Date(r.created_at).toLocaleDateString("pt-BR")}</p><p className="mt-2 whitespace-pre-wrap break-words text-sm">{r.comment}</p>{mediaUrls[r.id]&&(r.media_type==="video"?<video controls src={mediaUrls[r.id]} className="mt-2 max-h-64 w-full"/>:<img src={mediaUrls[r.id]} alt="Mídia da avaliação" className="mt-2 max-h-64 rounded-lg"/>)}<div className="mt-3 flex gap-2"><button onClick={()=>void moderate(r.id,"approved")} className="rounded-lg bg-green-700 px-3 py-2 text-sm font-bold text-white">Aprovar</button><button onClick={()=>void moderate(r.id,"rejected")} className="rounded-lg bg-slate-700 px-3 py-2 text-sm font-bold text-white">Rejeitar</button></div></article>)}{reviews.filter(r=>r.status==="pending").length===0&&<p className="text-sm text-slate-600">Nenhuma avaliação aguardando aprovação.</p>}</div></section>
