@@ -119,7 +119,7 @@ function Index() {
         })
       });
       if (!response.ok) throw new Error("Não foi possível registrar seu contato.");
-      setSaveMessage("Pronto! Seu carrinho foi registrado. A Vibe Digital poderá entrar em contato pelo WhatsApp sobre esses produtos.");
+      setSaveMessage("Solicitação recebida! Seus itens foram registrados para atendimento por WhatsApp. Nenhuma compra foi realizada e o estoque não foi reservado.");
       setCustomerName("");
       setCustomerPhone("");
       setConsent(false);
@@ -134,7 +134,7 @@ function Index() {
     setCart((current) => {
       const existing = current.find((item) => item.name === productName);
       return existing
-        ? current.map((item) => item.name === productName ? { ...item, quantity: item.quantity + 1 } : item)
+        ? current.map((item) => item.name === productName ? { ...item, quantity: Math.min(99, item.quantity + 1) } : item)
         : [...current, { name: productName, quantity: 1 }];
     });
     setCartOpen(true);
@@ -287,7 +287,7 @@ function Index() {
                 <h2 className="mt-2 break-words text-xl font-black leading-snug sm:text-2xl">{selectedProduct.name}</h2>
                 {selectedProduct.discount && <span className="mt-3 inline-flex rounded-md bg-blue-100 px-2 py-1 text-xs font-bold text-blue-800">{selectedProduct.discount}</span>}
                 <div className="mt-5 flex flex-wrap items-baseline gap-3"><strong className="text-3xl font-black text-[#2459B8]">{selectedProduct.price}</strong>{selectedProduct.oldPrice && <del className="text-sm text-slate-500">{selectedProduct.oldPrice}</del>}</div>
-                <p className="mt-4 text-sm leading-6 text-slate-600">Confira as informações e condições de compra no checkout antes de finalizar seu pedido.</p>
+                <p className="mt-4 text-sm leading-6 text-slate-600">O pagamento é feito em uma página externa. Antes de pagar, confira o vendedor, o frete, o prazo de entrega, a garantia e o valor total.</p>
                 {selectedProduct.name === "Relógio Inteligente D20 Preto" && <p className="mt-3 rounded-lg bg-amber-50 p-3 text-sm font-semibold text-amber-800">Disponível para compra · Estoque baixo! Restam poucas unidades.</p>}
                 <div className="mt-6 grid gap-3">
                   <button type="button" onClick={() => { addToCart(selectedProduct.name); setSelectedProduct(null); setCartOpen(true); }} className="flex min-h-12 items-center justify-center gap-2 rounded-xl border-2 border-[#2459B8] px-4 font-bold text-[#2459B8]"><ShoppingBag className="size-5" /> Adicionar ao carrinho</button>
@@ -328,7 +328,7 @@ function Index() {
             {cartProducts.length > 0 && (
               <form onSubmit={saveCart} className="mt-5 rounded-xl border border-blue-100 bg-blue-50 p-4">
                 <h3 className="font-black">Quer ajuda para finalizar sua compra?</h3>
-                <p className="mt-1 text-sm text-slate-600">Seu carrinho já fica salvo neste aparelho. Se desejar atendimento sobre esses produtos, deixe seu contato abaixo.</p>
+                <p className="mt-1 text-sm text-slate-600">Seu carrinho fica salvo neste aparelho. Para pedir atendimento, informe seu contato com autorização. Isso não realiza uma compra nem reserva estoque.</p>
                 <div className="mt-3 grid gap-2 sm:grid-cols-2">
                   <input value={customerName} onChange={(e) => setCustomerName(e.target.value)} placeholder="Seu nome" aria-label="Seu nome" autoComplete="name" maxLength={100} className="min-h-11 rounded-lg border border-slate-300 bg-white px-3 text-sm" />
                   <input value={customerPhone} onChange={(e) => setCustomerPhone(e.target.value)} placeholder="WhatsApp com DDD" aria-label="WhatsApp com DDD" autoComplete="tel" inputMode="tel" maxLength={20} className="min-h-11 rounded-lg border border-slate-300 bg-white px-3 text-sm" />
@@ -336,7 +336,7 @@ function Index() {
                 <label className="mt-3 flex items-start gap-2 text-xs text-slate-600"><input type="checkbox" checked={consent} onChange={(e) => setConsent(e.target.checked)} className="mt-0.5" /> Autorizo a Vibe Digital a guardar meu nome, WhatsApp e itens do carrinho para entrar em contato sobre esta compra. Posso pedir a exclusão dos meus dados pelo canal de atendimento.</label>
                 <button type="submit" disabled={savingCart} className="mt-3 min-h-11 w-full rounded-lg bg-[#2D6CDF] px-4 py-2 text-sm font-bold text-white disabled:opacity-50">{savingCart ? "Enviando..." : "Solicitar contato pelo WhatsApp"}</button>
                 {saveMessage && <p role="status" className="mt-2 text-xs">{saveMessage}</p>}
-                <p className="mt-2 text-xs text-slate-600">O contato é opcional. O pagamento é feito no checkout externo do produto. Não informe dados de cartão neste formulário.</p>
+                <p className="mt-2 text-xs text-slate-600">O contato é opcional e não confirma o pedido. O pagamento ocorre apenas no checkout externo de cada produto. Nunca informe dados de cartão neste formulário.</p>
               </form>
             )}
             <p className="mt-3 text-xs leading-5 text-[#686C7E]">A finalização e o pagamento acontecem no checkout externo de cada produto, em uma nova aba. O carrinho desta loja não finaliza vários produtos em um único pagamento; confira produto, frete e vendedor antes de pagar.</p>
