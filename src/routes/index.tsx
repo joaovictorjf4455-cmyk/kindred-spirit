@@ -59,6 +59,20 @@ const boomboxLastInstallment = boomboxInstallments[boomboxInstallments.length - 
 type StoreReview = { id: string; display_name: string; rating: number; comment: string; created_at: string; verified_purchase: boolean };
 
 function Index() {
+  useEffect(() => {
+    if (typeof IntersectionObserver === "undefined" || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) { entry.target.classList.add("product-revealed"); observer.unobserve(entry.target); }
+      });
+    }, {threshold: .12, rootMargin: "0px 0px -24px 0px"});
+    const observeCards = () => document.querySelectorAll(".storefront .product-card:not(.product-revealed)").forEach(card => observer.observe(card));
+    observeCards();
+    const grid = document.getElementById("produtos");
+    const changes = grid ? new MutationObserver(observeCards) : null;
+    if (grid && changes) changes.observe(grid, {childList:true});
+    return () => { observer.disconnect(); changes?.disconnect(); };
+  }, []);
   const [sceneScroll, setSceneScroll] = useState(0);
   useEffect(() => {
     let frame = 0;
@@ -182,6 +196,12 @@ function Index() {
         .storefront .product-image-wrap::after { content:""; position:absolute; inset:0; pointer-events:none; background:linear-gradient(135deg,rgba(255,255,255,.18),transparent 48%); }
         .storefront .product-image-wrap img { image-rendering:auto; }
         @media (min-width:1600px) { .storefront .reference-hero .max-w-7xl { max-width:1440px; } }
+        @keyframes productReveal { from {opacity:.55; transform:translateY(24px) scale(.975)} to {opacity:1; transform:translateY(0) scale(1)} }
+        .storefront .product-card.product-revealed { animation:productReveal .7s cubic-bezier(.2,.8,.2,1) both; }
+        .storefront .product-image-wrap::before { content:""; position:absolute; z-index:2; inset:-60% auto -60% -90%; width:42%; transform:rotate(22deg); background:linear-gradient(90deg,transparent,rgba(255,255,255,.65),transparent); pointer-events:none; transition:left .85s ease; }
+        .storefront .product-card:hover .product-image-wrap::before { left:145%; }
+        .storefront .product-card:focus-within { outline:2px solid #2D6CDF; outline-offset:3px; }
+        @media (prefers-reduced-motion:reduce) { .storefront .product-card.product-revealed {animation:none!important;} .storefront .product-image-wrap::before {display:none;} }
         .storefront .product-card { box-shadow:0 12px 30px rgba(22,47,86,.065),inset 0 1px 0 rgba(255,255,255,.8); }\n        .storefront .product-card:hover { transform:translateY(-6px); box-shadow:0 25px 48px rgba(20,63,125,.17),0 0 0 1px rgba(45,108,223,.12); }\n        .storefront .product-image-wrap img { transition:transform .55s cubic-bezier(.2,.8,.2,1),filter .55s ease; }\n        .storefront .product-card:hover .product-image-wrap img { transform:scale(1.055); filter:drop-shadow(0 12px 16px rgba(0,0,0,.11)); }\n        @media (prefers-reduced-motion:reduce) { .storefront .product-card,.storefront .product-image-wrap img {transition:none!important;transform:none!important;} }\n      `}</style>
       <div className="promo-strip bg-[#2B2D42] px-4 py-2 text-center text-xs font-bold text-white">
         <span>⚡ OFERTAS ESPECIAIS • Tecnologia para o seu dia a dia</span>
