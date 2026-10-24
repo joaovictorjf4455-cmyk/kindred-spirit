@@ -1,9 +1,16 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export const Route = createFileRoute("/proprietario")({ component: Proprietario });
 
 function Proprietario() {
+  const [scrollY, setScrollY] = useState(0);
+  useEffect(() => {
+    let frame = 0;
+    const onScroll = () => { if (frame) return; frame = requestAnimationFrame(() => { setScrollY(window.scrollY); frame = 0; }); };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => { window.removeEventListener("scroll", onScroll); if (frame) cancelAnimationFrame(frame); };
+  }, []);
   const [question, setQuestion] = useState("");
   const [messages, setMessages] = useState<{from:"owner"|"assistant";text:string}[]>([
     {from:"assistant",text:"Olá, João! 👋 Bem-vindo à central da Vibe Digital. Posso te orientar sobre produtos, pedidos, avaliações e acesso ao painel."}
@@ -18,8 +25,8 @@ function Proprietario() {
     else if(s.includes("senha")||s.includes("entrar")||s.includes("acesso")) answer="Crie sua conta ou entre pelo painel administrativo. O acesso aos dados exige permissão de administrador no Supabase; não compartilhe sua senha.";
     setMessages(v=>[...v,{from:"owner",text:q},{from:"assistant",text:answer}]);setQuestion("");
   }
-  return <main className="min-h-screen bg-[#08152f] text-white">
-    <div className="mx-auto max-w-6xl px-5 py-8">
+  return <main className="relative isolate min-h-screen overflow-hidden bg-[#08152f] text-white">\n    <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">\n      <div className="absolute inset-0" style={{background:"radial-gradient(ellipse at 25% 15%, rgba(14,116,244,.27), transparent 52%), radial-gradient(ellipse at 80% 65%, rgba(6,182,212,.16), transparent 45%), linear-gradient(160deg,#08152f,#0b2045 55%,#08152f)"}} />\n      <div className="absolute left-[-15%] top-16 h-[32rem] w-[32rem] rounded-full bg-blue-500/20 blur-[100px] motion-reduce:transform-none" style={{transform:`translate3d(0, ${Math.min(scrollY * .16, 260)}px, 0)`}} />\n      <div className="absolute right-[-10%] top-[32rem] h-[28rem] w-[28rem] rounded-full bg-cyan-400/20 blur-[100px] motion-reduce:transform-none" style={{transform:`translate3d(0, ${-Math.min(scrollY * .09, 160)}px, 0)`}} />\n      <div className="absolute inset-0 opacity-[.07]" style={{backgroundImage:"linear-gradient(rgba(255,255,255,.3) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.3) 1px,transparent 1px)",backgroundSize:"56px 56px"}} />\n    </div>
+    <div className="relative mx-auto max-w-6xl px-5 py-8">
       <header className="flex flex-wrap items-center justify-between gap-4 border-b border-white/10 pb-6">
         <a href="/" className="text-xl font-black tracking-tight">VIBE <span className="text-sky-400">DIGITAL</span></a>
         <span className="rounded-full border border-sky-400/30 bg-sky-400/10 px-4 py-2 text-sm text-sky-200">Central do proprietário · acesso protegido</span>
