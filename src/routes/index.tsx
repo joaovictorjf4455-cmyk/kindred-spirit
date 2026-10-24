@@ -59,6 +59,13 @@ const boomboxLastInstallment = boomboxInstallments[boomboxInstallments.length - 
 type StoreReview = { id: string; display_name: string; rating: number; comment: string; created_at: string; verified_purchase: boolean };
 
 function Index() {
+  const [sceneScroll, setSceneScroll] = useState(0);
+  useEffect(() => {
+    let frame = 0;
+    const onScroll = () => { if (frame) return; frame = requestAnimationFrame(() => { setSceneScroll(window.scrollY); frame = 0; }); };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => { window.removeEventListener("scroll", onScroll); if (frame) cancelAnimationFrame(frame); };
+  }, []);
   const [storeReviews, setStoreReviews] = useState<StoreReview[]>([]);
   useEffect(() => {
     let active = true;
@@ -167,7 +174,7 @@ function Index() {
   };
 
   return (
-    <main className="storefront min-h-screen bg-[#F4F6F8] text-[#2B2D42]">
+    <main className="storefront min-h-screen bg-[#F4F6F8] text-[#2B2D42]">\n      <style>{`\n        .storefront .reference-hero::after { content:""; position:absolute; inset:0; pointer-events:none; background:radial-gradient(ellipse at 68% 42%,rgba(75,183,255,.17),transparent 50%),linear-gradient(120deg,transparent 45%,rgba(255,255,255,.055) 51%,transparent 57%); mix-blend-mode:screen; }\n        .storefront .product-card { box-shadow:0 12px 30px rgba(22,47,86,.065),inset 0 1px 0 rgba(255,255,255,.8); }\n        .storefront .product-card:hover { transform:translateY(-6px); box-shadow:0 25px 48px rgba(20,63,125,.17),0 0 0 1px rgba(45,108,223,.12); }\n        .storefront .product-image-wrap img { transition:transform .55s cubic-bezier(.2,.8,.2,1),filter .55s ease; }\n        .storefront .product-card:hover .product-image-wrap img { transform:scale(1.055); filter:drop-shadow(0 12px 16px rgba(0,0,0,.11)); }\n        @media (prefers-reduced-motion:reduce) { .storefront .product-card,.storefront .product-image-wrap img {transition:none!important;transform:none!important;} }\n      `}</style>
       <div className="promo-strip bg-[#2B2D42] px-4 py-2 text-center text-xs font-bold text-white">
         <span>⚡ OFERTAS ESPECIAIS • Tecnologia para o seu dia a dia</span>
       </div>
@@ -221,7 +228,7 @@ function Index() {
       </header>
 
       <section id="inicio" className="reference-hero relative min-w-0 overflow-hidden">
-        <div className="reference-hero-glow" aria-hidden="true"/>
+        <div className="reference-hero-glow" aria-hidden="true"/>\n        <div aria-hidden="true" className="pointer-events-none absolute inset-0 overflow-hidden">\n          <div className="absolute -right-20 -top-28 h-[34rem] w-[34rem] rounded-full bg-sky-400/20 blur-[90px] motion-reduce:transform-none" style={{transform:`translate3d(0, ${Math.min(sceneScroll*.16,140)}px, 0)`}} />\n          <div className="absolute -left-32 top-28 h-96 w-96 rounded-full bg-blue-500/15 blur-[80px] motion-reduce:transform-none" style={{transform:`translate3d(0, ${-Math.min(sceneScroll*.08,90)}px, 0)`}} />\n        </div>
         <div className="relative mx-auto grid max-w-7xl items-center gap-5 px-5 py-8 md:min-h-[360px] md:grid-cols-[0.92fr_1.08fr] md:py-10 lg:px-8">
           <div className="relative z-10 py-3">
             <span className="mb-4 inline-flex items-center gap-2 rounded-full bg-[#0877FF] px-4 py-2 text-xs font-extrabold uppercase tracking-wide text-white shadow-lg shadow-blue-950/30"><Sparkles className="size-4"/> Oferta em destaque</span>
@@ -249,7 +256,7 @@ function Index() {
           </div>
           <div className="reference-product-stage relative flex min-h-[270px] items-center justify-center md:min-h-[330px]">
             <div className="reference-orbit reference-orbit-one" aria-hidden="true"/><div className="reference-orbit reference-orbit-two" aria-hidden="true"/>
-            <img src={boomboxBanner.url} alt="Caixa de som Boombox preta" className="boombox-hero-image relative z-10 max-h-[330px] w-full object-contain drop-shadow-[0_25px_35px_rgba(0,0,0,0.5)] md:max-h-[390px]" fetchPriority="high" decoding="async" />
+            <img src={boomboxBanner.url} alt="Caixa de som Boombox preta" style={{transform:`translate3d(0, ${-Math.min(sceneScroll*.10,65)}px, 0)`}} className="boombox-hero-image relative z-10 max-h-[330px] w-full object-contain drop-shadow-[0_25px_35px_rgba(0,0,0,0.5)] md:max-h-[390px]" fetchPriority="high" decoding="async" />
             <div className="absolute right-0 top-3 z-20 grid size-24 -rotate-6 place-items-center rounded-[1.6rem] bg-[#0877FF] text-center text-white shadow-xl shadow-blue-950/50 sm:right-5 sm:size-28"><span><b className="block text-3xl font-black sm:text-4xl">45%</b><span className="text-sm font-black uppercase">OFF*</span></span></div>
             <div className="absolute bottom-2 left-2 z-20 rounded-2xl border border-white/15 bg-[#101B30]/90 px-4 py-3 text-white shadow-xl backdrop-blur sm:left-8"><p className="text-[10px] font-bold uppercase tracking-widest text-[#75B2FF]">Destaque da loja</p><p className="mt-1 font-extrabold">Boombox Bluetooth</p><p className="text-xs text-slate-300">Som para curtir cada momento</p></div>
           </div>
