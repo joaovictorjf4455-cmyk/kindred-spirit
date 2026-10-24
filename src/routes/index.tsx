@@ -174,7 +174,15 @@ function Index() {
   };
 
   return (
-    <main className="storefront min-h-screen bg-[#F4F6F8] text-[#2B2D42]">\n      <style>{`\n        .storefront .reference-hero::after { content:""; position:absolute; inset:0; pointer-events:none; background:radial-gradient(ellipse at 68% 42%,rgba(75,183,255,.17),transparent 50%),linear-gradient(120deg,transparent 45%,rgba(255,255,255,.055) 51%,transparent 57%); mix-blend-mode:screen; }\n        .storefront .product-card { box-shadow:0 12px 30px rgba(22,47,86,.065),inset 0 1px 0 rgba(255,255,255,.8); }\n        .storefront .product-card:hover { transform:translateY(-6px); box-shadow:0 25px 48px rgba(20,63,125,.17),0 0 0 1px rgba(45,108,223,.12); }\n        .storefront .product-image-wrap img { transition:transform .55s cubic-bezier(.2,.8,.2,1),filter .55s ease; }\n        .storefront .product-card:hover .product-image-wrap img { transform:scale(1.055); filter:drop-shadow(0 12px 16px rgba(0,0,0,.11)); }\n        @media (prefers-reduced-motion:reduce) { .storefront .product-card,.storefront .product-image-wrap img {transition:none!important;transform:none!important;} }\n      `}</style>
+    <main className="storefront min-h-screen bg-[#F4F6F8] text-[#2B2D42]">\n      <style>{`\n        .storefront .reference-hero::after { content:""; position:absolute; inset:0; pointer-events:none; background:radial-gradient(ellipse at 68% 42%,rgba(75,183,255,.17),transparent 50%),linear-gradient(120deg,transparent 45%,rgba(255,255,255,.055) 51%,transparent 57%); mix-blend-mode:screen; }\n        .storefront { -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; }
+        .storefront .reference-hero { isolation:isolate; }
+        .storefront .reference-hero::before { content:""; position:absolute; inset:0; pointer-events:none; opacity:.22; background-image:radial-gradient(rgba(255,255,255,.28) .65px,transparent .65px); background-size:7px 7px; }
+        .storefront .boombox-hero-image { image-rendering:auto; filter:drop-shadow(0 28px 28px rgba(0,0,0,.35)); }
+        .storefront .product-image-wrap { isolation:isolate; }
+        .storefront .product-image-wrap::after { content:""; position:absolute; inset:0; pointer-events:none; background:linear-gradient(135deg,rgba(255,255,255,.18),transparent 48%); }
+        .storefront .product-image-wrap img { image-rendering:auto; }
+        @media (min-width:1600px) { .storefront .reference-hero .max-w-7xl { max-width:1440px; } }
+        .storefront .product-card { box-shadow:0 12px 30px rgba(22,47,86,.065),inset 0 1px 0 rgba(255,255,255,.8); }\n        .storefront .product-card:hover { transform:translateY(-6px); box-shadow:0 25px 48px rgba(20,63,125,.17),0 0 0 1px rgba(45,108,223,.12); }\n        .storefront .product-image-wrap img { transition:transform .55s cubic-bezier(.2,.8,.2,1),filter .55s ease; }\n        .storefront .product-card:hover .product-image-wrap img { transform:scale(1.055); filter:drop-shadow(0 12px 16px rgba(0,0,0,.11)); }\n        @media (prefers-reduced-motion:reduce) { .storefront .product-card,.storefront .product-image-wrap img {transition:none!important;transform:none!important;} }\n      `}</style>
       <div className="promo-strip bg-[#2B2D42] px-4 py-2 text-center text-xs font-bold text-white">
         <span>⚡ OFERTAS ESPECIAIS • Tecnologia para o seu dia a dia</span>
       </div>
