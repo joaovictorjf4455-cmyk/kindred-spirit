@@ -188,7 +188,7 @@ function Index() {
   };
 
   return (
-    <main className="storefront min-h-screen bg-[#F4F6F8] text-[#2B2D42]">
+    <main className="storefront min-h-screen bg-[#0B1120] text-slate-100">
       <style>{`
         .storefront .reference-hero::after { content:""; position:absolute; inset:0; pointer-events:none; background:radial-gradient(ellipse at 68% 42%,rgba(75,183,255,.17),transparent 50%),linear-gradient(120deg,transparent 45%,rgba(255,255,255,.055) 51%,transparent 57%); mix-blend-mode:screen; }
         .storefront { -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; }
