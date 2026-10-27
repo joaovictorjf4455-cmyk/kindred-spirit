@@ -27,9 +27,24 @@ function Account() {
         headers: { "Content-Type": "application/json", apikey: key },
         body: JSON.stringify(isRegister ? { email: email.trim().toLowerCase(), password, data: { full_name: name.trim() } } : { email: email.trim().toLowerCase(), password })
       });
-      const data = await response.json();
+      const data = await response.json().catch(() => ({}));
       if (!response.ok) {
-        setMessage(response.status === 429 ? "Muitas tentativas no momento. Aguarde um pouco antes de tentar novamente." : isRegister ? "Não foi possível concluir o cadastro. Confira os dados ou tente mais tarde." : "E-mail ou senha inválidos. Confira os dados e tente novamente.");
+        const code = String(data.code || data.error_code || "").toLowerCase();
+        if (response.status === 429 || code.includes("rate_limit") || code.includes("over_email_send_rate_limit")) {
+          setMessage("O Supabase limitou temporariamente as tentativas. Aguarde antes de tentar novamente; repetir agora não vai liberar o cadastro.");
+        } else if (code.includes("email_not_confirmed")) {
+          setMessage("Confirme seu e-mail antes de entrar. Confira também a pasta de spam.");
+        } else if (code.includes("user_already_exists") || code.includes("email_exists")) {
+          setMessage("Este e-mail já possui cadastro. Use a opção Entrar.");
+        } else if (code.includes("email_address_invalid")) {
+          setMessage("Confira o endereço de e-mail informado.");
+        } else if (code.includes("weak_password")) {
+          setMessage("Escolha uma senha mais forte, com pelo menos 8 caracteres.");
+        } else if (response.status >= 500) {
+          setMessage("O serviço de cadastro está temporariamente indisponível. Tente mais tarde.");
+        } else {
+          setMessage(isRegister ? "Não foi possível concluir o cadastro. Confira os dados ou tente novamente mais tarde." : "Não foi possível entrar. Confira seu e-mail, senha e confirmação de cadastro.");
+        }
         return;
       }
       setPassword("");
