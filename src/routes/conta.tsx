@@ -61,9 +61,9 @@ function Account() {
     finally { setBusy(false); }
   };
   return (
-    <main className="min-h-screen bg-[#F4F6F8] px-4 py-10 text-[#202840]">
+    <main className="min-h-screen bg-[#0B1120] px-4 py-10 text-[#202840]">
       <div className="mx-auto max-w-md">
-        <a href="/" className="mb-8 inline-flex items-center gap-2 text-sm font-semibold text-[#2459B8]"><ArrowLeft className="size-4" /> Voltar à loja</a>
+        <a href="/" className="mb-8 inline-flex items-center gap-2 text-sm font-semibold text-blue-300"><ArrowLeft className="size-4" /> Voltar à loja</a>
         <div className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-xl">
           <div className="bg-[#142B56] px-7 py-8 text-center text-white">
             <div className="mx-auto mb-3 grid size-14 place-items-center rounded-full bg-[#2674E8]"><UserRound className="size-7" /></div>
