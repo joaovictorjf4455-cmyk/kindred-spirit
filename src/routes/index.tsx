@@ -188,7 +188,10 @@ function Index() {
   };
 
   return (
-    <main className="storefront min-h-screen bg-[#F4F6F8] text-[#2B2D42]">\n      <style>{`\n        .storefront .reference-hero::after { content:""; position:absolute; inset:0; pointer-events:none; background:radial-gradient(ellipse at 68% 42%,rgba(75,183,255,.17),transparent 50%),linear-gradient(120deg,transparent 45%,rgba(255,255,255,.055) 51%,transparent 57%); mix-blend-mode:screen; }\n        .storefront { -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; }
+    <main className="storefront min-h-screen bg-[#F4F6F8] text-[#2B2D42]">
+      <style>{`
+        .storefront .reference-hero::after { content:""; position:absolute; inset:0; pointer-events:none; background:radial-gradient(ellipse at 68% 42%,rgba(75,183,255,.17),transparent 50%),linear-gradient(120deg,transparent 45%,rgba(255,255,255,.055) 51%,transparent 57%); mix-blend-mode:screen; }
+        .storefront { -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; }
         .storefront .reference-hero { isolation:isolate; }
         .storefront .reference-hero::before { content:""; position:absolute; inset:0; pointer-events:none; opacity:.22; background-image:radial-gradient(rgba(255,255,255,.28) .65px,transparent .65px); background-size:7px 7px; }
         .storefront .boombox-hero-image { image-rendering:auto; filter:drop-shadow(0 28px 28px rgba(0,0,0,.35)); }
@@ -202,7 +205,12 @@ function Index() {
         .storefront .product-card:hover .product-image-wrap::before { left:145%; }
         .storefront .product-card:focus-within { outline:2px solid #2D6CDF; outline-offset:3px; }
         @media (prefers-reduced-motion:reduce) { .storefront .product-card.product-revealed {animation:none!important;} .storefront .product-image-wrap::before {display:none;} }
-        .storefront .product-card { box-shadow:0 12px 30px rgba(22,47,86,.065),inset 0 1px 0 rgba(255,255,255,.8); }\n        .storefront .product-card:hover { transform:translateY(-6px); box-shadow:0 25px 48px rgba(20,63,125,.17),0 0 0 1px rgba(45,108,223,.12); }\n        .storefront .product-image-wrap img { transition:transform .55s cubic-bezier(.2,.8,.2,1),filter .55s ease; }\n        .storefront .product-card:hover .product-image-wrap img { transform:scale(1.055); filter:drop-shadow(0 12px 16px rgba(0,0,0,.11)); }\n        @media (prefers-reduced-motion:reduce) { .storefront .product-card,.storefront .product-image-wrap img {transition:none!important;transform:none!important;} }\n      `}</style>
+        .storefront .product-card { box-shadow:0 12px 30px rgba(22,47,86,.065),inset 0 1px 0 rgba(255,255,255,.8); }
+        .storefront .product-card:hover { transform:translateY(-6px); box-shadow:0 25px 48px rgba(20,63,125,.17),0 0 0 1px rgba(45,108,223,.12); }
+        .storefront .product-image-wrap img { transition:transform .55s cubic-bezier(.2,.8,.2,1),filter .55s ease; }
+        .storefront .product-card:hover .product-image-wrap img { transform:scale(1.055); filter:drop-shadow(0 12px 16px rgba(0,0,0,.11)); }
+        @media (prefers-reduced-motion:reduce) { .storefront .product-card,.storefront .product-image-wrap img {transition:none!important;transform:none!important;} }
+      `}</style>
       <div className="promo-strip bg-[#2B2D42] px-4 py-2 text-center text-xs font-bold text-white">
         <span>⚡ OFERTAS ESPECIAIS • Tecnologia para o seu dia a dia</span>
       </div>
@@ -256,7 +264,11 @@ function Index() {
       </header>
 
       <section id="inicio" className="reference-hero relative min-w-0 overflow-hidden">
-        <div className="reference-hero-glow" aria-hidden="true"/>\n        <div aria-hidden="true" className="pointer-events-none absolute inset-0 overflow-hidden">\n          <div className="absolute -right-20 -top-28 h-[34rem] w-[34rem] rounded-full bg-sky-400/20 blur-[90px] motion-reduce:transform-none" style={{transform:`translate3d(0, ${Math.min(sceneScroll*.16,140)}px, 0)`}} />\n          <div className="absolute -left-32 top-28 h-96 w-96 rounded-full bg-blue-500/15 blur-[80px] motion-reduce:transform-none" style={{transform:`translate3d(0, ${-Math.min(sceneScroll*.08,90)}px, 0)`}} />\n        </div>
+        <div className="reference-hero-glow" aria-hidden="true"/>
+        <div aria-hidden="true" className="pointer-events-none absolute inset-0 overflow-hidden">
+          <div className="absolute -right-20 -top-28 h-[34rem] w-[34rem] rounded-full bg-sky-400/20 blur-[90px] motion-reduce:transform-none" style={{transform:`translate3d(0, ${Math.min(sceneScroll*.16,140)}px, 0)`}} />
+          <div className="absolute -left-32 top-28 h-96 w-96 rounded-full bg-blue-500/15 blur-[80px] motion-reduce:transform-none" style={{transform:`translate3d(0, ${-Math.min(sceneScroll*.08,90)}px, 0)`}} />
+        </div>
         <div className="relative mx-auto grid max-w-7xl items-center gap-5 px-5 py-8 md:min-h-[360px] md:grid-cols-[0.92fr_1.08fr] md:py-10 lg:px-8">
           <div className="relative z-10 py-3">
             <span className="mb-4 inline-flex items-center gap-2 rounded-full bg-[#0877FF] px-4 py-2 text-xs font-extrabold uppercase tracking-wide text-white shadow-lg shadow-blue-950/30"><Sparkles className="size-4"/> Oferta em destaque</span>
