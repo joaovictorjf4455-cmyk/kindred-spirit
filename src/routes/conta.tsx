@@ -3,8 +3,8 @@ import { useState } from "react";
 import { ArrowLeft, LockKeyhole, UserRound } from "lucide-react";
 
 export const Route = createFileRoute("/conta")({ component: Account, head: () => ({ meta: [{ title: "Minha Conta | Vibe Digital" }, { name: "description", content: "Acesse ou crie sua conta na Vibe Digital." }] }) });
-const base = "https://ondwevgwqzvpmbycoimq.supabase.co";
-const key = "sb_publishable_7IGQQLaQGXhg0HVeGDdd2g_LWklzHkI";
+const base = "https://sumiouuwiancxkroffgl.supabase.co";
+const key = "sb_publishable_ST-BGkmR12iXNHM9GdTDFQ_TfNxDbIy";
 type AccountUser = { id: string; email?: string; user_metadata?: { full_name?: string } };
 function Account() {
   const [mode, setMode] = useState<"login" | "register">("login");
