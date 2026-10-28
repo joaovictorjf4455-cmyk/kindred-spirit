@@ -2,8 +2,8 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { Star, Camera, Video } from "lucide-react";
 export const Route = createFileRoute("/avaliacoes")({ component: Reviews });
-const base = "https://ondwevgwqzvpmbycoimq.supabase.co";
-const key = "sb_publishable_7IGQQLaQGXhg0HVeGDdd2g_LWklzHkI";
+const base = "https://sumiouuwiancxkroffgl.supabase.co";
+const key = "sb_publishable_ST-BGkmR12iXNHM9GdTDFQ_TfNxDbIy";
 const products = ["Vibe Digital — avaliação da loja","Fone de Ouvido Bluetooth Headphone P9 Air Prata","Headset Gamer RGB com Microfone Preto","Relógio Inteligente D20 Preto","Smartwatch C20 Pro com Chamada Bluetooth e Modo Esportivo","PRETO - Caixa De Som Boombox Bluetooth Bivolt","Carregador 3 em 1 Dobrável Compatível com MagSafe - Branco","Power Bank Magnético Compatível com MagSafe","Kit Teclado e Mouse Sem Fio Bluetooth Branco","Kit Teclado e Mouse Sem Fio Bluetooth Preto"];
 type Review = { id:string; display_name:string; product_name:string; rating:number; comment:string; media_path:string|null; media_type:string|null; created_at:string; verified_purchase:boolean };
 function Reviews() {
