@@ -2,8 +2,8 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 
 export const Route = createFileRoute("/admin")({ component: Admin });
-const base = "https://ondwevgwqzvpmbycoimq.supabase.co";
-const key = "sb_publishable_7IGQQLaQGXhg0HVeGDdd2g_LWklzHkI";
+const base = "https://sumiouuwiancxkroffgl.supabase.co";
+const key = "sb_publishable_ST-BGkmR12iXNHM9GdTDFQ_TfNxDbIy";
 type Cart = { id: string; created_at: string; customer_name: string; whatsapp: string; items: { name: string; quantity: number }[]; status: string };
 type Review = { id:string; display_name:string; product_name:string; rating:number; comment:string; media_path:string|null; media_type:string|null; status:string; created_at:string }; 
 function Admin() {
