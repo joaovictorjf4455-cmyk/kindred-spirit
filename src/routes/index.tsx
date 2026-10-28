@@ -83,7 +83,7 @@ function Index() {
   const [storeReviews, setStoreReviews] = useState<StoreReview[]>([]);
   useEffect(() => {
     let active = true;
-    fetch("https://ondwevgwqzvpmbycoimq.supabase.co/rest/v1/product_reviews?select=id,display_name,rating,comment,created_at,verified_purchase&status=eq.approved&product_name=eq."+encodeURIComponent("Vibe Digital — avaliação da loja")+"&order=created_at.desc&limit=6", { headers: { apikey: "sb_publishable_7IGQQLaQGXhg0HVeGDdd2g_LWklzHkI" } })
+    fetch("https://sumiouuwiancxkroffgl.supabase.co/rest/v1/product_reviews?select=id,display_name,rating,comment,created_at,verified_purchase&status=eq.approved&product_name=eq."+encodeURIComponent("Vibe Digital — avaliação da loja")+"&order=created_at.desc&limit=6", { headers: { apikey: "sb_publishable_ST-BGkmR12iXNHM9GdTDFQ_TfNxDbIy" } })
       .then(response => response.ok ? response.json() : Promise.reject())
       .then((data: StoreReview[]) => { if (active && Array.isArray(data)) setStoreReviews(data); })
       .catch(() => { /* Não exibir avaliações não confirmadas. */ });
@@ -129,9 +129,9 @@ function Index() {
     setSavingCart(true);
     setSaveMessage("Enviando sua solicitação...");
     try {
-      const response = await fetch("https://ondwevgwqzvpmbycoimq.supabase.co/rest/v1/rpc/submit_saved_cart", {
+      const response = await fetch("https://sumiouuwiancxkroffgl.supabase.co/rest/v1/rpc/submit_saved_cart", {
         method: "POST",
-        headers: { "Content-Type": "application/json", apikey: "sb_publishable_7IGQQLaQGXhg0HVeGDdd2g_LWklzHkI" },
+        headers: { "Content-Type": "application/json", apikey: "sb_publishable_ST-BGkmR12iXNHM9GdTDFQ_TfNxDbIy" },
         body: JSON.stringify({
           p_name: customerName.trim(),
           p_whatsapp: phone,
